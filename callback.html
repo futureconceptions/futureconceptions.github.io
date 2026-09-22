@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ClipFarm Studio – Connected</title><link rel="stylesheet" href="_style.css">
+<style>code.url{display:block;word-break:break-all;background:#12151c;border:1px solid var(--line);border-radius:8px;padding:12px;font-size:13px;margin:12px 0}button{background:var(--acc);color:#fff;border:0;border-radius:7px;padding:9px 14px;font-weight:600;cursor:pointer}</style></head><body><main>
+<nav><a href="./">ClipFarm Studio</a><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a></nav>
+<h1>Account connected</h1><div class="meta">TikTok sent the authorization back to ClipFarm Studio</div>
+<p id="msg">Copy the address below and paste it into the ClipFarm console that asked for the "Redirected URL". Nothing is stored on this page.</p>
+<code class="url" id="u"></code><button onclick="navigator.clipboard.writeText(location.href).then(()=>{this.textContent='Copied'})">Copy URL</button>
+<script>const q=new URLSearchParams(location.search);document.getElementById('u').textContent=location.href;if(q.get('error')){document.getElementById('msg').textContent='TikTok reported an error: '+(q.get('error_description')||q.get('error'))}</script>
+<footer>Operated by Future Conceptions · futureconceptions.clips@gmail.com</footer></main></body></html>
