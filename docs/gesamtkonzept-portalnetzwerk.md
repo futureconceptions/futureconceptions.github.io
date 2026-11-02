@@ -489,8 +489,8 @@ expire_after_hours: 24
 ```
 
 ```yaml
-# rules/blick_ratgeber_rotation.yaml
-id: blick_ratgeber
+# rules/urteil_ratgeber_rotation.yaml
+id: urteil_ratgeber
 portal: [agentururteil, softwareurteil, kursurteil]   # rotierend
 schedule: "0 14 * * 1-5"
 source: topic_list                                   # topics/<portal>.yaml, von dir gepflegt
