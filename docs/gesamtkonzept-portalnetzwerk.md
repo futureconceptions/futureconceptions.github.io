@@ -1,6 +1,6 @@
 # Gesamtkonzept: Portalnetzwerk für Wirtschaftsnachrichten & Bewertungen
 
-**Arbeitstitel:** BLICKWERK Medien · **Stand:** November 2026 · **Status:** Konzept v2 (Betrieb auf Raspberry Pi, KI-Entwürfe, Freigabe per Telegram)
+**Netzwerk:** MERKANT Medien · **Stand:** November 2026 · **Status:** Konzept v2 (Betrieb auf Raspberry Pi, KI-Entwürfe, Freigabe per Telegram)
 **Hinweis:** Eigenständiges Projekt, organisatorisch und rechtlich getrennt von ClipFarm Studio. Dieses Dokument gehört langfristig in ein eigenes Repository.
 
 ---
@@ -10,8 +10,8 @@
 1. Vision & Kernidee
 2. Markennamen (Netzwerk, Nachrichtenportal, Bewertungsportale)
 3. Netzwerk-Architektur
-4. Leitportal: KOPF & KONTOR (Wirtschaftsnachrichten)
-5. Bewertungsportale (Blick-Familie)
+4. Leitportal: KONTORKURIER (Wirtschaftsnachrichten)
+5. Bewertungsportale (Urteil-Familie)
 6. Wie Nachrichten und Bewertungen zusammenspielen
 7. Content-Engine: Quellen, KI-Workflow, Tagesplan
 8. Technik: Betrieb auf dem Raspberry Pi, Telegram-Freigabe, Regel-Engine
@@ -46,62 +46,68 @@
 
 ---
 
-## 2. Markennamen
+## 2. Markennamen (Domainprüfung vom 02.11.2026)
 
-> Alle Namen sind Vorschläge. Vor der Festlegung prüfen: DPMA-/EUIPO-Markenrecherche, Verfügbarkeit von .de-Domain und Social-Handles, Verwechslungsgefahr mit bestehenden Medien.
+> **Prüfmethode:** `.com` über die Cloudflare-Registrar-API (verbindliche Live-Abfrage bei der Registry). `.de` über die WHOIS-Abfrage von Cloudflare Intel (zeigt, ob die Domain bei DENIC registriert ist). Insgesamt wurden über 100 Domains geprüft.
+> **Wichtig:** Domains können jederzeit weggeschnappt werden. Die gewählten Domains deshalb **zeitnah registrieren**. `.de` ist bei Cloudflare Registrar nicht erhältlich und wird bei einem deutschen Registrar gekauft (z. B. INWX, Hetzner, netcup, United Domains; ca. 5–15 €/Jahr). `.com` kostet bei Cloudflare 11,17 USD/Jahr.
+> **Vor dem Kauf zusätzlich:** DPMA-/EUIPO-Markenrecherche (Klassen 35, 38, 41, 42) und Social-Handles prüfen.
 
-### 2.1 Dachmarke / Betreiber
+### 2.1 Festgelegte Namen
 
-| Vorschlag | Idee |
-|---|---|
-| **BLICKWERK Medien** (Favorit) | Verbindet die „Blick“-Bewertungsportale mit „Werk“ (Handwerk, Mittelstand) |
-| Kontorhaus Medien | Hanseatisch, seriös, Kaufmannstradition |
-| Mittelweg Media | Mittelstand + Orientierung |
+| Rolle | Name | Hauptdomain | Weitere Domains (alle frei) |
+|---|---|---|---|
+| **Dachmarke / Betreiber** | **MERKANT Medien** | `merkant-medien.de` | `merkantmedien.de`, `merkant-medien.com`, `merkantmedien.com` |
+| **Nachrichtenportal** | **KONTORKURIER** | `kontorkurier.de` | `kontor-kurier.de`, `kontorkurier.com`, `kontor-kurier.com` |
+| Bewertungsportal | **Agentururteil** | `agentururteil.de` | `agentur-urteil.de`, `agentururteil.com`, `agentur-urteil.com` |
+| Bewertungsportal | **Softwareurteil** | `softwareurteil.de` | `software-urteil.de`, `softwareurteil.com`, `software-urteil.com` |
+| Bewertungsportal | **Kursurteil** | `kursurteil.de` | `kurs-urteil.de`, `kursurteil.com` |
+| Bewertungsportal | **Solarurteil** | `solarurteil.de` | `solar-urteil.de`, `solarurteil.com` |
+| Bewertungsportal | **Umzugsurteil** | `umzugsurteil.de` | `umzugs-urteil.de`, `umzugsurteil.com` |
+| später | **Coachurteil** | `coachurteil.de` | `coach-urteil.de`, `coachurteil.com` |
+| später | **Betreuungsurteil** | `betreuungsurteil.de` | `betreuungs-urteil.de`, `betreuungsurteil.com` |
 
-Rechtsform: GmbH oder UG (haftungsbeschränkt), Name z. B. „Blickwerk Medien GmbH“. Erscheint im Impressum aller Portale.
+**Claims:**
+- **MERKANT Medien:** *Medien für den Mittelstand.* „Merkant“ (vom lateinischen *mercator*, Kaufmann) ist neutral, passt zu Nachrichten und Bewertungen, und eine Websuche hat keine gleichnamige Medienmarke gefunden. Rechtsform z. B. „Merkant Medien GmbH“ oder UG. Erscheint im Impressum aller Portale. Hinweis: `merkant.de`/`.com` sind vergeben, deshalb der Zusatz „Medien“.
+- **KONTORKURIER:** *Nachrichten über Unternehmen und die Menschen dahinter.* Das Kontor steht für Kaufmannstradition, der Kurier für ein Nachrichtenmedium. Eine Websuche fand keine Marke mit diesem Namen. Mit Abstand zu „Kontor Records“ (Musiklabel) durch den Zusatz „Kurier“.
+- **„-urteil“-Familie:** Die einzige geprüfte Namensfamilie, bei der **alle sieben Portale auf .de und .com frei** sind. Der Name ist ehrlich („das Urteil der Kunden“) und als Netzwerk erkennbar. Claims: *Agentururteil – Die richtige Agentur. Echte Erfahrungen.* · *Softwareurteil – IT-Partner im Kundenurteil* · *Kursurteil – Weiterbildung, die hält, was sie verspricht* · *Solarurteil – Installateure im Erfahrungscheck* · *Umzugsurteil – Seriöse Umzugsfirmen finden*.
+- **Abwägung „-urteil“:** Das Wort kann an Gerichtsurteile erinnern (z. B. bei Suchen wie „Umzug Urteil“). Für die Marke unkritisch, für SEO aber nicht auf Suchbegriffe mit „Urteil“ optimieren, sondern auf „Erfahrungen“ und „Bewertungen“.
 
-### 2.2 Nachrichtenportal
-
-| Vorschlag | Claim | Bewertung |
-|---|---|---|
-| **KOPF & KONTOR** (Favorit) | *Nachrichten über Unternehmen und die Menschen dahinter* | Einprägsam, deckt „Köpfe“ und „Unternehmen“ ab, klingt nach Qualitätsmedium |
-| Firmenkurier | *Was Deutschlands Unternehmen bewegt* | Klar, aber generisch |
-| Chefetage | *Wirtschaft aus der ersten Reihe* | Stark für Personalien, schwächer für Insolvenzen |
-| Mittelstandsblick | *Der Mittelstand im Fokus* | Passt zur Blick-Familie, wirkt aber weniger eigenständig |
-
-Domains (zu prüfen): `kopfundkontor.de`, `kopf-kontor.de`, `kuk-news.de`
-
-Regionale Ableger als Unterbereiche, keine eigenen Marken:
-`kopfundkontor.de/nrw`, `/bayern`, `/rhein-main`, `/berlin` …
-
-### 2.3 Bewertungsportale („Blick“-Familie)
-
-Einheitliches Namensschema: sofort als Netzwerk erkennbar, ehrlich und skalierbar.
-
-| Portal | Nische | Claim |
-|---|---|---|
-| **Agenturblick** | Marketing-, Social-Media-, Video- & Content-Agenturen | *Die richtige Agentur. Echte Erfahrungen.* |
-| **Softwareblick** | Software-Dienstleister, Web-Agenturen, IT-Partner für KMU | *IT-Partner im Kundenurteil* |
-| **Kursblick** | Bootcamps, Weiterbildungsträger, Bildungsgutschein-Anbieter | *Weiterbildung, die hält, was sie verspricht* |
-| **Solarblick** | Solar-, Speicher- & Wärmepumpen-Installateure | *Installateure im Erfahrungscheck* |
-| **Umzugsblick** | Umzugs- & Entrümpelungsfirmen | *Seriöse Umzugsfirmen finden* |
-| *später:* Coachblick | Online-Coaches & Kursanbieter | (erst mit Presserechts-Begleitung) |
-| *später:* Betreuungsblick | 24h-Betreuungs- & Pflegevermittlungen | (sensibel, eigene Redaktion) |
+Regionale Ausgaben des Nachrichtenportals als Unterbereiche: `kontorkurier.de/nrw`, `/bayern`, `/rhein-main`, `/berlin` …
 
 Bewusst vermieden: „Test“ oder „Check“ im Namen. Das suggeriert eigene Warentests à la Stiftung Warentest und wäre ohne echte Tests irreführend.
+
+### 2.2 Verworfene Favoriten (Domain vergeben)
+
+| Name | Ergebnis | Bemerkung |
+|---|---|---|
+| KOPF & KONTOR | `kopfundkontor.de` + `kopf-kontor.de` vergeben (gleicher Inhaber, aktiv, zuletzt geändert 28.10.2026), `.com` vergeben, `kopfkontor.de` vergeben | Nur `kopf-und-kontor.de` frei. Wegen aktiver Nutzung des Namens Konfliktgefahr, deshalb verworfen |
+| BLICKWERK Medien | `blickwerk.de`/`.com` vergeben, `blickwerk-media.de` vergeben | `blickwerk-medien.de` wäre frei, aber die Blick-Familie entfällt |
+| Blick-Familie | `agenturblick.de`, `softwareblick.de`, `kursblick.de` (Sedo-geparkt, evtl. käuflich), `solarblick.de`, `umzugsblick.de`, `coachblick.de`, `pflegeblick.de` vergeben | Familie nicht einheitlich verfügbar |
+| Firmenkurier | `.de` vergeben | `.com` frei |
+| Chefetage | `.de`/`.com` vergeben | `chefetage-news.de` frei |
+| Firmenblick, Unternehmerblick | `.de` vergeben (firmenblick.de Sedo-geparkt) | – |
+| „-radar“, „-kompass“, „-lupe“, „-echo“ | jeweils mehrere Portale vergeben | Familie nicht vollständig |
+
+### 2.3 Freie Reserve-Namen (.de und .com frei)
+
+| Für | Freie Alternativen |
+|---|---|
+| Dachmarke | Urteilwerk (Medien), Mittelweg Media, Blickfeld Medien, Blickhaus Medien, Portalwerk Medien, Kurierwerk Medien, Radarwerk Medien, Lupenwerk Medien |
+| Nachrichtenportal | Mittelstandsblick, Mittelstandszeit, Mittelstandspost, Mittelstandsticker, Unternehmenskurier, Kontorzeit, Kontorticker, Kontorblick, Firmenköpfe (`firmenkoepfe`), Köpfe & Firmen (`koepfeundfirmen`), Registerkurier, Registerticker, Chefetage News |
+| Bewertungsportale | Lupe-Familie teilweise frei (`agenturlupe`, `kurslupe`, `coachlupe`), Echo-Familie teilweise frei (`softwareecho`, `kursecho`, `umzugsecho`, `betreuungsecho`) |
 
 ---
 
 ## 3. Netzwerk-Architektur
 
 ```
-                         BLICKWERK Medien GmbH (Betreiber, offen genannt)
+                         MERKANT Medien GmbH (Betreiber, offen genannt)
                                         │
               ┌─────────────────────────┴─────────────────────────┐
               │                                                   │
-      KOPF & KONTOR                                     Blick-Bewertungsportale
-   (Wirtschaftsnachrichten)                    Agenturblick · Softwareblick · Kursblick
-              │                                     Solarblick · Umzugsblick
+      KONTORKURIER                                     Urteil-Bewertungsportale
+   (Wirtschaftsnachrichten)                    Agentururteil · Softwareurteil · Kursurteil
+              │                                     Solarurteil · Umzugsurteil
               │                                                   │
               └──────────────┬────────────────────────────────────┘
                              │
@@ -120,13 +126,13 @@ Bewusst vermieden: „Test“ oder „Check“ im Namen. Das suggeriert eigene W
 **Prinzip „ein Kern, viele Oberflächen“:** Ein neues Portal entsteht durch Konfiguration (Domain, Branding, Kategorien, Bewertungskriterien, Redaktionsressorts), nicht durch neue Software.
 
 **Verknüpfung über die Firmen-ID:** Jedes Unternehmen existiert genau einmal in der Datenbank. Es kann:
-- in Artikeln von KOPF & KONTOR vorkommen,
-- ein Bewertungsprofil auf einem oder mehreren Blick-Portalen haben,
+- in Artikeln von KONTORKURIER vorkommen,
+- ein Bewertungsprofil auf einem oder mehreren Urteil-Portalen haben,
 - ein Premium-Profil gebucht haben (gilt netzwerkweit).
 
 ---
 
-## 4. Leitportal: KOPF & KONTOR
+## 4. Leitportal: KONTORKURIER
 
 ### 4.1 Positionierung
 - **Zielgruppe:** Unternehmer, Geschäftsführer, Führungskräfte, Gründer, Investoren, Vertriebler, Journalisten, Bewerber, interessierte Bürger einer Region.
@@ -163,7 +169,7 @@ Artikelseite
 ├── Text mit verlinkten Firmen & Personen (Firmen-Chips)
 ├── Infobox „Über das Unternehmen“ (aus Datenbank)
 ├── Quellenangaben (z. B. „Handelsregister HRB 12345, AG Köln, 30.10.2026“)
-├── Box „Erfahrungen mit diesem Unternehmen“ → Link zum Blick-Portal (falls vorhanden)
+├── Box „Erfahrungen mit diesem Unternehmen“ → Link zum Urteil-Portal (falls vorhanden)
 └── Mehr zum Thema / Newsletter / Anzeigen
 
 Firmenseite  /unternehmen/<slug>
@@ -171,7 +177,7 @@ Firmenseite  /unternehmen/<slug>
 ├── Geschäftsführung / Vorstand (aktuell + Historie)
 ├── Kennzahlen aus Bundesanzeiger (Umsatz, Mitarbeiter, Bilanzsumme, sofern veröffentlicht)
 ├── Zeitleiste: alle Registerereignisse und Artikel
-├── Bewertungsscore aus Blick-Portal (falls vorhanden)
+├── Bewertungsscore aus Urteil-Portal (falls vorhanden)
 └── Premium: Logo, Selbstdarstellung, Newsroom, Stellen (als „Firmeninformation“ gekennzeichnet)
 
 Personenseite  /koepfe/<slug>
@@ -194,13 +200,13 @@ Ressort- & Regionalseiten, Themenseiten (z. B. „Wärmepumpen-Branche“), Auto
 | **Köpfe der Woche** | Alle relevanten Wechsel in der Geschäftsführung | montags |
 | **Deal-Monitor** | Finanzierungsrunden & Übernahmen | wöchentlich |
 | **Wachstumschampions [Region]** | Ranking aus Bilanzdaten | jährlich + Award |
-| **KOPF & KONTOR Podcast** | Gespräch mit einem Unternehmer | 14-täglich (Phase 3) |
+| **KONTORKURIER Podcast** | Gespräch mit einem Unternehmer | 14-täglich (Phase 3) |
 
 ---
 
-## 5. Bewertungsportale (Blick-Familie)
+## 5. Bewertungsportale (Urteil-Familie)
 
-### 5.1 Gemeinsamer Aufbau (alle Blick-Portale)
+### 5.1 Gemeinsamer Aufbau (alle Urteil-Portale)
 
 ```
 Startseite: Suche (Firma / Leistung / Ort) + Top-Kategorien + neueste Bewertungen
@@ -211,7 +217,7 @@ Firmenprofil: /firma/<slug>
   ├── KI-Zusammenfassung der Bewertungen (als KI-generiert gekennzeichnet)
   ├── Bewertungsliste mit Herkunfts-Label (verifiziert / eingeladen / organisch)
   ├── Antworten des Unternehmens
-  ├── Box „Aktuelle Nachrichten“ → KOPF & KONTOR
+  ├── Box „Aktuelle Nachrichten“ → KONTORKURIER
   └── Stammdaten aus gemeinsamer Firmendatenbank
 Bewertung schreiben (mit Verifizierung)
 Für Unternehmen: Profil beanspruchen, Pakete, Widgets, Einladungs-API
@@ -222,11 +228,11 @@ Transparenz: So funktionieren Bewertungen · Score-Methodik · Richtlinien · Tr
 
 | Portal | Teilkriterien (je 1–5★) | Zusatzfelder |
 |---|---|---|
-| **Agenturblick** | Ergebnisse, Kommunikation, Kreativität, Termintreue, Preis-Leistung | Leistung (Social, Video, SEO, Ads …), Projektbudget-Spanne, Laufzeit |
-| **Softwareblick** | Qualität, Projektmanagement, Termintreue, Support, Preis-Leistung | Technologie, Projektart, Budget-Spanne |
-| **Kursblick** | Inhalte, Dozenten, Organisation, Jobchancen, Betreuung | Kurs, Förderung (Bildungsgutschein ja/nein), Abschluss, Job nach Kurs |
-| **Solarblick** | Beratung, Montage, Termintreue, Service nach dem Kauf, Preis-Leistung | Anlagengröße, Komponenten, Monate seit Inbetriebnahme |
-| **Umzugsblick** | Pünktlichkeit, Sorgfalt, Freundlichkeit, Preistreue, Preis-Leistung | Umzugsart, Entfernung, Angebot vs. Endpreis |
+| **Agentururteil** | Ergebnisse, Kommunikation, Kreativität, Termintreue, Preis-Leistung | Leistung (Social, Video, SEO, Ads …), Projektbudget-Spanne, Laufzeit |
+| **Softwareurteil** | Qualität, Projektmanagement, Termintreue, Support, Preis-Leistung | Technologie, Projektart, Budget-Spanne |
+| **Kursurteil** | Inhalte, Dozenten, Organisation, Jobchancen, Betreuung | Kurs, Förderung (Bildungsgutschein ja/nein), Abschluss, Job nach Kurs |
+| **Solarurteil** | Beratung, Montage, Termintreue, Service nach dem Kauf, Preis-Leistung | Anlagengröße, Komponenten, Monate seit Inbetriebnahme |
+| **Umzugsurteil** | Pünktlichkeit, Sorgfalt, Freundlichkeit, Preistreue, Preis-Leistung | Umzugsart, Entfernung, Angebot vs. Endpreis |
 
 ### 5.3 Verifizierungsstufen
 
@@ -243,11 +249,11 @@ Transparenz: So funktionieren Bewertungen · Score-Methodik · Richtlinien · Tr
 - **Zahlung hat keinen Einfluss** auf Score, Sortierung oder Sichtbarkeit von Bewertungen.
 
 ### 5.5 Kaltstart je Portal (ohne Fake-Bewertungen)
-1. 500–2.000 Profile aus öffentlichen Daten anlegen (Register, Websites, Branchenverzeichnisse, AZAV-Datenbank für Kursblick, Marktstammdatenregister für Solarblick).
+1. 500–2.000 Profile aus öffentlichen Daten anlegen (Register, Websites, Branchenverzeichnisse, AZAV-Datenbank für Kursurteil, Marktstammdatenregister für Solarurteil).
 2. Unternehmen anschreiben: „Ihr Profil ist online. Beanspruchen Sie es kostenlos und laden Sie Kunden ein.“
 3. Kostenloses Einladungs-Tool (CSV-Upload, Zapier, Shop-/CRM-Plugins) für die ersten 6 Monate.
 4. Redaktionelle Ratgeber und Marktübersichten als SEO-Fundament.
-5. Launch-Datenstudie mit PR über KOPF & KONTOR (offen als Schwesterportal gekennzeichnet).
+5. Launch-Datenstudie mit PR über KONTORKURIER (offen als Schwesterportal gekennzeichnet).
 
 ---
 
@@ -255,13 +261,13 @@ Transparenz: So funktionieren Bewertungen · Score-Methodik · Richtlinien · Tr
 
 | Verbindung | Nutzen | Regel |
 |---|---|---|
-| Artikel → Bewertungsprofil | Leser sehen Kundenerfahrungen | Link-Box „Erfahrungen auf Agenturblick“ mit Hinweis „Schwesterportal“ |
+| Artikel → Bewertungsprofil | Leser sehen Kundenerfahrungen | Link-Box „Erfahrungen auf Agentururteil“ mit Hinweis „Schwesterportal“ |
 | Bewertungsprofil → Artikel | Besucher sehen aktuelle Nachrichten zur Firma | Automatisch über Firmen-ID |
 | Gemeinsame Firmendatenbank | Einmal pflegen, überall nutzen | Datenquelle angeben |
-| Datenstudien aus Bewertungen | Exklusive Geschichten für KOPF & KONTOR | Methodik offenlegen |
+| Datenstudien aus Bewertungen | Exklusive Geschichten für KONTORKURIER | Methodik offenlegen |
 | Netzwerk-Premiumprofil | Höherer Umsatz pro Kunde | Kein Einfluss auf Redaktion oder Score |
 
-**Firewall-Regel:** Die Redaktion von KOPF & KONTOR entscheidet unabhängig vom Vertrieb. Kein Kunde kauft Berichterstattung, Löschungen oder bessere Bewertungen. Die Regel steht in den Redaktionsgrundsätzen und in jedem Kundenvertrag.
+**Firewall-Regel:** Die Redaktion von KONTORKURIER entscheidet unabhängig vom Vertrieb. Kein Kunde kauft Berichterstattung, Löschungen oder bessere Bewertungen. Die Regel steht in den Redaktionsgrundsätzen und in jedem Kundenvertrag.
 
 ---
 
@@ -277,8 +283,8 @@ Transparenz: So funktionieren Bewertungen · Score-Methodik · Richtlinien · Tr
 | Pressemitteilungen | Firmennachrichten | presseportal.de (ots), Firmen-Newsrooms, RSS, Presseverteiler |
 | Finanzierungsrunden | Startup-News | Pressemitteilungen, LinkedIn, Dealroom/Crunchbase (Lizenz) |
 | Behörden & Kammern | Ansiedlungen, Förderungen, Statistiken | IHK, Wirtschaftsförderungen, Destatis, Landesämter |
-| Marktstammdatenregister | Solar-Installationen (für Solarblick) | öffentlich |
-| AZAV-/Kursnet-Daten | Bildungsträger (für Kursblick) | öffentlich |
+| Marktstammdatenregister | Solar-Installationen (für Solarurteil) | öffentlich |
+| AZAV-/Kursnet-Daten | Bildungsträger (für Kursurteil) | öffentlich |
 | Eigene Recherche, Interviews, Leser-Hinweise | Exklusives, Porträts | Redaktion, Hinweisgeber-Formular |
 
 ### 7.2 Workflow: Regeln → KI-Entwurf → Telegram-Freigabe
@@ -316,7 +322,7 @@ Kernprinzip: **Die KI schreibt, du gibst frei.** Nichts geht ohne deinen Klick i
 - Keine Wertungen über Personen, keine Spekulation über Ursachen (z. B. bei Insolvenzen).
 - Verfahrensstadien exakt benennen („vorläufiges Insolvenzverfahren beantragt“, nicht „pleite“).
 - Jede Meldung endet mit Quellenangabe und KI-Hinweis.
-- **Die KI schreibt niemals Bewertungen**, keine Antworten im Namen von Unternehmen und keine Leserkommentare. Auf den Blick-Portalen schreibt sie nur Ratgeber, Marktübersichten, Ranking-Texte und als KI gekennzeichnete Zusammenfassungen echter Bewertungen.
+- **Die KI schreibt niemals Bewertungen**, keine Antworten im Namen von Unternehmen und keine Leserkommentare. Auf den Urteil-Portalen schreibt sie nur Ratgeber, Marktübersichten, Ranking-Texte und als KI gekennzeichnete Zusammenfassungen echter Bewertungen.
 
 ### 7.3 Tagesplan: was die Regeln automatisch erzeugen
 
@@ -324,18 +330,18 @@ Ausgelegt auf **eine Person**, die freigibt: ca. **35–50 Freigaben pro Tag**, 
 
 | Zeit | Regel | Portal | Anzahl | Risiko |
 |---|---|---|---|---|
-| 05:30 | Registerereignisse Vortag → Personalien & Gründungen | KOPF & KONTOR | 10–15 | 🟢/🟡 |
-| 05:45 | Morgen-Briefing (aus gestern freigegebenen Artikeln) | KOPF & KONTOR | 1 | 🟢 |
+| 05:30 | Registerereignisse Vortag → Personalien & Gründungen | KONTORKURIER | 10–15 | 🟢/🟡 |
+| 05:45 | Morgen-Briefing (aus gestern freigegebenen Artikeln) | KONTORKURIER | 1 | 🟢 |
 | **06:15–06:45** | **Freigabeblock 1** (Telegram) | | | |
-| 07:00 | Briefing → Newsletter + Telegram-Kanal | KOPF & KONTOR | auto | – |
-| 09:00 | Pressemitteilungen → Firmennachrichten | KOPF & KONTOR | 5–8 | 🟢/🟡 |
-| 10:00 | Finanzierungsrunden/Deals | KOPF & KONTOR | 2–4 | 🟢 |
-| 11:00 | Insolvenzbekanntmachungen | KOPF & KONTOR | 2–6 | 🔴 |
-| 11:30 | Unternehmer des Tages (Porträt-Entwurf aus Daten + PR, mit Rückfrage-Hinweis) | KOPF & KONTOR | 1 | 🟡 |
+| 07:00 | Briefing → Newsletter + Telegram-Kanal | KONTORKURIER | auto | – |
+| 09:00 | Pressemitteilungen → Firmennachrichten | KONTORKURIER | 5–8 | 🟢/🟡 |
+| 10:00 | Finanzierungsrunden/Deals | KONTORKURIER | 2–4 | 🟢 |
+| 11:00 | Insolvenzbekanntmachungen | KONTORKURIER | 2–6 | 🔴 |
+| 11:30 | Unternehmer des Tages (Porträt-Entwurf aus Daten + PR, mit Rückfrage-Hinweis) | KONTORKURIER | 1 | 🟡 |
 | **12:00–12:20** | **Freigabeblock 2** | | | |
-| 14:00 | Ratgeber (aus Themenliste, rotierend) | je 1 Blick-Portal | 1–2 | 🟢 |
-| 15:00 | Neue Bewertungen: KI-Zusammenfassung von Profilen mit ≥ 5 neuen Bewertungen | Blick | 2–5 | 🟢 |
-| 15:30 | Moderations-Queue: gemeldete Bewertungen (Entscheidung durch dich) | Blick | variabel | 🔴 |
+| 14:00 | Ratgeber (aus Themenliste, rotierend) | je 1 Urteil-Portal | 1–2 | 🟢 |
+| 15:00 | Neue Bewertungen: KI-Zusammenfassung von Profilen mit ≥ 5 neuen Bewertungen | Urteil-Portale | 2–5 | 🟢 |
+| 15:30 | Moderations-Queue: gemeldete Bewertungen (Entscheidung durch dich) | Urteil-Portale | variabel | 🔴 |
 | 16:00 | Social-Posts (LinkedIn/Telegram-Kanal) aus freigegebenen Artikeln | alle | 3–5 | 🟢 |
 | **17:00–17:20** | **Freigabeblock 3** | | | |
 
@@ -345,14 +351,14 @@ Wöchentliche und monatliche Regeln (Köpfe der Woche, Insolvenz-Report, Deal-Mo
 
 ### 7.4 Wochen-, Monats-, Jahresplan
 
-| Rhythmus | KOPF & KONTOR | Blick-Portale |
+| Rhythmus | KONTORKURIER | Urteil-Portale |
 |---|---|---|
 | Montag | Köpfe der Woche | – |
 | Mittwoch | Deal-Monitor | 1 Ratgeber je Portal |
 | Freitag | Insolvenz-Report | Wochen-Highlights (Social) |
 | Monatlich | Gründungsatlas, Branchen-Daten-Story | Ranking „Top 10 in [Kategorie]“ (aus Score, transparent) |
 | Quartal | Interview-Serie / Themenschwerpunkt | Consumer-Alerts, Moderationszahlen |
-| Jährlich | Award „Wachstumschampions“ + Event | Blick-Award „Kundenliebling 2027“, Transparenzbericht |
+| Jährlich | Award „Wachstumschampions“ + Event | Urteil-Award „Kundenliebling 2027“, Transparenzbericht |
 
 ### 7.5 Social Media
 - **LinkedIn** (Hauptkanal): Personalien mit Verlinkung der Personen, Deals, Rankings. Personen teilen ihre eigenen Meldungen weiter, das bringt kostenlose Reichweite.
@@ -406,7 +412,7 @@ Wöchentliche und monatliche Regeln (Köpfe der Woche, Insolvenz-Report, Deal-Mo
 └────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-Alle Portale (KOPF & KONTOR + alle Blick-Portale) laufen **in derselben Installation**. Der Builder schreibt pro Domain einen eigenen Ordner. Caddy und Cloudflare ordnen die Domains zu.
+Alle Portale (KONTORKURIER + alle Urteil-Portale) laufen **in derselben Installation**. Der Builder schreibt pro Domain einen eigenen Ordner. Caddy und Cloudflare ordnen die Domains zu.
 
 **Warum selbstgebauter Static-Site-Builder statt Next.js/Payload?** Auf dem Pi ist ein schlanker Python-Builder (Jinja2) robuster und ressourcenschonender. Es gibt keinen dauerhaft laufenden Node-Server, und Rebuilds betreffen nur geänderte Seiten (inkrementell).
 
@@ -419,13 +425,13 @@ Alle Portale (KOPF & KONTOR + alle Blick-Portale) laufen **in derselben Installa
 
 **Freigabekarte (Beispiel):**
 ```
-🟡 KOPF & KONTOR · Köpfe · NRW                     Regel: personalien_nrw
+🟡 KONTORKURIER · Köpfe · NRW                     Regel: personalien_nrw
 ────────────────────────────────────────────────
 Neuer Geschäftsführer bei Mustermann Logistik GmbH
 
 Die Mustermann Logistik GmbH aus Köln hat einen neuen Geschäftsführer:
 Laut Handelsregister-Eintrag vom 30.10.2026 ist Max Beispiel …
-(Vorschau gekürzt, 📄 Volltext-Vorschau: preview.kopfundkontor.de/…)
+(Vorschau gekürzt, 📄 Volltext-Vorschau: preview.kontorkurier.de/…)
 
 📎 Quellen: HRB 12345, AG Köln, Bekanntmachung 30.10.2026
 🔍 Faktencheck: 6/6 Aussagen belegt
@@ -462,7 +468,7 @@ Jede Regel ist eine Datei in `rules/`. Neue Formate entstehen ohne Programmierun
 ```yaml
 # rules/kuk_personalien_nrw.yaml
 id: personalien_nrw
-portal: kopfundkontor
+portal: kontorkurier
 ressort: koepfe
 schedule: "30 5 * * 1-6"          # Mo–Sa 05:30
 source: handelsregister
@@ -485,7 +491,7 @@ expire_after_hours: 24
 ```yaml
 # rules/blick_ratgeber_rotation.yaml
 id: blick_ratgeber
-portal: [agenturblick, softwareblick, kursblick]   # rotierend
+portal: [agentururteil, softwareurteil, kursurteil]   # rotierend
 schedule: "0 14 * * 1-5"
 source: topic_list                                   # topics/<portal>.yaml, von dir gepflegt
 limit_per_day: 1
@@ -500,7 +506,7 @@ expire_after_hours: never
 ```yaml
 # rules/kuk_insolvenzen.yaml
 id: insolvenzen
-portal: kopfundkontor
+portal: kontorkurier
 ressort: insolvenzen
 schedule: "0 11 * * 1-5"
 source: insolvenzbekanntmachungen
@@ -576,7 +582,7 @@ Kerntabellen (Kurzform): `portal`, `company`, `company_alias`, `company_financia
 | **LinkedIn** | B2B-Kern | Personen markieren, Teilen durch Betroffene |
 | **Newsletter** | Eigener, unabhängiger Kanal | Morgen-Briefing, regionale Ausgaben |
 | **Kooperationen** | IHKs, Wirtschaftsförderungen, Gründerzentren, Verbände | Datenpartnerschaften, Award-Partner |
-| **Widgets/Siegel** | Backlinks & Markenbekanntheit | Blick-Siegel auf Kunden-Websites |
+| **Widgets/Siegel** | Backlinks & Markenbekanntheit | Urteil-Siegel auf Kunden-Websites |
 
 ---
 
@@ -587,33 +593,33 @@ Kerntabellen (Kurzform): `portal`, `company`, `company_alias`, `company_financia
 | Quelle | Portal | Ab Phase |
 |---|---|---|
 | Display & Programmatic Ads | alle | 1 |
-| Native-Ad-Widgets (Taboola/Outbrain als *Publisher*) | KOPF & KONTOR | 2 |
-| Newsletter-Sponsoring | KOPF & KONTOR | 2 |
-| Blick-Pakete (Einladungen, Widgets, Analytics) | Blick | 2 |
+| Native-Ad-Widgets (Taboola/Outbrain als *Publisher*) | KONTORKURIER | 2 |
+| Newsletter-Sponsoring | KONTORKURIER | 2 |
+| Urteil-Pakete (Einladungen, Widgets, Analytics) | Urteil-Portale | 2 |
 | Netzwerk-Premiumprofil | alle | 2 |
-| Gekennzeichnete Partnerinhalte („Anzeige“) | KOPF & KONTOR | 2 |
-| Stellenmarkt | KOPF & KONTOR | 3 |
-| Leads (Anfrageformular „3 Angebote erhalten“) | Solarblick, Umzugsblick, Agenturblick | 3 |
+| Gekennzeichnete Partnerinhalte („Anzeige“) | KONTORKURIER | 2 |
+| Stellenmarkt | KONTORKURIER | 3 |
+| Leads (Anfrageformular „3 Angebote erhalten“) | Solarurteil, Umzugsurteil, Agentururteil | 3 |
 | Awards & Events | alle | 3 |
-| Daten-Abo (Alerts zu Insolvenzen und Personalwechseln, API) | KOPF & KONTOR | 3 |
+| Daten-Abo (Alerts zu Insolvenzen und Personalwechseln, API) | KONTORKURIER | 3 |
 
-### 10.2 Preis-Entwurf Blick-Portale (monatlich, netto)
+### 10.2 Preis-Entwurf Urteil-Portale (monatlich, netto)
 
 | Paket | Preis | Leistungen |
 |---|---|---|
 | **Basis** | 0 € | Profil beanspruchen, Daten pflegen, auf Bewertungen antworten |
 | **Starter** | 49 € | Einladungen (100/Monat), Widget, Siegel, Basis-Statistik |
 | **Pro** | 149 € | Einladungen unbegrenzt, API/Integrationen, Wettbewerbsvergleich, Logo & Bilder |
-| **Netzwerk** | 299 € | Pro + Premium-Firmenprofil auf KOPF & KONTOR + Stellenanzeigen + Newsroom |
+| **Netzwerk** | 299 € | Pro + Premium-Firmenprofil auf KONTORKURIER + Stellenanzeigen + Newsroom |
 
-Gekennzeichnete Partnerinhalte KOPF & KONTOR: 490–1.490 € je Beitrag (Unternehmensporträt, Fachbeitrag), immer mit „Anzeige“ markiert.
+Gekennzeichnete Partnerinhalte KONTORKURIER: 490–1.490 € je Beitrag (Unternehmensporträt, Fachbeitrag), immer mit „Anzeige“ markiert.
 
 ### 10.3 Beispielrechnung (Ende Jahr 2, konservativ)
 
 | Posten | Annahme | Monat |
 |---|---|---|
 | Ads (alle Portale) | 1,2 Mio. Seitenaufrufe × 8 € RPM | ~9.600 € |
-| Blick-Pakete | 150 zahlende Firmen × Ø 110 € | ~16.500 € |
+| Urteil-Pakete | 150 zahlende Firmen × Ø 110 € | ~16.500 € |
 | Partnerinhalte | 8 Beiträge × 800 € | ~6.400 € |
 | Newsletter-Sponsoring | 4 Wochen × 600 € | ~2.400 € |
 | **Summe** | | **~35.000 €/Monat** |
@@ -650,7 +656,7 @@ Gekennzeichnete Partnerinhalte KOPF & KONTOR: 490–1.490 € je Beitrag (Untern
 - Consent-Management für Ads/Tracking.
 
 ### 11.4 Netzwerk-Transparenz
-- Alle Portale nennen **Blickwerk Medien GmbH** als Betreiber.
+- Alle Portale nennen **Merkant Medien GmbH** als Betreiber.
 - Seite „Unser Netzwerk“ auf jedem Portal.
 - Querverweise zwischen den Portalen als „Schwesterportal“ kennzeichnen.
 
@@ -677,7 +683,7 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 |---|---|---|
 | **1 (Monat 0–6)** | **Du:** Herausgeber, Verantwortlicher nach MStV, Freigabe per Telegram (ca. 1 h/Tag), Regeln & Themenlisten pflegen · Entwicklung des Systems (Eigenleistung mit KI-Unterstützung oder Freelancer) · Anwalt (Projekt) | ~1–1,5 h/Tag + Aufbau |
 | **2 (Monat 7–18)** | + freier Redakteur für Porträts, Interviews und Recherchen (das kann die KI nicht) · + Vertretung für Freigaben (Urlaub/Krankheit) · + Vertrieb in Teilzeit | ~2–3 Personen |
-| **3 (ab Monat 19)** | + Regionalredakteure · + Moderation Blick-Portale · Umzug auf Cloud-Server prüfen | 4+ Personen |
+| **3 (ab Monat 19)** | + Regionalredakteure · + Moderation Urteil-Portale · Umzug auf Cloud-Server prüfen | 4+ Personen |
 
 **Grenzen der Automatisierung (bewusst menschlich):** Interviews, Anhörung Betroffener bei kritischen Berichten, Gegendarstellungen, Moderationsentscheidungen, Kundengespräche, Korrekturen.
 
@@ -720,19 +726,19 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 - [ ] Anwalt: Redaktionsstatut, Bewertungsrichtlinien, AGB, Datenschutz
 
 ### Phase 1: MVP (Monat 2–6)
-- [ ] **KOPF & KONTOR** live für **1 Region** (z. B. NRW): Unternehmen, Köpfe, Insolvenzen, Gründungen
+- [ ] **KONTORKURIER** live für **1 Region** (z. B. NRW): Unternehmen, Köpfe, Insolvenzen, Gründungen
 - [ ] Regeln: Personalien, Gründungen, Pressemitteilungen, Insolvenzen (NRW) → KI-Entwurf → Telegram-Freigabe
 - [ ] Faktencheck-Durchlauf und Risikoklassen aktiv, Audit-Log
 - [ ] Backups (lokal + offsite) mit Wiederherstellungstest, Alarme per Telegram
 - [ ] Firmen- & Personenseiten (mit Indexierungsschwelle)
 - [ ] Morgen-Briefing (Newsletter)
-- [ ] **Agenturblick** live: 1.000 Profile, Einladungs-Tool, Verifizierung, Transparenzseiten
+- [ ] **Agentururteil** live: 1.000 Profile, Einladungs-Tool, Verifizierung, Transparenzseiten
 - [ ] Google Publisher Center, Search Console, LinkedIn-Präsenz
 - **Ziel:** 15–25 Beiträge/Tag, 50.000 Seitenaufrufe/Monat, 1.000 Newsletter-Abonnenten, 50 beanspruchte Profile
 
 ### Phase 2: Wachstum (Monat 7–18)
-- [ ] KOPF & KONTOR bundesweit, Regionalfilter für alle Bundesländer
-- [ ] **Softwareblick** + **Kursblick** live
+- [ ] KONTORKURIER bundesweit, Regionalfilter für alle Bundesländer
+- [ ] **Softwareurteil** + **Kursurteil** live
 - [ ] Bezahlpakete, Premiumprofile, Partnerinhalte, Ads
 - [ ] Bewerbung MSN Partner Hub
 - [ ] Erster Transparenzbericht, erstes Ranking
@@ -740,11 +746,11 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 - **Ziel:** 300.000–1 Mio. Seitenaufrufe/Monat, 100+ zahlende Kunden, Break-even der laufenden Kosten
 
 ### Phase 3: Skalierung (ab Monat 19)
-- [ ] **Solarblick** + **Umzugsblick** (mit Lead-Modell)
+- [ ] **Solarurteil** + **Umzugsurteil** (mit Lead-Modell)
 - [ ] Awards „Wachstumschampions“ & „Kundenliebling“ + Event
 - [ ] Daten-Abo/API, Stellenmarkt, Podcast
 - [ ] Content-Partnerschaften mit Startseiten-Portalen
-- [ ] Prüfen: Coachblick / Betreuungsblick (mit Presserechtsbegleitung)
+- [ ] Prüfen: Coachurteil / Betreuungsurteil (mit Presserechtsbegleitung)
 
 ---
 
@@ -784,10 +790,10 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 
 ## 17. Nächste Schritte
 
-1. **Domainprüfung freischalten** (Hosts `rdap.denic.de`, `rdap.verisign.com`, `rdap.org` in den Netzwerkeinstellungen der Umgebung erlauben), dann **Namen festlegen:** Favoriten BLICKWERK Medien · KOPF & KONTOR · Agenturblick bestätigen oder Alternativen wählen. Danach Marken- und Domainprüfung.
-2. **Startregion für KOPF & KONTOR** wählen (Vorschlag: NRW, größter Wirtschaftsraum mit vielen Registerereignissen).
+1. **Domainprüfung freischalten** (Hosts `rdap.denic.de`, `rdap.verisign.com`, `rdap.org` in den Netzwerkeinstellungen der Umgebung erlauben), dann **Namen festlegen:** Favoriten MERKANT Medien · KONTORKURIER · Agentururteil bestätigen oder Alternativen wählen. Danach Marken- und Domainprüfung.
+2. **Startregion für KONTORKURIER** wählen (Vorschlag: NRW, größter Wirtschaftsraum mit vielen Registerereignissen).
 3. **Eigenes Repository** anlegen und mit Claude verbinden. Dann folgt das technische Grundgerüst für den Pi:
-   Docker Compose (Caddy, cloudflared, Backend, PostgreSQL), Regel-Engine mit den drei Beispielregeln aus 8.5, Telegram-Freigabe-Bot, Static-Site-Builder für KOPF & KONTOR und Agenturblick.
+   Docker Compose (Caddy, cloudflared, Backend, PostgreSQL), Regel-Engine mit den drei Beispielregeln aus 8.5, Telegram-Freigabe-Bot, Static-Site-Builder für KONTORKURIER und Agentururteil.
 4. **Rechtliches Paket** beim Anwalt beauftragen (Abschnitt 11).
 5. **Datenanbieter** vergleichen und Testzugang einrichten.
 
