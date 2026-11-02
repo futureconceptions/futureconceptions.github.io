@@ -1,7 +1,7 @@
 # Gesamtkonzept: Portalnetzwerk für Wirtschaftsnachrichten & Bewertungen
 
 **Netzwerk:** MERKANT Medien · **Stand:** November 2026 · **Status:** Konzept v3 (Namen & Domains final · Betrieb auf Raspberry Pi · KI-Entwürfe · Freigabe per Telegram)
-**Hinweis:** Eigenständiges Projekt, organisatorisch und rechtlich getrennt von ClipFarm Studio. Dieses Dokument gehört langfristig in ein eigenes Repository.
+**Betreiber:** futureconceptions UG (haftungsbeschränkt), derzeit i.G. MERKANT Medien ist eine Marke der UG. Live-Gang und AdSense erst nach Eintragung ins Handelsregister (Details: `docs/roi-google-ads.md`, Abschnitt 7). Eine spätere Ausgliederung in eine eigene Gesellschaft ist möglich, z. B. bei > 500.000 Seitenaufrufen/Monat oder ernsthaften Rechtsstreitigkeiten.
 
 ---
 

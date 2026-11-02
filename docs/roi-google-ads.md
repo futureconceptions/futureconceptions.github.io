@@ -172,3 +172,40 @@ A banned AdSense account usually cannot be restored and affects all your domains
 | Month 6 | Page views ≥ 50,000/month? | Below: focus on Google News/Discover and the best-performing portal |
 | Month 12 | Ad revenue ≥ €900/month (running costs covered)? | Below: add paid review packages/sponsoring before adding new portals |
 | Month 18 | Page views ≥ 700,000/month? | Above: evaluate Ad Manager + header bidding and a move from Pi to cloud server |
+
+---
+
+## 7. Operating entity: futureconceptions UG (haftungsbeschränkt) i.G.
+
+The portals are run by **futureconceptions UG (haftungsbeschränkt)**, currently **in formation (i.G.)**. MERKANT Medien is used as a brand of the UG.
+*Not legal or tax advice. Confirm with notary and tax advisor.*
+
+### 7.1 What "i.G." means for the plan
+| Stage | Liability | What you may do |
+|---|---|---|
+| **Before notarisation** (pre-formation) | Founders liable **personally and without limit** (treated like a partnership/sole trader) | Planning, building the software, writing unpublished drafts |
+| **Notarised, not yet registered** (UG i.G.) | Anyone acting in the UG's name is **personally liable** (§ 11 (2) GmbHG); founders liable for losses | Preparation, contracts clearly marked "i.G.", bank account opening |
+| **Registered in the commercial register** | Liability limited to the UG's assets | **Go live**, apply for AdSense, publish news and reviews |
+
+**Rule:** No portal goes live and no AdSense application before the UG is registered. Publishing company news and reviews carries legal risk that must not hit you personally.
+
+### 7.2 Do now, while the UG is still in formation
+1. **Business purpose (Unternehmensgegenstand):** add media activities *before* registration. That saves a later notarised amendment. Suggested wording for the notary:
+   *„Betrieb von Online-Medien, Nachrichten-, Informations- und Bewertungsportalen, Erstellung und Verbreitung redaktioneller Inhalte, Vermarktung von Werbeflächen sowie Entwicklung und Betrieb von Software und digitalen Dienstleistungen.“*
+2. **Domains:** register now so they aren't lost, either in the founder's name with a documented later transfer to the UG (holder change at the registrar), or directly in the name „futureconceptions UG (haftungsbeschränkt) i.G.“ if the registrar accepts it. Transfer all domains to the UG right after registration.
+3. **Collect all invoices in the UG's name** („futureconceptions UG (haftungsbeschränkt) i.G.“) so that formation-phase costs can be booked in the UG. Agree with the tax advisor which costs before notarisation the UG takes over.
+4. **Funding:** the one-off costs (~€12,000) will likely exceed the share capital. Plan a **shareholder loan** (written agreement, ideally with subordination/Rangrücktritt so the UG isn't over-indebted) or a higher capital contribution.
+5. **Insurance:** request quotes for media liability insurance now; start cover on the go-live date.
+
+### 7.3 Right after registration
+1. Business bank account in the UG's name (if not opened already), business registration (Gewerbeanmeldung), tax registration (Fragebogen zur steuerlichen Erfassung), VAT ID.
+2. Transfer domains to the UG. Trademark filings in the UG's name.
+3. Imprint on all portals: „MERKANT Medien – eine Marke der futureconceptions UG (haftungsbeschränkt)“, registered office, register court, HRB number, managing director, responsible person under § 18 (2) MStV.
+4. **Create the AdSense account as a business account in the UG's name.** The payee name must match the UG's bank account. An individual AdSense account can't be converted later.
+5. Only then: go live and apply for AdSense (Phase C of the plan).
+
+### 7.4 Effect on the ROI
+- **No tax offset in year 1:** a new UG has no other profits yet, so the portal losses (base case about −€16,000 after 12 months) become a **loss carryforward**. It reduces tax once the UG earns money (portals or other business) and has full value later, but brings no cash benefit immediately. The ROI figures above (before tax) therefore stay unchanged.
+- **Reserve rule:** a UG must retain 25 % of annual profit until its capital reaches €25,000. That limits payouts, not ROI.
+- **Timeline:** registration usually takes 1–4 weeks after notarisation. It fits into Phase A/B (weeks 1–8): build the sites while the registration runs, then apply for AdSense in weeks 6–10.
+
