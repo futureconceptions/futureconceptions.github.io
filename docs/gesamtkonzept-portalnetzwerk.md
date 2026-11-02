@@ -1,6 +1,6 @@
 # Gesamtkonzept: Portalnetzwerk für Wirtschaftsnachrichten & Bewertungen
 
-**Arbeitstitel:** BLICKWERK Medien · **Stand:** November 2026 · **Status:** Konzept v1
+**Arbeitstitel:** BLICKWERK Medien · **Stand:** November 2026 · **Status:** Konzept v2 (Betrieb auf Raspberry Pi, KI-Entwürfe, Freigabe per Telegram)
 **Hinweis:** Eigenständiges Projekt, organisatorisch und rechtlich getrennt von ClipFarm Studio. Dieses Dokument gehört langfristig in ein eigenes Repository.
 
 ---
@@ -13,8 +13,8 @@
 4. Leitportal: KOPF & KONTOR (Wirtschaftsnachrichten)
 5. Bewertungsportale (Blick-Familie)
 6. Wie Nachrichten und Bewertungen zusammenspielen
-7. Content-Engine: Quellen, Workflow, Tagesplan
-8. Technik: Plattform, Datenmodell, Infrastruktur
+7. Content-Engine: Quellen, KI-Workflow, Tagesplan
+8. Technik: Betrieb auf dem Raspberry Pi, Telegram-Freigabe, Regel-Engine
 9. Reichweite & Distribution
 10. Geschäftsmodell & Preise
 11. Recht & Compliance
@@ -35,6 +35,12 @@
 - alles auf **einer gemeinsamen Plattform** mit gemeinsamer Firmen- und Personendatenbank.
 
 **Leitsatz:** *„Wer über ein Unternehmen Bescheid wissen will, landet bei uns: mit Nachrichten, Zahlen, Köpfen und echten Kundenerfahrungen.“*
+
+**Betriebsmodell:**
+- Alle Portale laufen auf **einem Raspberry Pi**, der über einen Cloudflare Tunnel und den Cloudflare-Cache erreichbar ist.
+- **Regeln** erzeugen jeden Tag automatisch Beitragsentwürfe, die **KI** schreibt.
+- **Du gibst jeden Beitrag per Telegram frei.** Erst dann geht er online.
+- Zeitaufwand im Tagesbetrieb: ca. 1 Stunde, in drei Freigabeblöcken.
 
 **Grundprinzip, auf dem das ganze Geschäft beruht:** Glaubwürdigkeit. Redaktion und Bewertungen sind nicht käuflich. Bezahlte Inhalte sind immer gekennzeichnet. Der gemeinsame Betreiber wird offen genannt. Das ist keine Pflichtübung, sondern das Produkt: Ohne Unabhängigkeit gibt es keine Reichweite bei Google und keine Leser.
 
@@ -100,12 +106,13 @@ Bewusst vermieden: „Test“ oder „Check“ im Namen. Das suggeriert eigene W
               └──────────────┬────────────────────────────────────┘
                              │
             ┌────────────────┴─────────────────────┐
-            │      GEMEINSAME PLATTFORM (1 Code)    │
+            │  GEMEINSAME PLATTFORM auf Raspberry Pi│
             │  • Firmen- & Personendatenbank        │
             │  • CMS / Redaktionssystem             │
             │  • Bewertungs-Engine & Verifizierung  │
             │  • Moderation, Meldeverfahren (DSA)   │
             │  • Daten-Pipelines (Register, PR)     │
+            │  • Regel-Engine + KI + Telegram-Bot   │
             │  • Ads, Newsletter, Accounts, Billing │
             └───────────────────────────────────────┘
 ```
@@ -274,43 +281,67 @@ Transparenz: So funktionieren Bewertungen · Score-Methodik · Richtlinien · Tr
 | AZAV-/Kursnet-Daten | Bildungsträger (für Kursblick) | öffentlich |
 | Eigene Recherche, Interviews, Leser-Hinweise | Exklusives, Porträts | Redaktion, Hinweisgeber-Formular |
 
-### 7.2 Workflow („Human in the Loop“)
+### 7.2 Workflow: Regeln → KI-Entwurf → Telegram-Freigabe
+
+Kernprinzip: **Die KI schreibt, du gibst frei.** Nichts geht ohne deinen Klick in Telegram online. Als Verantwortlicher nach § 18 Abs. 2 MStV bist du die menschliche Prüfinstanz. Die Freigabe ist deshalb eine echte Prüfung, kein Durchwinken.
 
 ```
-[1] Ingest        Pipelines ziehen alle 15–60 min neue Registerdaten, Insolvenzen, Pressemitteilungen
+[1] Regel feuert     Der Scheduler startet eine Regel (Cron, z. B. „06:00 Personalien NRW“)
       ↓
-[2] Matching      Zuordnung zu Firma/Person in der Datenbank (Register-Nr., Name, Sitz)
+[2] Ingest           Die Regel holt Daten aus ihrer Quelle (Register, Insolvenzen, PR-Feeds, Bewertungs-DB)
       ↓
-[3] Relevanz      Scoring: Größe der Firma, Region, Branche, Neuigkeitswert → Schwellenwert
+[3] Filter           Regelbedingungen: Region, Branche, Mindestgröße, Duplikate, Tageslimit
       ↓
-[4] Entwurf       KI erzeugt Meldung + Überschrift + Teaser aus strukturierten Daten
-                  (nur aus der Quelle, keine erfundenen Fakten, Quellenangabe Pflicht)
+[4] Entwurf (KI)     LLM schreibt nach Vorlage der Regel: Titel, Teaser, Text, Tags, Bild-Vorschlag
+                     → nur Fakten aus den gelieferten Quelldaten, Quellenliste Pflicht
       ↓
-[5] Redaktion     Redakteur prüft, ergänzt Kontext, ruft ggf. an, gibt frei
-                  (negative Meldungen: Vier-Augen-Prinzip + Checkliste Verdachtsberichterstattung)
+[5] Faktencheck (KI) Zweiter, unabhängiger Durchlauf vergleicht den Entwurf satzweise mit der Quelle
+                     → nicht belegte Aussagen werden markiert oder gestrichen
       ↓
-[6] Publish       Website, Newsletter-Queue, Social, Google-News-Sitemap, MSN-Feed
+[6] Risikoklasse     🟢 grün (Gründung, Ratgeber, Ranking) · 🟡 gelb (Personalwechsel, Zahlen)
+                     · 🔴 rot (Insolvenz, Vorwürfe, Rechtsstreit, Personen in negativem Kontext)
       ↓
-[7] Pflege        Updates (z. B. Insolvenzverfahren eröffnet → aufgehoben), Korrekturspalte
+[7] Telegram         Bot schickt die Freigabekarte an dich (siehe 8.4)
+      ↓
+[8] Entscheidung     ✅ Freigeben · ✏️ Ändern · 🔁 Neu schreiben · ⏰ Später · ❌ Verwerfen
+      ↓
+[9] Publish          Statische Seiten neu bauen → Cloudflare-Cache leeren → Google-News-Sitemap,
+                     RSS, Newsletter-Queue, Telegram-/LinkedIn-Kanal
+      ↓
+[10] Protokoll       Audit-Log: Entwurf, Änderungen, Freigabe durch wen, wann (Nachweis Sorgfaltspflicht)
 ```
 
-KI-Kennzeichnung: Im Fuß jedes Artikels steht ein Hinweis wie *„Erstellt mit Unterstützung automatisierter Datenauswertung, redaktionell geprüft von [Name].“*
+**Harte KI-Regeln (im System-Prompt jeder Vorlage):**
+- Keine erfundenen Fakten, Zahlen, Zitate oder Personen. Nur Inhalte aus den Quelldaten.
+- Keine Wertungen über Personen, keine Spekulation über Ursachen (z. B. bei Insolvenzen).
+- Verfahrensstadien exakt benennen („vorläufiges Insolvenzverfahren beantragt“, nicht „pleite“).
+- Jede Meldung endet mit Quellenangabe und KI-Hinweis.
+- **Die KI schreibt niemals Bewertungen**, keine Antworten im Namen von Unternehmen und keine Leserkommentare. Auf den Blick-Portalen schreibt sie nur Ratgeber, Marktübersichten, Ranking-Texte und als KI gekennzeichnete Zusammenfassungen echter Bewertungen.
 
-### 7.3 Tagesplan KOPF & KONTOR (Phase 2, 2–3 Redakteure)
+### 7.3 Tagesplan: was die Regeln automatisch erzeugen
 
-| Uhrzeit | Aufgabe | Output |
-|---|---|---|
-| 05:30 | Nachtschicht-Queue prüfen (Register-Bekanntmachungen vom Vortag) | 10–15 Entwürfe |
-| 06:30 | **Morgen-Briefing** raus (Newsletter + Artikel) | 1 |
-| 07:00–09:00 | Personalien & Firmennachrichten freigeben | 8–12 Meldungen |
-| 09:00 | Redaktionskonferenz (15 min): Aufmacher, Recherchen | – |
-| 09:00–12:00 | Pressemitteilungen auswerten, 1 Hintergrundstück | 5–8 Meldungen |
-| 12:00 | **Unternehmer des Tages** | 1 Porträt |
-| 13:00–16:00 | Insolvenzen (Vier-Augen), Finanzierungsrunden, Regionales | 5–10 Meldungen |
-| 16:00 | Ratgeber / Evergreen-Stück | 1 |
-| 17:00 | Social-Posts (LinkedIn-Fokus), Aufmacher für Abend | 3–5 Posts |
-| 18:00 | Tagesabschluss, Queue für morgen planen | – |
-| **Summe** | | **25–40 Beiträge/Tag** |
+Ausgelegt auf **eine Person**, die freigibt: ca. **35–50 Freigaben pro Tag**, bei 30–90 Sekunden pro Karte also **45–60 Minuten**, verteilt auf drei Blöcke.
+
+| Zeit | Regel | Portal | Anzahl | Risiko |
+|---|---|---|---|---|
+| 05:30 | Registerereignisse Vortag → Personalien & Gründungen | KOPF & KONTOR | 10–15 | 🟢/🟡 |
+| 05:45 | Morgen-Briefing (aus gestern freigegebenen Artikeln) | KOPF & KONTOR | 1 | 🟢 |
+| **06:15–06:45** | **Freigabeblock 1** (Telegram) | | | |
+| 07:00 | Briefing → Newsletter + Telegram-Kanal | KOPF & KONTOR | auto | – |
+| 09:00 | Pressemitteilungen → Firmennachrichten | KOPF & KONTOR | 5–8 | 🟢/🟡 |
+| 10:00 | Finanzierungsrunden/Deals | KOPF & KONTOR | 2–4 | 🟢 |
+| 11:00 | Insolvenzbekanntmachungen | KOPF & KONTOR | 2–6 | 🔴 |
+| 11:30 | Unternehmer des Tages (Porträt-Entwurf aus Daten + PR, mit Rückfrage-Hinweis) | KOPF & KONTOR | 1 | 🟡 |
+| **12:00–12:20** | **Freigabeblock 2** | | | |
+| 14:00 | Ratgeber (aus Themenliste, rotierend) | je 1 Blick-Portal | 1–2 | 🟢 |
+| 15:00 | Neue Bewertungen: KI-Zusammenfassung von Profilen mit ≥ 5 neuen Bewertungen | Blick | 2–5 | 🟢 |
+| 15:30 | Moderations-Queue: gemeldete Bewertungen (Entscheidung durch dich) | Blick | variabel | 🔴 |
+| 16:00 | Social-Posts (LinkedIn/Telegram-Kanal) aus freigegebenen Artikeln | alle | 3–5 | 🟢 |
+| **17:00–17:20** | **Freigabeblock 3** | | | |
+
+Wöchentliche und monatliche Regeln (Köpfe der Woche, Insolvenz-Report, Deal-Monitor, Rankings, Gründungsatlas) laufen wie in 7.4, ebenfalls mit Freigabekarte.
+
+**Tageslimits** pro Regel verhindern, dass du zugeschüttet wirst. Was nicht freigegeben wird, verfällt nach 24 h (Nachrichten) oder bleibt in der Queue (Ratgeber).
 
 ### 7.4 Wochen-, Monats-, Jahresplan
 
@@ -331,86 +362,206 @@ KI-Kennzeichnung: Im Fuß jedes Artikels steht ein Hinweis wie *„Erstellt mit 
 
 ---
 
-## 8. Technik
+## 8. Technik: Betrieb auf dem Raspberry Pi
 
-### 8.1 Stack (Vorschlag)
+### 8.1 Grundidee
+**Alles läuft auf einem Raspberry Pi bei dir zu Hause.** Damit das stabil, schnell und sicher ist, gelten drei Prinzipien:
+1. **Statische Seiten:** Jede Freigabe erzeugt fertige HTML-Dateien. Der Pi muss Besuchern nur Dateien ausliefern, keine Datenbankabfragen pro Aufruf.
+2. **Cloudflare davor:** Ein Cloudflare Tunnel verbindet den Pi mit dem Internet. Es braucht keine Portfreigabe am Router, die Heim-IP bleibt verborgen, und Cloudflare liefert die Seiten aus dem Cache. 95 %+ der Aufrufe erreichen den Pi gar nicht. Fällt der Pi aus, bleiben die Seiten aus dem Cache erreichbar.
+3. **KI über API:** Texte schreibt ein Cloud-LLM per API. Auf dem Pi laufende Modelle sind für Nachrichtentexte zu schwach und zu langsam. Lokal laufen höchstens kleine Hilfsaufgaben (z. B. Duplikat-Erkennung).
 
-| Schicht | Wahl | Begründung |
+### 8.2 Hardware
+
+| Teil | Empfehlung | ca. Preis |
 |---|---|---|
-| Frontend | **Next.js** (App Router) oder Astro, Multi-Tenant über Domain | SSR/ISR für SEO, ein Codebase für alle Portale |
-| CMS | **Payload CMS** (Headless, TypeScript, self-hosted) | Redaktions-Workflow, Rollen, Versionierung, gleiche Sprache wie Frontend |
-| Datenbank | **PostgreSQL** (z. B. Supabase oder Neon) + pg_trgm/Volltext | Relationales Firmen-/Personenmodell, Volltextsuche |
-| Suche | Meilisearch oder Typesense | Schnelle Firmen- und Artikelsuche |
-| Pipelines | Python-Worker (Cron/Queue), z. B. auf Fly.io / Railway / Cloudflare Workers + Queues | Register-, Insolvenz-, PR-Ingest |
-| KI | LLM-API für Entwürfe, Zusammenfassungen, Matching-Hilfe | Mit Quellenbindung & Freigabepflicht |
-| Medien | S3-kompatibler Speicher + Bild-CDN | Logos, Fotos |
-| Hosting/CDN | Vercel oder Cloudflare | Edge-Caching, Multi-Domain |
-| Mail | Postmark/Brevo (Transaktional), Newsletter-Tool (z. B. Brevo, Mailchimp, Beehiiv) | Einladungen, Briefing |
-| Ads | Google Ad Manager (+ später Vermarkter) | Werbeflächen, Native-Ads |
-| Analytics | Plausible/Matomo (DSGVO-freundlich) | Ohne Cookie-Banner-Zwang für Basis-Metriken |
-| Consent | CMP mit TCF 2.2 (für Programmatic nötig) | Pflicht bei personalisierten Ads |
+| Rechner | **Raspberry Pi 5, 8 GB** (16 GB bei vielen Portalen) | 90–130 € |
+| Speicher | **NVMe-SSD 512 GB–1 TB** über M.2-HAT (keine SD-Karte für Daten, die verschleißt) | 60–100 € |
+| Kühlung & Gehäuse | Active Cooler + Gehäuse mit HAT-Platz | 20–30 € |
+| Netzteil | Offizielles 27-W-USB-C-Netzteil | 15 € |
+| Stromausfall | Kleine USV (oder Pi-UPS-HAT) | 40–80 € |
+| Backup | Externe SSD **und** Offsite-Speicher (z. B. Hetzner Storage Box, Backblaze B2) | 0–5 €/Monat |
+| Netz | LAN-Kabel statt WLAN | – |
 
-### 8.2 Datenmodell (Kern)
+### 8.3 Software-Stack (Docker Compose auf Raspberry Pi OS 64-bit)
 
 ```
-portal            id, slug, domain, type (news|reviews), name, branding{}, settings{}
-
-company           id, name, legal_form, register_court, register_no, address, geo,
-                  founded_at, industry_codes[], website, status (active|insolvent|liquidated|deleted),
-                  claimed_by, premium_plan, created_at, updated_at
-company_alias     company_id, name                       (frühere Namen, Schreibweisen)
-company_financials company_id, year, revenue, employees, total_assets, source
-
-person            id, display_name, slug, public_role_only=true, created_at
-person_role       person_id, company_id, role (GF|Vorstand|Prokura|Gründer|AR),
-                  from_date, to_date, source
-
-register_event    id, company_id, type, published_at, raw_text, source_url, processed
-insolvency_event  id, company_id, court, case_no, stage (vorläufig|eröffnet|Eigenverwaltung|aufgehoben),
-                  published_at, source_url
-
-article           id, portal_id, ressort, title, teaser, body, status (draft|review|published|corrected),
-                  author_id, reviewer_id, ai_assisted:boolean, sponsored:boolean, sponsor_company_id,
-                  published_at, updated_at, sources[], region_codes[]
-article_entity    article_id, company_id | person_id
-correction        article_id, text, created_at
-
-review_profile    id, portal_id, company_id, category_ids[], score, review_count, response_rate
-review            id, review_profile_id, author_id, rating, sub_ratings{}, title, text,
-                  experience_date, source (organic|invited|imported), verification_level (0|1|2),
-                  status (pending|live|removed), removal_reason, created_at
-review_reply      id, review_id, company_user_id, text, created_at
-report            id, target_type (review|article), target_id, reporter, reason, decision, decided_at
-
-customer          id, company_id, plan, billing{}, contract_signed_at
-invitation        id, review_profile_id, recipient_hash, sent_at, status
+┌──────────────────────────────── Raspberry Pi 5 ────────────────────────────────┐
+│                                                                                │
+│  cloudflared ── Tunnel ──▶ Cloudflare (DNS, CDN-Cache, TLS, WAF, Turnstile)   │
+│       │                                                                        │
+│  Caddy (Webserver) ── liefert /sites/<domain>/ statisch aus                    │
+│       │              ── /api/* → Backend (Bewertungsformular, Suche, Newsletter)│
+│       │                                                                        │
+│  backend (Python, FastAPI)                                                     │
+│   ├── rules/        Regel-Engine (YAML) + Scheduler (APScheduler)              │
+│   ├── ingest/       Handelsregister, Insolvenzen, PR-Feeds, Bundesanzeiger     │
+│   ├── writer/       LLM-Client: Entwurf → Faktencheck → Risikoklasse           │
+│   ├── telegram/     Freigabe-Bot (python-telegram-bot) + Kanal-Posting         │
+│   ├── builder/      Static-Site-Build (Jinja2-Templates je Portal) + Sitemaps  │
+│   ├── reviews/      Bewertungs-API, Verifizierung, Moderation                  │
+│   └── admin/        kleines Web-Admin (nur über Cloudflare Access erreichbar)  │
+│                                                                                │
+│  PostgreSQL (oder SQLite für den Start)    Meilisearch (Suche, optional)       │
+│  restic (nächtliches Backup)               Uptime-Check → Alarm per Telegram   │
+└────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 8.3 Systemübersicht
+Alle Portale (KOPF & KONTOR + alle Blick-Portale) laufen **in derselben Installation**. Der Builder schreibt pro Domain einen eigenen Ordner. Caddy und Cloudflare ordnen die Domains zu.
+
+**Warum selbstgebauter Static-Site-Builder statt Next.js/Payload?** Auf dem Pi ist ein schlanker Python-Builder (Jinja2) robuster und ressourcenschonender. Es gibt keinen dauerhaft laufenden Node-Server, und Rebuilds betreffen nur geänderte Seiten (inkrementell).
+
+### 8.4 Telegram-Freigabe im Detail
+
+**Bot-Sicherheit:**
+- Der Bot reagiert nur auf **freigeschaltete Telegram-User-IDs** (Whitelist), alle anderen werden ignoriert und geloggt.
+- Bot-Token liegt nur in der `.env` auf dem Pi. Der Bot nutzt Long-Polling, also keinen offenen Port.
+- Optional: zweite freigebende Person (z. B. Vertretung im Urlaub) mit eigener Rolle.
+
+**Freigabekarte (Beispiel):**
+```
+🟡 KOPF & KONTOR · Köpfe · NRW                     Regel: personalien_nrw
+────────────────────────────────────────────────
+Neuer Geschäftsführer bei Mustermann Logistik GmbH
+
+Die Mustermann Logistik GmbH aus Köln hat einen neuen Geschäftsführer:
+Laut Handelsregister-Eintrag vom 30.10.2026 ist Max Beispiel …
+(Vorschau gekürzt, 📄 Volltext-Vorschau: preview.kopfundkontor.de/…)
+
+📎 Quellen: HRB 12345, AG Köln, Bekanntmachung 30.10.2026
+🔍 Faktencheck: 6/6 Aussagen belegt
+🏢 Firma: verknüpft (ID 48213) · 👤 Person: verknüpft
+────────────────────────────────────────────────
+[✅ Freigeben] [✏️ Ändern] [🔁 Neu] [⏰ Später] [❌ Verwerfen]
+```
+
+**Aktionen:**
+| Button | Wirkung |
+|---|---|
+| ✅ Freigeben | Sofort veröffentlichen (oder zum geplanten Zeitpunkt) |
+| ✏️ Ändern | Du antwortest mit Text („Titel kürzer, Branche ergänzen“). Die KI überarbeitet, und eine neue Karte kommt |
+| 🔁 Neu | Kompletter Neuentwurf |
+| ⏰ Später | Zurück in die Queue (+2 h oder nächster Block) |
+| ❌ Verwerfen | Mit Grund (Dropdown), damit die Regeln lernen, was du nicht willst |
+
+**Zusätzliche Sicherung bei 🔴 roten Beiträgen:**
+- Die Karte zeigt die **Originalquelle als Link** und eine Checkliste: ☐ Quelle geöffnet ☐ Verfahrensstadium korrekt ☐ keine Wertung ☐ Person nur in beruflicher Rolle.
+- Freigabe erst nach **zweitem Klick** („Ja, geprüft – veröffentlichen“).
+- Rote Beiträge werden **nie gebündelt** freigegeben.
+
+**Bündel-Freigabe** (nur 🟢 grün): „Alle 8 grünen Gründungsmeldungen freigeben?“ mit Liste der Titel. Spart Zeit bei unkritischen Routinemeldungen.
+
+**Weitere Bot-Befehle:**
+`/queue` offene Entwürfe · `/heute` Tagesstatistik · `/regeln` Regeln an/aus · `/pause` alles anhalten · `/status` Pi-Zustand (CPU, Speicher, Backup, Tunnel) · `/korrektur <url>` Korrektur an veröffentlichtem Artikel anstoßen · `/meldungen` gemeldete Bewertungen
+
+**Alarme an dich:** Pi offline, Tunnel down, Backup fehlgeschlagen, Quelle liefert nichts mehr, ungewöhnlich viele Bewertungen für eine Firma (Manipulationsverdacht), rechtliche Beschwerde über das Kontaktformular eingegangen.
+
+### 8.5 Regel-Engine (YAML)
+
+Jede Regel ist eine Datei in `rules/`. Neue Formate entstehen ohne Programmierung.
+
+```yaml
+# rules/kuk_personalien_nrw.yaml
+id: personalien_nrw
+portal: kopfundkontor
+ressort: koepfe
+schedule: "30 5 * * 1-6"          # Mo–Sa 05:30
+source: handelsregister
+filter:
+  event_types: [geschaeftsfuehrer_neu, geschaeftsfuehrer_abberufen, vorstand_neu]
+  region: [NRW]
+  min_company_size: { employees: 20 }   # falls bekannt, sonst Stammkapital ≥ 100.000
+  exclude_duplicates_days: 30
+limit_per_day: 12
+risk: yellow
+template: templates/personalie.md.j2
+prompt: prompts/personalie.txt
+publish:
+  sitemap_news: true
+  telegram_channel: true
+  linkedin: false
+expire_after_hours: 24
+```
+
+```yaml
+# rules/blick_ratgeber_rotation.yaml
+id: blick_ratgeber
+portal: [agenturblick, softwareblick, kursblick]   # rotierend
+schedule: "0 14 * * 1-5"
+source: topic_list                                   # topics/<portal>.yaml, von dir gepflegt
+limit_per_day: 1
+risk: green
+template: templates/ratgeber.md.j2
+prompt: prompts/ratgeber.txt
+min_words: 900
+require_sources: true
+expire_after_hours: never
+```
+
+```yaml
+# rules/kuk_insolvenzen.yaml
+id: insolvenzen
+portal: kopfundkontor
+ressort: insolvenzen
+schedule: "0 11 * * 1-5"
+source: insolvenzbekanntmachungen
+filter:
+  region: [NRW]
+  only_companies: true          # keine Privatinsolvenzen, niemals
+  min_company_size: { employees: 10 }
+limit_per_day: 6
+risk: red                       # erzwingt Checkliste + Doppelklick
+template: templates/insolvenz.md.j2
+prompt: prompts/insolvenz.txt
+followup:
+  watch_status_changes: true    # automatischer Update-Entwurf bei Eröffnung/Aufhebung
+  noindex_after_months: 24
+```
+
+### 8.6 Datenmodell
+Wie bisher (Firma, Person, Rolle, Ereignisse, Artikel, Bewertungen, Meldungen), ergänzt um:
 
 ```
- Register / Insolvenz / PR / Bundesanzeiger
-            │  (Pipelines, Cron)
-            ▼
-   ┌──────────────────┐      ┌───────────────┐
-   │ Ingest & Matching │────▶│  PostgreSQL   │◀──── Payload CMS (Redaktion, Moderation)
-   └──────────────────┘      └──────┬────────┘
-            │ KI-Entwürfe           │
-            ▼                       ▼
-     Review-Queue (CMS)     Next.js Multi-Tenant ──▶ CDN ──▶ kopfundkontor.de
-                                    │                          agenturblick.de …
-                                    ├─▶ Google-News-Sitemap, RSS, MSN-Feed
-                                    ├─▶ Newsletter
-                                    └─▶ Widgets/Siegel (JS + SVG) auf Kunden-Websites
+rule              id, portal, yaml, enabled, last_run, stats{}
+draft             id, rule_id, portal_id, payload{title,teaser,body,tags,image}, sources[],
+                  factcheck{supported,unsupported[]}, risk (green|yellow|red),
+                  status (queued|sent|changes_requested|approved|rejected|expired),
+                  telegram_message_id, created_at, decided_at, decided_by, reject_reason
+approval_log      id, draft_id, action, user_id, note, created_at        (unveränderlich)
+publication       id, draft_id, article_id, url, published_at, channels[]
 ```
 
-### 8.4 SEO-Grundlagen
+Kerntabellen (Kurzform): `portal`, `company`, `company_alias`, `company_financials`, `person`, `person_role`, `register_event`, `insolvency_event`, `article`, `article_entity`, `correction`, `review_profile`, `review`, `review_reply`, `report`, `customer`, `invitation`.
+
+### 8.7 Was der Pi leisten muss und warum es reicht
+
+| Last | Einschätzung |
+|---|---|
+| Seitenaufrufe | Werden fast vollständig vom Cloudflare-Cache bedient. Der Pi liefert nur Cache-Misses. |
+| Builds | Inkrementell: 1 Freigabe → Artikel + Ressort- und Startseite + Firmen-/Personenseite neu, also Sekunden |
+| KI | Läuft extern per API. Der Pi wartet nur auf Antworten. |
+| Ingest | Ein paar tausend Datensätze pro Tag, für einen Pi 5 trivial |
+| Datenbank | Bis zu Millionen Zeilen sind mit PostgreSQL auf NVMe problemlos |
+| Bewertungsformular / Suche | Dynamisch, aber geringes Volumen. Turnstile filtert Bots vor dem Pi. |
+
+**Wann der Pi nicht mehr reicht:** bei dauerhaft > 1–2 Mio. Seitenaufrufen/Monat **mit** viel dynamischem Anteil, bei mehreren Mitarbeitern im Admin oder wenn Ausfälle Umsatz kosten. Dann zieht dieselbe Docker-Compose-Installation unverändert auf einen kleinen Cloud-Server um (z. B. Hetzner, ca. 5–15 €/Monat).
+
+### 8.8 Betrieb & Sicherheit
+- **Updates:** unattended-upgrades für das OS, Container-Updates wöchentlich nach Freigabe per Telegram.
+- **Backups:** nächtlich DB-Dump + Medien mit restic auf externe SSD **und** offsite. Wöchentlicher automatischer Wiederherstellungstest, Ergebnis per Telegram.
+- **Zugänge:** SSH nur mit Schlüssel, nur im Heimnetz oder über Cloudflare Access/Tailscale. Admin-Oberfläche nur hinter Cloudflare Access.
+- **Secrets:** `.env` mit API-Keys (LLM, Telegram, Datenanbieter), nicht im Git-Repository.
+- **Überwachung:** Healthchecks (z. B. healthchecks.io oder Uptime Kuma) mit Alarm an Telegram.
+- **Stromausfall/Internetausfall:** USV überbrückt kurze Ausfälle. Cloudflare „Always Online“/Cache hält Seiten erreichbar. Die Regeln holen verpasste Läufe nach.
+- **Internetvertrag prüfen:** Manche private Anschlüsse untersagen gewerblichen Serverbetrieb. Bei Bedarf einen Geschäftskundentarif nutzen. Durch den Tunnel ist keine feste IP nötig.
+- **Impressum:** Braucht eine ladungsfähige Anschrift. Wenn du nicht deine Wohnadresse veröffentlichen willst, eine Geschäftsadresse nutzen (kein Postfach). Der Serverstandort ist dafür egal.
+
+### 8.9 SEO-Grundlagen
 - schema.org: `NewsArticle`, `Organization`/`LocalBusiness`, `Person`, `AggregateRating`, `Review`, `BreadcrumbList`.
-- Google-News-Sitemap (Artikel der letzten 48 h), XML-Sitemaps je Portal.
+- Google-News-Sitemap (Artikel der letzten 48 h), XML-Sitemaps je Portal, beim Build erzeugt.
 - Saubere URLs: `/unternehmen/mustermann-gmbh-koeln`, `/koepfe/max-mustermann`, `/insolvenzen/2026/11/…`
-- Autorenseiten mit Expertise (E-E-A-T), Redaktionsgrundsätze, Korrekturspalte.
-- Interne Verlinkung über Firmen-/Personen-Entitäten.
-- Kein „Thin Content“: automatisch erzeugte Firmenseiten erst indexieren, wenn genug Substanz da ist (z. B. ≥ 1 Artikel oder ≥ 3 Registerereignisse oder ≥ 1 Bewertung).
+- Autorenseite des Herausgebers, Redaktionsgrundsätze inklusive offener Beschreibung des KI-Workflows, Korrekturspalte.
+- Kein „Thin Content“: automatisch angelegte Firmenseiten erst indexieren, wenn genug Substanz da ist (≥ 1 Artikel oder ≥ 3 Registerereignisse oder ≥ 1 Bewertung).
+- **Google und KI-Texte:** Erlaubt, solange sie hilfreich und geprüft sind. Massenhaft erzeugte Seiten ohne Mehrwert werden als „scaled content abuse“ abgestraft. Die Tageslimits und die Freigabepflicht sind deshalb auch SEO-Schutz.
 
 ---
 
@@ -520,13 +671,17 @@ Gekennzeichnete Partnerinhalte KOPF & KONTOR: 490–1.490 € je Beitrag (Untern
 
 ## 12. Organisation & Team
 
-| Phase | Rollen | Umfang |
-|---|---|---|
-| **1 (Monat 0–6)** | Gründer/Herausgeber (Verantwortlicher MStV) · 1 Entwickler (Freelance/Agentur) · 1–2 freie Redakteure · Anwalt (Projekt) | Kernteam ~2–3 FTE |
-| **2 (Monat 7–18)** | + Chef vom Dienst · + 2 Redakteure · + Community-/Moderations-Manager (Blick) · + Vertrieb (Teilzeit) | ~6 FTE |
-| **3 (ab Monat 19)** | + Regionalredakteure · + Vertriebsteam · + Data Engineer · + Events | 10+ FTE |
+Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein-Personen-Betrieb** laufen.
 
-**Trennung Redaktion/Vertrieb** von Beginn an: Vertrieb hat keinen Schreibzugriff auf Artikel und keine Moderationsrechte.
+| Phase | Rollen | Aufwand |
+|---|---|---|
+| **1 (Monat 0–6)** | **Du:** Herausgeber, Verantwortlicher nach MStV, Freigabe per Telegram (ca. 1 h/Tag), Regeln & Themenlisten pflegen · Entwicklung des Systems (Eigenleistung mit KI-Unterstützung oder Freelancer) · Anwalt (Projekt) | ~1–1,5 h/Tag + Aufbau |
+| **2 (Monat 7–18)** | + freier Redakteur für Porträts, Interviews und Recherchen (das kann die KI nicht) · + Vertretung für Freigaben (Urlaub/Krankheit) · + Vertrieb in Teilzeit | ~2–3 Personen |
+| **3 (ab Monat 19)** | + Regionalredakteure · + Moderation Blick-Portale · Umzug auf Cloud-Server prüfen | 4+ Personen |
+
+**Grenzen der Automatisierung (bewusst menschlich):** Interviews, Anhörung Betroffener bei kritischen Berichten, Gegendarstellungen, Moderationsentscheidungen, Kundengespräche, Korrekturen.
+
+**Trennung Redaktion und Vertrieb:** Auch als Einzelperson gilt die Firewall-Regel. Bezahlte Inhalte laufen über eine eigene Regel mit Pflichtkennzeichnung „Anzeige“ und tauchen nie in redaktionellen Rankings auf.
 
 ---
 
@@ -534,18 +689,21 @@ Gekennzeichnete Partnerinhalte KOPF & KONTOR: 490–1.490 € je Beitrag (Untern
 
 | Posten | Einmalig | Monatlich |
 |---|---|---|
-| Plattform-Entwicklung (MVP: K&K + 1 Blick-Portal) | 25.000–60.000 € (Freelance/Agentur) bzw. Eigenleistung | – |
-| Hosting, DB, CDN, Suche | – | 150–500 € |
-| Datenquellen (Register-/Firmendaten-API) | – | 200–1.500 € (je nach Anbieter/Volumen) |
-| KI-API | – | 100–500 € |
-| Newsletter/Mail | – | 50–300 € |
-| Freie Redakteure (2 × Teilzeit) | – | 4.000–7.000 € |
+| Raspberry Pi 5 + NVMe + Kühlung + Netzteil + USV | 230–350 € | – |
+| Strom Pi (~5–8 W Dauerbetrieb) | – | ~2–3 € |
+| Cloudflare (Tunnel, CDN, DNS, Turnstile, Access) | – | 0 € (Free-Plan reicht anfangs) |
+| Domains (ca. 8–12 Stück .de/.com) | – | ~10–15 € (≈ 1–1,5 €/Domain) |
+| Offsite-Backup | – | 0–5 € |
+| LLM-API (Entwurf + Faktencheck, ~50 Texte/Tag) | – | ca. 30–200 € je nach Modell und Textlänge |
+| Datenquellen (Register-/Firmendaten-API) | – | 0–1.500 € (Start mit öffentlichen Bekanntmachungen möglich, Komfort-APIs kosten) |
+| Newsletter-Versand | – | 0–50 € |
+| Entwicklung | Eigenleistung bzw. 5.000–20.000 € Freelancer | – |
 | Recht (Setup + Retainer) | 5.000–10.000 € | 300–800 € |
-| Versicherung | – | 100–250 € |
-| Marken & Domains | 1.000–3.000 € | – |
-| **Summe Phase 1** | **~31.000–73.000 €** | **~5.000–11.000 €** |
+| Versicherung (Medienhaftpflicht) | – | 100–250 € |
+| Markenanmeldung | 300–3.000 € | – |
+| **Summe Phase 1** | **~5.500–33.000 €** | **~450–2.800 €** |
 
-*Spannen sind Erfahrungswerte, keine Angebote. Vor Start mit konkreten Angeboten ersetzen.*
+*Spannen sind Erfahrungswerte, keine Angebote. Größter Hebel: Eigenleistung bei der Entwicklung und Start mit kostenlosen öffentlichen Datenquellen.*
 
 ---
 
@@ -554,13 +712,18 @@ Gekennzeichnete Partnerinhalte KOPF & KONTOR: 490–1.490 € je Beitrag (Untern
 ### Phase 0: Fundament (Monat 0–1)
 - [ ] Namen final prüfen (DPMA, Domains, Handles), Domains sichern
 - [ ] Gesellschaft gründen bzw. Betreiber festlegen, Verantwortlicher MStV benennen
-- [ ] Eigenes Repository anlegen, Plattform-Grundgerüst (Multi-Tenant, CMS, DB)
+- [ ] **Domainprüfung** aller Namen (DENIC/Verisign) und Namen final festlegen
+- [ ] Raspberry Pi 5 + NVMe + USV beschaffen, Raspberry Pi OS 64-bit, Docker, Cloudflare Tunnel
+- [ ] Eigenes Repository anlegen: Docker Compose, Backend, Regel-Engine, Telegram-Bot, Static-Site-Builder
+- [ ] Telegram-Bot anlegen (BotFather), Whitelist mit deiner User-ID
 - [ ] Datenquellen auswählen und Testzugang einrichten
 - [ ] Anwalt: Redaktionsstatut, Bewertungsrichtlinien, AGB, Datenschutz
 
 ### Phase 1: MVP (Monat 2–6)
 - [ ] **KOPF & KONTOR** live für **1 Region** (z. B. NRW): Unternehmen, Köpfe, Insolvenzen, Gründungen
-- [ ] Pipelines: Handelsregister + Insolvenzen + Pressemitteilungen → Entwurfs-Queue
+- [ ] Regeln: Personalien, Gründungen, Pressemitteilungen, Insolvenzen (NRW) → KI-Entwurf → Telegram-Freigabe
+- [ ] Faktencheck-Durchlauf und Risikoklassen aktiv, Audit-Log
+- [ ] Backups (lokal + offsite) mit Wiederherstellungstest, Alarme per Telegram
 - [ ] Firmen- & Personenseiten (mit Indexierungsschwelle)
 - [ ] Morgen-Briefing (Newsletter)
 - [ ] **Agenturblick** live: 1.000 Profile, Einladungs-Tool, Verifizierung, Transparenzseiten
@@ -573,6 +736,7 @@ Gekennzeichnete Partnerinhalte KOPF & KONTOR: 490–1.490 € je Beitrag (Untern
 - [ ] Bezahlpakete, Premiumprofile, Partnerinhalte, Ads
 - [ ] Bewerbung MSN Partner Hub
 - [ ] Erster Transparenzbericht, erstes Ranking
+- [ ] Prüfen: Umzug vom Pi auf Cloud-Server, sobald Last oder Ausfallrisiko es erfordern
 - **Ziel:** 300.000–1 Mio. Seitenaufrufe/Monat, 100+ zahlende Kunden, Break-even der laufenden Kosten
 
 ### Phase 3: Skalierung (ab Monat 19)
@@ -590,6 +754,8 @@ Gekennzeichnete Partnerinhalte KOPF & KONTOR: 490–1.490 € je Beitrag (Untern
 |---|---|
 | Reichweite | Seitenaufrufe, Unique Users, Anteil Discover/News/Suche/Direkt |
 | Redaktion | Beiträge/Tag, Zeit bis Veröffentlichung (Registerereignis → Artikel), Korrekturquote |
+| KI-Workflow | Freigabequote je Regel, Anteil „Ändern“/„Verwerfen“, nicht belegte Aussagen im Faktencheck, Freigabezeit/Tag |
+| Betrieb | Verfügbarkeit, Cache-Trefferquote Cloudflare, Backup-Erfolg |
 | Bindung | Newsletter-Abonnenten, Öffnungsrate (Ziel > 40 %), wiederkehrende Leser |
 | Bewertungen | Neue Bewertungen/Tag, Anteil verifiziert, beanspruchte Profile, Antwortquote der Firmen |
 | Vertrauen | Gemeldete/entfernte Bewertungen, Abmahnungen/Beschwerden, Gegendarstellungen |
@@ -609,15 +775,19 @@ Gekennzeichnete Partnerinhalte KOPF & KONTOR: 490–1.490 € je Beitrag (Untern
 | Werbeerlöse schwanken | hoch | mittel | Erlösmix: SaaS-Pakete als stabile Basis |
 | Abhängigkeit von Google/MSN | mittel | hoch | Newsletter und LinkedIn als eigene Kanäle |
 | Datenschutzbeschwerden (Personenseiten) | mittel | mittel | Nur berufliche Rolle, Löschkonzept, schnelle Bearbeitung |
+| KI-Fehler (falsche Fakten, Halluzination) | mittel | hoch | Nur Quelldaten als Input, Faktencheck-Durchlauf, Risikoklassen, Doppelklick bei 🔴, Korrekturprozess |
+| „Durchwinken“ aus Routine | hoch | hoch | Tageslimits, rote Beiträge nie gebündelt, Checkliste, Freigabezeiten sichtbar im Audit-Log |
+| Pi-Ausfall (Hardware, Strom, Internet) | mittel | mittel | Cloudflare-Cache, USV, NVMe statt SD, tägliche Offsite-Backups, Umzugsplan auf Cloud-Server |
+| Verlust/Kompromittierung des Telegram-Kontos | gering | hoch | 2FA in Telegram, Whitelist, `/pause`-Befehl, Freigaben nur von registrierten IDs |
 
 ---
 
 ## 17. Nächste Schritte
 
-1. **Namen festlegen:** Favoriten BLICKWERK Medien · KOPF & KONTOR · Agenturblick bestätigen oder Alternativen wählen. Danach Marken- und Domainprüfung.
+1. **Domainprüfung freischalten** (Hosts `rdap.denic.de`, `rdap.verisign.com`, `rdap.org` in den Netzwerkeinstellungen der Umgebung erlauben), dann **Namen festlegen:** Favoriten BLICKWERK Medien · KOPF & KONTOR · Agenturblick bestätigen oder Alternativen wählen. Danach Marken- und Domainprüfung.
 2. **Startregion für KOPF & KONTOR** wählen (Vorschlag: NRW, größter Wirtschaftsraum mit vielen Registerereignissen).
-3. **Eigenes Repository** anlegen und mit Claude verbinden. Dann folgt das technische Grundgerüst:
-   Multi-Tenant-Frontend, Payload CMS, Datenmodell aus Abschnitt 8.2, erste Pipeline (Handelsregister → Entwurf), Firmen- und Artikelseiten, Agenturblick-Profilseite.
+3. **Eigenes Repository** anlegen und mit Claude verbinden. Dann folgt das technische Grundgerüst für den Pi:
+   Docker Compose (Caddy, cloudflared, Backend, PostgreSQL), Regel-Engine mit den drei Beispielregeln aus 8.5, Telegram-Freigabe-Bot, Static-Site-Builder für KOPF & KONTOR und Agenturblick.
 4. **Rechtliches Paket** beim Anwalt beauftragen (Abschnitt 11).
 5. **Datenanbieter** vergleichen und Testzugang einrichten.
 
