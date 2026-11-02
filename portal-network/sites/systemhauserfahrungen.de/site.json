@@ -1,0 +1,120 @@
+{
+  "domain": "systemhauserfahrungen.de",
+  "enabled": false,
+  "type": "review",
+  "phase": 2,
+  "name": "SYSTEMHAUSERFAHRUNGEN",
+  "wordmark": [
+    [
+      "SYSTEMHAUS",
+      "bold"
+    ],
+    [
+      "ERFAHRUNGEN",
+      "regular"
+    ]
+  ],
+  "glyph": "server",
+  "claim": "Systemhäuser im Kundenurteil.",
+  "description": "Kundenerfahrungen mit Systemhäusern: Erreichbarkeit, SLA-Einhaltung, Fachkompetenz und Kostentransparenz – mit sichtbarer Herkunft jeder Bewertung.",
+  "accent": "#6D28D9",
+  "accent_2": "#2E0F66",
+  "accent_dark": "#C4A5FF",
+  "accent_2_dark": "#4C1D95",
+  "default_author": "Redaktion SYSTEMHAUSERFAHRUNGEN",
+  "review": {
+    "criteria": [
+      {
+        "key": "erreichbarkeit",
+        "name": "Erreichbarkeit/SLA-Einhaltung"
+      },
+      {
+        "key": "fachkompetenz",
+        "name": "Fachkompetenz"
+      },
+      {
+        "key": "proaktivitaet",
+        "name": "Proaktivität"
+      },
+      {
+        "key": "kostentransparenz",
+        "name": "Kostentransparenz"
+      },
+      {
+        "key": "preis_leistung",
+        "name": "Preis-Leistung"
+      }
+    ],
+    "extra_fields": [
+      "Leistungen",
+      "Hersteller-Partnerschaften",
+      "Region",
+      "Anzahl betreuter Arbeitsplätze"
+    ],
+    "services": [
+      {
+        "slug": "it-betreuung",
+        "name": "IT-Betreuung",
+        "description": "Laufende Betreuung von Arbeitsplätzen und Servern."
+      },
+      {
+        "slug": "netzwerk-infrastruktur",
+        "name": "Netzwerk & Infrastruktur",
+        "description": "Planung und Betrieb von Netzwerken, Servern und Telefonie."
+      },
+      {
+        "slug": "microsoft-365",
+        "name": "Microsoft 365 & Arbeitsplatz",
+        "description": "Einführung und Verwaltung moderner Arbeitsplätze."
+      },
+      {
+        "slug": "branchensoftware",
+        "name": "Branchensoftware",
+        "description": "Einführung und Betreuung von ERP- und Branchenlösungen."
+      }
+    ],
+    "score": {
+      "prior_mean": 3.5,
+      "prior_weight": 3,
+      "half_life_months": 12,
+      "verification_weights": {
+        "verifiziert": 1.2,
+        "eingeladen": 1.0,
+        "organisch": 1.0
+      }
+    },
+    "subject_plural": "Systemhäuser"
+  },
+  "newsletter": {
+    "name": "",
+    "description": "",
+    "action": ""
+  },
+  "adsense_client_id": "",
+  "adsense_slots": {
+    "home_top": "",
+    "list_top": "",
+    "article_top": "",
+    "article_mid": "",
+    "article_bottom": "",
+    "profile": ""
+  },
+  "analytics": {
+    "script_url": "",
+    "website_id": "",
+    "require_consent": true
+  },
+  "forms": {
+    "contact_action": "",
+    "review_action": "",
+    "report_action": "",
+    "claim_action": ""
+  },
+  "contact_email": "",
+  "google_site_verification": "",
+  "redirect_aliases": [],
+  "_schutzdomains_spaeter": [
+    "systemhausbewertungen.de",
+    "systemhauserfahrungen.com"
+  ]
+}

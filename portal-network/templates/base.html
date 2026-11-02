@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title}</title>
+<meta name="description" content="${description}">
+<link rel="canonical" href="${canonical}">
+<meta name="robots" content="${robots}">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="${accent}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/base.css?v=${asset_version}">
+<style>${theme_css}</style>
+${feed_link}
+<meta property="og:site_name" content="${site_name}">
+<meta property="og:locale" content="de_DE">
+<meta property="og:type" content="${og_type}">
+<meta property="og:title" content="${og_title}">
+<meta property="og:description" content="${description}">
+<meta property="og:url" content="${canonical}">
+${og_image}
+<meta name="twitter:card" content="${twitter_card}">
+<meta name="twitter:title" content="${og_title}">
+<meta name="twitter:description" content="${description}">
+${head_extra}
+${jsonld}
+</head>
+<body class="${body_class}"${body_attrs}>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+${preview_banner}
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/" aria-label="${site_name} – Startseite">${logo}</a>
+    <p class="claim">${claim}</p>
+    ${header_action}
+  </div>
+  <nav class="main-nav" aria-label="Hauptnavigation">
+    <div class="wrap"><ul>${nav}</ul></div>
+  </nav>
+</header>
+<main id="main" class="wrap">
+${content}
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    ${footer}
+  </div>
+</footer>
+<script src="/static/site.js?v=${asset_version}" defer></script>
+${body_end}
+</body>
+</html>

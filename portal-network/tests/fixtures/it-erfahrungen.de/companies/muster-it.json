@@ -1,0 +1,12 @@
+{"status": "approved", "name": "Muster IT-Service GmbH", "slug": "muster-it-service-gmbh",
+ "legal_form": "GmbH", "city": "Musterstadt", "register": "HRB 00001, AG Musterstadt (fiktiv)",
+ "services": ["managed-services", "it-security"], "claimed": true, "invites_actively": true, "reply_days": 2,
+ "description": "Fiktiver IT-Dienstleister – nur Testdaten.",
+ "news_url": "https://firmennachrichten.de/unternehmen/musterfirma-beispiel-gmbh/",
+ "ai_summary": {"status": "approved", "text": "Testzusammenfassung: Die fiktiven Testbewertungen loben die Reaktionszeit und kritisieren die Termintreue."},
+ "reviews": [
+  {"status": "approved", "date": "2026-10-01", "rating": 5, "verification": "verifiziert", "title": "Testbewertung A", "text": "Fiktiver Testtext.", "author": "T. A.", "service": "Managed Services", "company_size": "10–49 Mitarbeitende", "criteria": {"fachkompetenz": 5, "reaktionszeit": 5, "projektmanagement": 4, "termintreue": 4, "preis_leistung": 4}, "reply": {"date": "2026-10-03", "text": "Fiktive Testantwort des Unternehmens."}},
+  {"status": "approved", "date": "2025-11-01", "rating": 3, "verification": "eingeladen", "title": "Testbewertung B", "text": "Fiktiver Testtext.", "author": "T. B.", "criteria": {"fachkompetenz": 4, "reaktionszeit": 3, "termintreue": 2, "preis_leistung": 3}},
+  {"status": "approved", "date": "2026-06-15", "rating": 2, "verification": "organisch", "title": "Testbewertung C", "text": "Fiktiver Testtext.", "author": "T. C."},
+  {"status": "draft", "date": "2026-10-20", "rating": 1, "verification": "organisch", "title": "Nicht freigegeben", "text": "Darf nicht erscheinen.", "author": "X"}
+ ]}

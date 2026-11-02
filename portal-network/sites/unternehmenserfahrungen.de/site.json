@@ -1,0 +1,118 @@
+{
+  "domain": "unternehmenserfahrungen.de",
+  "enabled": false,
+  "type": "review",
+  "phase": 3,
+  "name": "UNTERNEHMENSERFAHRUNGEN",
+  "wordmark": [
+    [
+      "UNTERNEHMENS",
+      "bold"
+    ],
+    [
+      "ERFAHRUNGEN",
+      "regular"
+    ]
+  ],
+  "glyph": "star",
+  "claim": "Erfahrungen mit Unternehmen, geprüft und transparent.",
+  "description": "Erfahrungen mit Unternehmen aller Branchen – geprüft, transparent und mit sichtbarer Herkunft jeder Bewertung.",
+  "accent": "#0F766E",
+  "accent_2": "#073B37",
+  "accent_dark": "#5EDDD0",
+  "accent_2_dark": "#0B5A54",
+  "default_author": "Redaktion UNTERNEHMENSERFAHRUNGEN",
+  "review": {
+    "criteria": [
+      {
+        "key": "qualitaet",
+        "name": "Qualität"
+      },
+      {
+        "key": "service",
+        "name": "Service"
+      },
+      {
+        "key": "kommunikation",
+        "name": "Kommunikation"
+      },
+      {
+        "key": "zuverlaessigkeit",
+        "name": "Zuverlässigkeit"
+      },
+      {
+        "key": "preis_leistung",
+        "name": "Preis-Leistung"
+      }
+    ],
+    "extra_fields": [
+      "Branche",
+      "Art der Geschäftsbeziehung (B2B/B2C)"
+    ],
+    "services": [
+      {
+        "slug": "handwerk",
+        "name": "Handwerk",
+        "description": "Handwerksbetriebe aller Gewerke."
+      },
+      {
+        "slug": "dienstleistungen",
+        "name": "Dienstleistungen",
+        "description": "Unternehmensnahe Dienstleister."
+      },
+      {
+        "slug": "handel",
+        "name": "Handel",
+        "description": "Groß- und Einzelhandel."
+      },
+      {
+        "slug": "industrie",
+        "name": "Industrie",
+        "description": "Hersteller und Zulieferer."
+      }
+    ],
+    "score": {
+      "prior_mean": 3.5,
+      "prior_weight": 3,
+      "half_life_months": 12,
+      "verification_weights": {
+        "verifiziert": 1.2,
+        "eingeladen": 1.0,
+        "organisch": 1.0
+      }
+    },
+    "subject_plural": "Unternehmen"
+  },
+  "newsletter": {
+    "name": "",
+    "description": "",
+    "action": ""
+  },
+  "adsense_client_id": "",
+  "adsense_slots": {
+    "home_top": "",
+    "list_top": "",
+    "article_top": "",
+    "article_mid": "",
+    "article_bottom": "",
+    "profile": ""
+  },
+  "analytics": {
+    "script_url": "",
+    "website_id": "",
+    "require_consent": true
+  },
+  "forms": {
+    "contact_action": "",
+    "review_action": "",
+    "report_action": "",
+    "claim_action": ""
+  },
+  "contact_email": "",
+  "google_site_verification": "",
+  "redirect_aliases": [],
+  "_schutzdomains_spaeter": [
+    "unternehmenserfahrungen.com",
+    "firmen-erfahrungen.de"
+  ]
+}

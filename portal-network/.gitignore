@@ -1,0 +1,6 @@
+# Build-Ausgaben (werden auf dem Pi per build.py erzeugt)
+dist/
+dist-preview/
+dist-test/
+__pycache__/
+*.pyc

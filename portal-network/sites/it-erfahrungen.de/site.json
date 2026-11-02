@@ -1,0 +1,132 @@
+{
+  "domain": "it-erfahrungen.de",
+  "enabled": true,
+  "type": "review",
+  "phase": 1,
+  "name": "IT-ERFAHRUNGEN",
+  "wordmark": [
+    [
+      "IT",
+      "bold"
+    ],
+    [
+      "ERFAHRUNGEN",
+      "regular"
+    ]
+  ],
+  "glyph": "star",
+  "claim": "Der richtige IT-Partner. Echte Kundenerfahrungen.",
+  "description": "Das Bewertungsportal für IT-Dienstleister: Kundenerfahrungen mit Managed-Service-Providern, Cloud- und Security-Anbietern, Softwareentwicklern und IT-Beratungen – mit sichtbarer Herkunft jeder Bewertung.",
+  "accent": "#1A7F37",
+  "accent_2": "#0B3D1B",
+  "accent_dark": "#5BD17A",
+  "accent_2_dark": "#14612A",
+  "default_author": "Redaktion IT-ERFAHRUNGEN",
+  "review": {
+    "criteria": [
+      {
+        "key": "fachkompetenz",
+        "name": "Fachkompetenz",
+        "hint": "Wissen und Qualität der technischen Arbeit"
+      },
+      {
+        "key": "reaktionszeit",
+        "name": "Reaktionszeit/Support",
+        "hint": "Erreichbarkeit und Geschwindigkeit bei Anfragen und Störungen"
+      },
+      {
+        "key": "projektmanagement",
+        "name": "Projektmanagement",
+        "hint": "Planung, Kommunikation und Steuerung von Projekten"
+      },
+      {
+        "key": "termintreue",
+        "name": "Termintreue",
+        "hint": "Einhaltung zugesagter Termine und Fristen"
+      },
+      {
+        "key": "preis_leistung",
+        "name": "Preis-Leistung",
+        "hint": "Verhältnis von Kosten und erbrachter Leistung"
+      }
+    ],
+    "extra_fields": [
+      "Leistung",
+      "Kundengröße",
+      "Vertragsart",
+      "Laufzeit"
+    ],
+    "services": [
+      {
+        "slug": "managed-services",
+        "name": "Managed Services",
+        "description": "Laufende Betreuung von Arbeitsplätzen, Servern und Netzwerken zum festen Preis."
+      },
+      {
+        "slug": "cloud",
+        "name": "Cloud",
+        "description": "Migration, Betrieb und Beratung für Cloud-Dienste und hybride Umgebungen."
+      },
+      {
+        "slug": "it-security",
+        "name": "IT-Security",
+        "description": "Absicherung, Schwachstellenanalysen, Awareness und Notfallhilfe."
+      },
+      {
+        "slug": "softwareentwicklung",
+        "name": "Softwareentwicklung",
+        "description": "Individuelle Software, Schnittstellen und Web-Anwendungen."
+      },
+      {
+        "slug": "it-beratung",
+        "name": "IT-Beratung",
+        "description": "Strategie, Ausschreibungen, Digitalisierungs- und Projektberatung."
+      }
+    ],
+    "score": {
+      "prior_mean": 3.5,
+      "prior_weight": 3,
+      "half_life_months": 12,
+      "verification_weights": {
+        "verifiziert": 1.2,
+        "eingeladen": 1.0,
+        "organisch": 1.0
+      }
+    },
+    "guide_intro": "Ratgeber für die Auswahl und Zusammenarbeit mit IT-Dienstleistern – neutral, ohne Anbieterwerbung.",
+    "subject_plural": "IT-Dienstleister"
+  },
+  "newsletter": {
+    "name": "IT-Partner-Briefing",
+    "description": "Ratgeber und neue Erfahrungsberichte rund um IT-Dienstleister – einmal im Monat.",
+    "action": ""
+  },
+  "adsense_client_id": "",
+  "adsense_slots": {
+    "home_top": "",
+    "list_top": "",
+    "article_top": "",
+    "article_mid": "",
+    "article_bottom": "",
+    "profile": ""
+  },
+  "analytics": {
+    "script_url": "",
+    "website_id": "",
+    "require_consent": true
+  },
+  "forms": {
+    "contact_action": "",
+    "review_action": "",
+    "report_action": "",
+    "claim_action": ""
+  },
+  "contact_email": "",
+  "google_site_verification": "",
+  "redirect_aliases": [],
+  "_schutzdomains_spaeter": [
+    "iterfahrungen.de",
+    "it-erfahrungen.com",
+    "it-bewertungen.de"
+  ]
+}
