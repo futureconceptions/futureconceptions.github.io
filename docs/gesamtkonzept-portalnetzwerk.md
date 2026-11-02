@@ -1,6 +1,6 @@
 # Gesamtkonzept: Portalnetzwerk für Wirtschaftsnachrichten & Bewertungen
 
-**Netzwerk:** MERKANT Medien · **Stand:** November 2026 · **Status:** Konzept v2 (Betrieb auf Raspberry Pi, KI-Entwürfe, Freigabe per Telegram)
+**Netzwerk:** MERKANT Medien · **Stand:** November 2026 · **Status:** Konzept v3 (Namen & Domains final · Betrieb auf Raspberry Pi · KI-Entwürfe · Freigabe per Telegram)
 **Hinweis:** Eigenständiges Projekt, organisatorisch und rechtlich getrennt von ClipFarm Studio. Dieses Dokument gehört langfristig in ein eigenes Repository.
 
 ---
@@ -8,10 +8,10 @@
 ## Inhalt
 
 1. Vision & Kernidee
-2. Markennamen (Netzwerk, Nachrichtenportal, Bewertungsportale)
+2. Markennamen & Domains (final)
 3. Netzwerk-Architektur
-4. Leitportal: KONTORKURIER (Wirtschaftsnachrichten)
-5. Bewertungsportale (Urteil-Familie)
+4. Nachrichtenportale: FIRMENNACHRICHTEN, ITSZENE, FIRMENKÖPFE
+5. Bewertungsportale (Erfahrungen-Portale)
 6. Wie Nachrichten und Bewertungen zusammenspielen
 7. Content-Engine: Quellen, KI-Workflow, Tagesplan
 8. Technik: Betrieb auf dem Raspberry Pi, Telegram-Freigabe, Regel-Engine
@@ -30,8 +30,8 @@
 ## 1. Vision & Kernidee
 
 **Ein Netzwerk unabhängiger Portale, das dem deutschen Mittelstand ein Gesicht gibt:**
-- ein **Nachrichtenportal**, das täglich über Unternehmen und Unternehmer berichtet, also über die Firmen, die Handelsblatt & Co. übersehen,
-- mehrere **Bewertungsportale** für Branchen, in denen Kunden vor teuren, riskanten Entscheidungen stehen,
+- **Nachrichtenportale** über Unternehmen und Unternehmer (**firmennachrichten.de**, **firmenkoepfe.de**) und über IT im Mittelstand (**itszene.de**),
+- **Bewertungsportale** für IT-Dienstleister, Systemhäuser und Agenturen (**it-erfahrungen.de**, **systemhauserfahrungen.de**, **agenturerfahrungen.de**), später allgemein für Unternehmen (**unternehmenserfahrungen.de**),
 - alles auf **einer gemeinsamen Plattform** mit gemeinsamer Firmen- und Personendatenbank.
 
 **Leitsatz:** *„Wer über ein Unternehmen Bescheid wissen will, landet bei uns: mit Nachrichten, Zahlen, Köpfen und echten Kundenerfahrungen.“*
@@ -46,78 +46,82 @@
 
 ---
 
-## 2. Markennamen (Domainprüfung vom 02.11.2026)
+## 2. Markennamen & Domains (final, Prüfung vom 02.11.2026)
 
-> **Prüfmethode:** `.com` über die Cloudflare-Registrar-API (verbindliche Live-Abfrage bei der Registry). `.de` über die WHOIS-Abfrage von Cloudflare Intel (zeigt, ob die Domain bei DENIC registriert ist). Insgesamt wurden über 100 Domains geprüft.
-> **Wichtig:** Domains können jederzeit weggeschnappt werden. Die gewählten Domains deshalb **zeitnah registrieren**. `.de` ist bei Cloudflare Registrar nicht erhältlich und wird bei einem deutschen Registrar gekauft (z. B. INWX, Hetzner, netcup, United Domains; ca. 5–15 €/Jahr). `.com` kostet bei Cloudflare 11,17 USD/Jahr.
-> **Vor dem Kauf zusätzlich:** DPMA-/EUIPO-Markenrecherche (Klassen 35, 38, 41, 42) und Social-Handles prüfen.
+> **Prüfmethode:** `.com` über die Cloudflare-Registrar-API (verbindliche Live-Abfrage bei der Registry). `.de` über die WHOIS-Abfrage von Cloudflare Intel (zeigt, ob die Domain bei DENIC registriert ist). Insgesamt wurden über 260 Domains geprüft.
+> **Wichtig:** Domains können jederzeit weggeschnappt werden. Deshalb **sofort registrieren**. `.de` bei einem deutschen Registrar (z. B. INWX, Hetzner, netcup; ca. 5–15 €/Jahr). `.com` z. B. bei Cloudflare (11,17 USD/Jahr).
 
-### 2.1 Festgelegte Namen
+### 2.1 Positionierung: zwei Säulen, Unternehmen und IT
 
-| Rolle | Name | Hauptdomain | Weitere Domains (alle frei) |
-|---|---|---|---|
-| **Dachmarke / Betreiber** | **MERKANT Medien** | `merkant-medien.de` | `merkantmedien.de`, `merkant-medien.com`, `merkantmedien.com` |
-| **Nachrichtenportal** | **KONTORKURIER** | `kontorkurier.de` | `kontor-kurier.de`, `kontorkurier.com`, `kontor-kurier.com` |
-| Bewertungsportal | **Agentururteil** | `agentururteil.de` | `agentur-urteil.de`, `agentururteil.com`, `agentur-urteil.com` |
-| Bewertungsportal | **Softwareurteil** | `softwareurteil.de` | `software-urteil.de`, `softwareurteil.com`, `software-urteil.com` |
-| Bewertungsportal | **Kursurteil** | `kursurteil.de` | `kurs-urteil.de`, `kursurteil.com` |
-| Bewertungsportal | **Solarurteil** | `solarurteil.de` | `solar-urteil.de`, `solarurteil.com` |
-| Bewertungsportal | **Umzugsurteil** | `umzugsurteil.de` | `umzugs-urteil.de`, `umzugsurteil.com` |
-| später | **Coachurteil** | `coachurteil.de` | `coach-urteil.de`, `coachurteil.com` |
-| später | **Betreuungsurteil** | `betreuungsurteil.de` | `betreuungs-urteil.de`, `betreuungsurteil.com` |
+Die Portale tragen beschreibende Namen. Jeder versteht sofort, worum es geht, das stärkt Klickrate und Positionierung. Die Dachmarke **MERKANT Medien** ist der eigenständige, schützbare Name des Betreibers.
+
+```
+                              MERKANT Medien (Betreiber)
+                                         │
+             ┌───────────────────────────┴───────────────────────────┐
+     SÄULE UNTERNEHMEN                                         SÄULE IT
+     │                                                         │
+     ├─ firmennachrichten.de   Nachrichten über Firmen         ├─ itszene.de                IT-Nachrichten Mittelstand
+     ├─ firmenkoepfe.de        Köpfe & Personalien             ├─ it-erfahrungen.de         IT-Dienstleister-Bewertungen
+     ├─ agenturerfahrungen.de  Agentur-Bewertungen             └─ systemhauserfahrungen.de  Systemhaus-Bewertungen
+     └─ unternehmenserfahrungen.de  Firmenbewertungen (Phase 3)
+```
+
+### 2.2 Festgelegte Portale & Domains (alle .de und .com frei)
+
+| Portal | Rolle | Hauptdomain | Schutzdomains (mitkaufen) | Start |
+|---|---|---|---|---|
+| **MERKANT Medien** | Dachmarke, Betreiber, Impressum | `merkant-medien.de` | `merkantmedien.de`, `merkant-medien.com` | Phase 0 |
+| **FIRMENNACHRICHTEN** | Nachrichtenportal Unternehmen | `firmennachrichten.de` | `firmennachrichten.com`, `unternehmens-nachrichten.de` | Phase 1 |
+| **ITSZENE** | Nachrichtenportal IT im Mittelstand | `itszene.de` | `itszene.com`, `itszene-news.de` | Phase 1 |
+| **IT-ERFAHRUNGEN** | Bewertungen IT-Dienstleister (Hub) | `it-erfahrungen.de` | `iterfahrungen.de`, `it-erfahrungen.com`, `it-bewertungen.de` | Phase 1 |
+| **FIRMENKÖPFE** | Köpfe & Personalien | `firmenkoepfe.de` | `firmen-koepfe.de`, `firmenkoepfe.com` | Phase 1 als Weiterleitung auf firmennachrichten.de/koepfe, Phase 2 eigenes Portal |
+| **SYSTEMHAUSERFAHRUNGEN** | Bewertungen Systemhäuser (Nische) | `systemhauserfahrungen.de` | `systemhausbewertungen.de`, `systemhauserfahrungen.com` | Phase 2 |
+| **AGENTURERFAHRUNGEN** | Bewertungen Marketing-, Web- & Content-Agenturen | `agenturerfahrungen.de` | `agentur-erfahrungen.de`, `agenturerfahrungen.com`, `webagenturerfahrungen.de` | Phase 2 |
+| **UNTERNEHMENSERFAHRUNGEN** | Allgemeine Firmenbewertungen | `unternehmenserfahrungen.de` | `unternehmenserfahrungen.com`, `firmen-erfahrungen.de` | Phase 3 |
+
+**Kaufliste Phase 0** (22 Domains, ca. 150–250 €/Jahr):
+`merkant-medien.de`, `merkantmedien.de`, `merkant-medien.com`, `firmennachrichten.de`, `firmennachrichten.com`, `unternehmens-nachrichten.de`, `itszene.de`, `itszene.com`, `itszene-news.de`, `it-erfahrungen.de`, `iterfahrungen.de`, `it-erfahrungen.com`, `it-bewertungen.de`, `firmenkoepfe.de`, `firmen-koepfe.de`, `systemhauserfahrungen.de`, `systemhausbewertungen.de`, `agenturerfahrungen.de`, `agentur-erfahrungen.de`, `webagenturerfahrungen.de`, `unternehmenserfahrungen.de`, `firmen-erfahrungen.de`
 
 **Claims:**
-- **MERKANT Medien:** *Medien für den Mittelstand.* „Merkant“ (vom lateinischen *mercator*, Kaufmann) ist neutral, passt zu Nachrichten und Bewertungen, und eine Websuche hat keine gleichnamige Medienmarke gefunden. Rechtsform z. B. „Merkant Medien GmbH“ oder UG. Erscheint im Impressum aller Portale. Hinweis: `merkant.de`/`.com` sind vergeben, deshalb der Zusatz „Medien“.
-- **KONTORKURIER:** *Nachrichten über Unternehmen und die Menschen dahinter.* Das Kontor steht für Kaufmannstradition, der Kurier für ein Nachrichtenmedium. Eine Websuche fand keine Marke mit diesem Namen. Mit Abstand zu „Kontor Records“ (Musiklabel) durch den Zusatz „Kurier“.
-- **„-urteil“-Familie:** Die einzige geprüfte Namensfamilie, bei der **alle sieben Portale auf .de und .com frei** sind. Der Name ist ehrlich („das Urteil der Kunden“) und als Netzwerk erkennbar. Claims: *Agentururteil – Die richtige Agentur. Echte Erfahrungen.* · *Softwareurteil – IT-Partner im Kundenurteil* · *Kursurteil – Weiterbildung, die hält, was sie verspricht* · *Solarurteil – Installateure im Erfahrungscheck* · *Umzugsurteil – Seriöse Umzugsfirmen finden*.
-- **Abwägung „-urteil“:** Das Wort kann an Gerichtsurteile erinnern (z. B. bei Suchen wie „Umzug Urteil“). Für die Marke unkritisch, für SEO aber nicht auf Suchbegriffe mit „Urteil“ optimieren, sondern auf „Erfahrungen“ und „Bewertungen“.
-
-Regionale Ausgaben des Nachrichtenportals als Unterbereiche: `kontorkurier.de/nrw`, `/bayern`, `/rhein-main`, `/berlin` …
-
-Bewusst vermieden: „Test“ oder „Check“ im Namen. Das suggeriert eigene Warentests à la Stiftung Warentest und wäre ohne echte Tests irreführend.
-
-### 2.2 Verworfene Favoriten (Domain vergeben)
-
-| Name | Ergebnis | Bemerkung |
-|---|---|---|
-| KOPF & KONTOR | `kopfundkontor.de` + `kopf-kontor.de` vergeben (gleicher Inhaber, aktiv, zuletzt geändert 28.10.2026), `.com` vergeben, `kopfkontor.de` vergeben | Nur `kopf-und-kontor.de` frei. Wegen aktiver Nutzung des Namens Konfliktgefahr, deshalb verworfen |
-| BLICKWERK Medien | `blickwerk.de`/`.com` vergeben, `blickwerk-media.de` vergeben | `blickwerk-medien.de` wäre frei, aber die Blick-Familie entfällt |
-| Blick-Familie | `agenturblick.de`, `softwareblick.de`, `kursblick.de` (Sedo-geparkt, evtl. käuflich), `solarblick.de`, `umzugsblick.de`, `coachblick.de`, `pflegeblick.de` vergeben | Familie nicht einheitlich verfügbar |
-| Firmenkurier | `.de` vergeben | `.com` frei |
-| Chefetage | `.de`/`.com` vergeben | `chefetage-news.de` frei |
-| Firmenblick, Unternehmerblick | `.de` vergeben (firmenblick.de Sedo-geparkt) | – |
-| „-radar“, „-kompass“, „-lupe“, „-echo“ | jeweils mehrere Portale vergeben | Familie nicht vollständig |
-
-### 2.3 Freie Reserve-Namen (.de und .com frei)
-
-| Für | Freie Alternativen |
+| Portal | Claim |
 |---|---|
-| Dachmarke | Urteilwerk (Medien), Mittelweg Media, Blickfeld Medien, Blickhaus Medien, Portalwerk Medien, Kurierwerk Medien, Radarwerk Medien, Lupenwerk Medien |
-| Nachrichtenportal | Mittelstandsblick, Mittelstandszeit, Mittelstandspost, Mittelstandsticker, Unternehmenskurier, Kontorzeit, Kontorticker, Kontorblick, Firmenköpfe (`firmenkoepfe`), Köpfe & Firmen (`koepfeundfirmen`), Registerkurier, Registerticker, Chefetage News |
-| Bewertungsportale | Lupe-Familie teilweise frei (`agenturlupe`, `kurslupe`, `coachlupe`), Echo-Familie teilweise frei (`softwareecho`, `kursecho`, `umzugsecho`, `betreuungsecho`) |
+| FIRMENNACHRICHTEN | *Was Deutschlands Unternehmen bewegt, und wer sie bewegt.* |
+| ITSZENE | *IT-Nachrichten für den Mittelstand.* |
+| IT-ERFAHRUNGEN | *Der richtige IT-Partner. Echte Kundenerfahrungen.* |
+| FIRMENKÖPFE | *Wer führt, wer wechselt, wer gründet.* |
+| SYSTEMHAUSERFAHRUNGEN | *Systemhäuser im Kundenurteil.* |
+| AGENTURERFAHRUNGEN | *Die richtige Agentur. Echte Erfahrungen.* |
+| UNTERNEHMENSERFAHRUNGEN | *Erfahrungen mit Unternehmen, geprüft und transparent.* |
 
----
+**Markenschutz:** Beschreibende Begriffe sind als reine Wortmarke kaum schützbar. Geschützt werden:
+1. **MERKANT Medien** als Wortmarke (Klassen 35, 38, 41, 42),
+2. die Portale als **Wort-Bild-Marken** (eigenes Logo, eigene Gestaltung).
 
-### 2.4 Beschreibende Domains „Unternehmen“ & „IT“ (Prüfung 02.11.2026, .de und .com frei)
+Vor Anmeldung: DPMA-/EUIPO-Recherche.
 
-Ziel: Domains, die sofort zeigen, worum es geht, für bessere Positionierung und höhere Klickrate in Google.
+Bewusst vermieden: „Test“ oder „Check“ im Namen. Das suggeriert eigene Warentests und wäre ohne echte Tests irreführend.
 
-| Säule | Rolle | Empfehlung | Weitere freie Optionen |
-|---|---|---|---|
-| **Unternehmen** | Nachrichtenportal | **firmennachrichten.de** | unternehmens-nachrichten.de, unternehmens-news.de, unternehmen-aktuell.de, unternehmensmonitor.de, firmen-heute.de |
-| Unternehmen | Köpfe/Personalien | **firmenkoepfe.de** | unternehmenskoepfe.de, firmen-koepfe.de |
-| Unternehmen | Bewertungen (breit, später) | **unternehmenserfahrungen.de** | firmen-erfahrungen.de, unternehmen-bewertungen.de, anbieterbewertungen.de, dienstleisterbewertungen.de |
-| **IT** | IT-Nachrichten Mittelstand | **itszene.de** | it-news-mittelstand.de, itnews-mittelstand.de, itbranche-news.de, tech-unternehmen.de |
-| IT | IT-Dienstleister-Bewertungen (Hub) | **it-erfahrungen.de** | iterfahrungen.de, it-bewertungen.de, itdienstleistererfahrungen.de, it-firmen-bewertungen.de |
-| IT | Systemhäuser (Nische) | **systemhauserfahrungen.de** | systemhausbewertungen.de, systemhaus-finden.de, systemhaeuser-vergleich.de |
-| IT | Vergleichs-Nischen | – | it-anbieter-vergleich.de, cloudanbieter-vergleich.de, managed-services-vergleich.de, it-sicherheit-anbieter.de, cybersecurity-anbieter.de, software-firmen.de, softwareagenturen.de |
-| Agenturen | Agentur-Bewertungen | **agenturerfahrungen.de** | agentur-erfahrungen.de, agentur-bewertungen.de, webagenturerfahrungen.de, webagenturbewertungen.de |
+### 2.3 Verworfene Namen
 
-**Vergeben (Auswahl):** unternehmensnachrichten.de, unternehmensnews.de, firmennews.de, firmenbewertungen.de, unternehmensbewertungen.de, it-nachrichten.de, it-aktuell.de, it-dienstleister.de, itdienstleister.de, it-firmen.de, softwareunternehmen.de, systemhausvergleich.de, mittelstandsnews.de, agenturvergleich.de. Einige sind geparkt (Sedo, ParkingCrew, Domainparking) und eventuell käuflich, z. B. itkurier.de, itaktuell.de, firmenaktuell.de, firmenmonitor.de, itunternehmen.de, it-firmen.de, firmen-nachrichten.de. Preise erst auf Anfrage beim Marktplatz.
+| Name | Grund |
+|---|---|
+| KOPF & KONTOR | `kopfundkontor.de` + `kopf-kontor.de` vergeben und aktiv genutzt, Konfliktgefahr |
+| BLICKWERK / Blick-Familie | `blickwerk.de`, `agenturblick.de`, `softwareblick.de`, `kursblick.de`, `solarblick.de`, `umzugsblick.de` u. a. vergeben |
+| FIRMENNACHRICHTEN, „-urteil“-Familie | Frei, aber zugunsten beschreibender Namen zurückgestellt (keine Aussage über Thema im Namen). Reserve: `kontorkurier.de`, `agentururteil.de`, `softwareurteil.de` u. a. |
+| Kurs-, Solar-, Umzugs-, Coach-, Betreuungsportale | Passen nicht zur Positionierung „Unternehmen & IT“. Bei späterem Bedarf frei: `kursurteil.de`, `solarurteil.de`, `umzugsurteil.de`, `coachurteil.de`, `betreuungsurteil.de` |
+| Vergebene Wunschdomains | `unternehmensnachrichten.de`, `unternehmensnews.de`, `firmennews.de`, `firmenbewertungen.de`, `unternehmensbewertungen.de`, `it-nachrichten.de`, `it-aktuell.de`, `it-dienstleister.de`, `itdienstleister.de`, `it-firmen.de`, `softwareunternehmen.de`, `systemhausvergleich.de`, `mittelstandsnews.de`, `agenturvergleich.de` |
+| Geparkt, eventuell käuflich | `itkurier.de`, `itaktuell.de`, `firmenaktuell.de`, `firmenmonitor.de`, `itunternehmen.de`, `it-firmen.de`, `firmen-nachrichten.de` (Preis auf Anfrage beim Marktplatz) |
 
-**Hinweise:**
-- Beschreibende Domains bringen keinen direkten Ranking-Bonus mehr, verbessern aber Klickrate, Verständlichkeit und Linktexte.
-- Rein beschreibende Begriffe („Firmennachrichten“) sind als **Wortmarke kaum schützbar**. Schutz entsteht über eine Wort-Bild-Marke (Logo) und eine eigenständige Gestaltung.
+### 2.4 Reserve: freie Domains für spätere Nischen
+
+| Thema | Freie Domains |
+|---|---|
+| Unternehmen | `unternehmens-news.de`, `unternehmen-aktuell.de`, `unternehmensmonitor.de`, `firmen-heute.de`, `unternehmenskoepfe.de`, `dienstleisterbewertungen.de`, `anbieterbewertungen.de` |
+| IT-Nachrichten | `it-news-mittelstand.de`, `itbranche-news.de`, `tech-unternehmen.de` |
+| IT-Vergleich (Lead-Nischen) | `it-anbieter-vergleich.de`, `cloudanbieter-vergleich.de`, `managed-services-vergleich.de`, `it-sicherheit-anbieter.de`, `cybersecurity-anbieter.de`, `it-dienstleister-vergleich.de`, `it-partner-finden.de` |
+| Software & Web | `software-firmen.de`, `softwareagenturen.de`, `softwareagentur-vergleich.de`, `webagentur-bewertungen.de` |
+| Systemhaus | `systemhaus-finden.de`, `systemhaeuser-vergleich.de`, `systemhaus-bewertungen.de`, `systemhaus-erfahrungen.de` |
 
 ---
 
@@ -128,9 +132,9 @@ Ziel: Domains, die sofort zeigen, worum es geht, für bessere Positionierung und
                                         │
               ┌─────────────────────────┴─────────────────────────┐
               │                                                   │
-      KONTORKURIER                                     Urteil-Bewertungsportale
-   (Wirtschaftsnachrichten)                    Agentururteil · Softwareurteil · Kursurteil
-              │                                     Solarurteil · Umzugsurteil
+      Nachrichtenportale                                   Bewertungsportale
+   FIRMENNACHRICHTEN · ITSZENE                   IT-ERFAHRUNGEN · SYSTEMHAUSERFAHRUNGEN
+        · FIRMENKÖPFE                          AGENTURERFAHRUNGEN · (UNTERNEHMENSERFAHRUNGEN)
               │                                                   │
               └──────────────┬────────────────────────────────────┘
                              │
@@ -149,13 +153,13 @@ Ziel: Domains, die sofort zeigen, worum es geht, für bessere Positionierung und
 **Prinzip „ein Kern, viele Oberflächen“:** Ein neues Portal entsteht durch Konfiguration (Domain, Branding, Kategorien, Bewertungskriterien, Redaktionsressorts), nicht durch neue Software.
 
 **Verknüpfung über die Firmen-ID:** Jedes Unternehmen existiert genau einmal in der Datenbank. Es kann:
-- in Artikeln von KONTORKURIER vorkommen,
-- ein Bewertungsprofil auf einem oder mehreren Urteil-Portalen haben,
+- in Artikeln von FIRMENNACHRICHTEN vorkommen,
+- ein Bewertungsprofil auf einem oder mehreren Erfahrungen-Portalen haben,
 - ein Premium-Profil gebucht haben (gilt netzwerkweit).
 
 ---
 
-## 4. Leitportal: KONTORKURIER
+## 4. Nachrichtenportale: FIRMENNACHRICHTEN (Leitportal), ITSZENE, FIRMENKÖPFE
 
 ### 4.1 Positionierung
 - **Zielgruppe:** Unternehmer, Geschäftsführer, Führungskräfte, Gründer, Investoren, Vertriebler, Journalisten, Bewerber, interessierte Bürger einer Region.
@@ -192,7 +196,7 @@ Artikelseite
 ├── Text mit verlinkten Firmen & Personen (Firmen-Chips)
 ├── Infobox „Über das Unternehmen“ (aus Datenbank)
 ├── Quellenangaben (z. B. „Handelsregister HRB 12345, AG Köln, 30.10.2026“)
-├── Box „Erfahrungen mit diesem Unternehmen“ → Link zum Urteil-Portal (falls vorhanden)
+├── Box „Erfahrungen mit diesem Unternehmen“ → Link zum Erfahrungen-Portal (falls vorhanden)
 └── Mehr zum Thema / Newsletter / Anzeigen
 
 Firmenseite  /unternehmen/<slug>
@@ -200,7 +204,7 @@ Firmenseite  /unternehmen/<slug>
 ├── Geschäftsführung / Vorstand (aktuell + Historie)
 ├── Kennzahlen aus Bundesanzeiger (Umsatz, Mitarbeiter, Bilanzsumme, sofern veröffentlicht)
 ├── Zeitleiste: alle Registerereignisse und Artikel
-├── Bewertungsscore aus Urteil-Portal (falls vorhanden)
+├── Bewertungsscore aus Erfahrungen-Portal (falls vorhanden)
 └── Premium: Logo, Selbstdarstellung, Newsroom, Stellen (als „Firmeninformation“ gekennzeichnet)
 
 Personenseite  /koepfe/<slug>
@@ -223,13 +227,33 @@ Ressort- & Regionalseiten, Themenseiten (z. B. „Wärmepumpen-Branche“), Auto
 | **Köpfe der Woche** | Alle relevanten Wechsel in der Geschäftsführung | montags |
 | **Deal-Monitor** | Finanzierungsrunden & Übernahmen | wöchentlich |
 | **Wachstumschampions [Region]** | Ranking aus Bilanzdaten | jährlich + Award |
-| **KONTORKURIER Podcast** | Gespräch mit einem Unternehmer | 14-täglich (Phase 3) |
+| **FIRMENNACHRICHTEN Podcast** | Gespräch mit einem Unternehmer | 14-täglich (Phase 3) |
+
+### 4.5 Zweites Nachrichtenportal: ITSZENE (itszene.de)
+
+**Positionierung:** IT-Nachrichten für Entscheider im Mittelstand. Nicht Gadgets und Consumer-Tech, sondern IT-Firmen, IT-Sicherheit, Software, Cloud und Digitalisierung aus Sicht von KMU.
+
+| Ressort | Inhalt | Quelle (automatisierbar) | Frequenz |
+|---|---|---|---|
+| **IT-Unternehmen** | Gründungen, Übernahmen, Wechsel in der Geschäftsführung bei IT-Firmen | Handelsregister (Wirtschaftszweige 62/63), Pressemitteilungen | 4–8 / Tag |
+| **Sicherheit** | Sicherheitswarnungen, die KMU betreffen, verständlich erklärt | BSI/CERT-Bund-Warnmeldungen, Hersteller-Advisories | 1–3 / Tag |
+| **Software & Cloud** | Produktänderungen, Preisänderungen, Abkündigungen (z. B. Lizenzmodelle) | Hersteller-Blogs, Pressemitteilungen | 1–3 / Tag |
+| **Digitalisierung** | Förderprogramme, Gesetze (NIS2, E-Rechnung, KI-VO), Fristen | Bund/Länder, Amtsblätter, Kammern | 1 / Tag |
+| **Ratgeber** | „IT-Dienstleister finden“, „Was kostet Managed Services?“ | Redaktion/KI mit Freigabe | 2–3 / Woche |
+
+**Verknüpfung:** ITSZENE nutzt dieselbe Firmen- und Personendatenbank wie FIRMENNACHRICHTEN. IT-Firmen in Artikeln verlinken auf ihr Profil bei IT-ERFAHRUNGEN bzw. SYSTEMHAUSERFAHRUNGEN.
+
+### 4.6 FIRMENKÖPFE (firmenkoepfe.de)
+
+- **Phase 1:** Weiterleitung auf `firmennachrichten.de/koepfe` (Ressort Köpfe).
+- **Phase 2:** eigenes Portal mit allen Personalien, Personenseiten (nur berufliche Rolle), wöchentlichem „Köpfe der Woche“ und einem Newsletter für Vertrieb, Personalberater und Journalisten.
+- Datenbasis: identisch mit FIRMENNACHRICHTEN, nur andere Oberfläche.
 
 ---
 
-## 5. Bewertungsportale (Urteil-Familie)
+## 5. Bewertungsportale (Erfahrungen-Portale)
 
-### 5.1 Gemeinsamer Aufbau (alle Urteil-Portale)
+### 5.1 Gemeinsamer Aufbau (alle Erfahrungen-Portale)
 
 ```
 Startseite: Suche (Firma / Leistung / Ort) + Top-Kategorien + neueste Bewertungen
@@ -240,7 +264,7 @@ Firmenprofil: /firma/<slug>
   ├── KI-Zusammenfassung der Bewertungen (als KI-generiert gekennzeichnet)
   ├── Bewertungsliste mit Herkunfts-Label (verifiziert / eingeladen / organisch)
   ├── Antworten des Unternehmens
-  ├── Box „Aktuelle Nachrichten“ → KONTORKURIER
+  ├── Box „Aktuelle Nachrichten“ → FIRMENNACHRICHTEN
   └── Stammdaten aus gemeinsamer Firmendatenbank
 Bewertung schreiben (mit Verifizierung)
 Für Unternehmen: Profil beanspruchen, Pakete, Widgets, Einladungs-API
@@ -251,11 +275,10 @@ Transparenz: So funktionieren Bewertungen · Score-Methodik · Richtlinien · Tr
 
 | Portal | Teilkriterien (je 1–5★) | Zusatzfelder |
 |---|---|---|
-| **Agentururteil** | Ergebnisse, Kommunikation, Kreativität, Termintreue, Preis-Leistung | Leistung (Social, Video, SEO, Ads …), Projektbudget-Spanne, Laufzeit |
-| **Softwareurteil** | Qualität, Projektmanagement, Termintreue, Support, Preis-Leistung | Technologie, Projektart, Budget-Spanne |
-| **Kursurteil** | Inhalte, Dozenten, Organisation, Jobchancen, Betreuung | Kurs, Förderung (Bildungsgutschein ja/nein), Abschluss, Job nach Kurs |
-| **Solarurteil** | Beratung, Montage, Termintreue, Service nach dem Kauf, Preis-Leistung | Anlagengröße, Komponenten, Monate seit Inbetriebnahme |
-| **Umzugsurteil** | Pünktlichkeit, Sorgfalt, Freundlichkeit, Preistreue, Preis-Leistung | Umzugsart, Entfernung, Angebot vs. Endpreis |
+| **IT-ERFAHRUNGEN** | Fachkompetenz, Reaktionszeit/Support, Projektmanagement, Termintreue, Preis-Leistung | Leistung (Managed Services, Cloud, Security, Softwareentwicklung, Beratung), Kundengröße, Vertragsart, Laufzeit |
+| **SYSTEMHAUSERFAHRUNGEN** | Erreichbarkeit/SLA-Einhaltung, Fachkompetenz, Proaktivität, Kostentransparenz, Preis-Leistung | Leistungen, Hersteller-Partnerschaften, Region, Anzahl betreuter Arbeitsplätze |
+| **AGENTURERFAHRUNGEN** | Ergebnisse, Kommunikation, Kreativität, Termintreue, Preis-Leistung | Leistung (Social, Video, SEO, Ads, Web …), Projektbudget-Spanne, Laufzeit |
+| **UNTERNEHMENSERFAHRUNGEN** (Phase 3) | Qualität, Service, Kommunikation, Zuverlässigkeit, Preis-Leistung | Branche, Art der Geschäftsbeziehung (B2B/B2C) |
 
 ### 5.3 Verifizierungsstufen
 
@@ -272,11 +295,11 @@ Transparenz: So funktionieren Bewertungen · Score-Methodik · Richtlinien · Tr
 - **Zahlung hat keinen Einfluss** auf Score, Sortierung oder Sichtbarkeit von Bewertungen.
 
 ### 5.5 Kaltstart je Portal (ohne Fake-Bewertungen)
-1. 500–2.000 Profile aus öffentlichen Daten anlegen (Register, Websites, Branchenverzeichnisse, AZAV-Datenbank für Kursurteil, Marktstammdatenregister für Solarurteil).
+1. 500–2.000 Profile aus öffentlichen Daten anlegen (Handelsregister mit Wirtschaftszweigen 62/63 für IT-Firmen, Websites, Hersteller-Partnerverzeichnisse wie Microsoft, DATEV, Sophos, Systemhaus-Verbünde, Agenturverzeichnisse).
 2. Unternehmen anschreiben: „Ihr Profil ist online. Beanspruchen Sie es kostenlos und laden Sie Kunden ein.“
 3. Kostenloses Einladungs-Tool (CSV-Upload, Zapier, Shop-/CRM-Plugins) für die ersten 6 Monate.
 4. Redaktionelle Ratgeber und Marktübersichten als SEO-Fundament.
-5. Launch-Datenstudie mit PR über KONTORKURIER (offen als Schwesterportal gekennzeichnet).
+5. Launch-Datenstudie mit PR über FIRMENNACHRICHTEN (offen als Schwesterportal gekennzeichnet).
 
 ---
 
@@ -284,13 +307,13 @@ Transparenz: So funktionieren Bewertungen · Score-Methodik · Richtlinien · Tr
 
 | Verbindung | Nutzen | Regel |
 |---|---|---|
-| Artikel → Bewertungsprofil | Leser sehen Kundenerfahrungen | Link-Box „Erfahrungen auf Agentururteil“ mit Hinweis „Schwesterportal“ |
+| Artikel → Bewertungsprofil | Leser sehen Kundenerfahrungen | Link-Box „Erfahrungen auf IT-ERFAHRUNGEN“ mit Hinweis „Schwesterportal“ |
 | Bewertungsprofil → Artikel | Besucher sehen aktuelle Nachrichten zur Firma | Automatisch über Firmen-ID |
 | Gemeinsame Firmendatenbank | Einmal pflegen, überall nutzen | Datenquelle angeben |
-| Datenstudien aus Bewertungen | Exklusive Geschichten für KONTORKURIER | Methodik offenlegen |
+| Datenstudien aus Bewertungen | Exklusive Geschichten für FIRMENNACHRICHTEN | Methodik offenlegen |
 | Netzwerk-Premiumprofil | Höherer Umsatz pro Kunde | Kein Einfluss auf Redaktion oder Score |
 
-**Firewall-Regel:** Die Redaktion von KONTORKURIER entscheidet unabhängig vom Vertrieb. Kein Kunde kauft Berichterstattung, Löschungen oder bessere Bewertungen. Die Regel steht in den Redaktionsgrundsätzen und in jedem Kundenvertrag.
+**Firewall-Regel:** Die Redaktion von FIRMENNACHRICHTEN entscheidet unabhängig vom Vertrieb. Kein Kunde kauft Berichterstattung, Löschungen oder bessere Bewertungen. Die Regel steht in den Redaktionsgrundsätzen und in jedem Kundenvertrag.
 
 ---
 
@@ -306,8 +329,8 @@ Transparenz: So funktionieren Bewertungen · Score-Methodik · Richtlinien · Tr
 | Pressemitteilungen | Firmennachrichten | presseportal.de (ots), Firmen-Newsrooms, RSS, Presseverteiler |
 | Finanzierungsrunden | Startup-News | Pressemitteilungen, LinkedIn, Dealroom/Crunchbase (Lizenz) |
 | Behörden & Kammern | Ansiedlungen, Förderungen, Statistiken | IHK, Wirtschaftsförderungen, Destatis, Landesämter |
-| Marktstammdatenregister | Solar-Installationen (für Solarurteil) | öffentlich |
-| AZAV-/Kursnet-Daten | Bildungsträger (für Kursurteil) | öffentlich |
+| Hersteller-Partnerverzeichnisse, Systemhaus-Verbünde | Profile für IT-ERFAHRUNGEN & SYSTEMHAUSERFAHRUNGEN | öffentlich (Nutzungsbedingungen beachten) |
+| BSI/CERT-Bund, Hersteller-Advisories | Sicherheitsmeldungen für ITSZENE | öffentlich |
 | Eigene Recherche, Interviews, Leser-Hinweise | Exklusives, Porträts | Redaktion, Hinweisgeber-Formular |
 
 ### 7.2 Workflow: Regeln → KI-Entwurf → Telegram-Freigabe
@@ -345,26 +368,28 @@ Kernprinzip: **Die KI schreibt, du gibst frei.** Nichts geht ohne deinen Klick i
 - Keine Wertungen über Personen, keine Spekulation über Ursachen (z. B. bei Insolvenzen).
 - Verfahrensstadien exakt benennen („vorläufiges Insolvenzverfahren beantragt“, nicht „pleite“).
 - Jede Meldung endet mit Quellenangabe und KI-Hinweis.
-- **Die KI schreibt niemals Bewertungen**, keine Antworten im Namen von Unternehmen und keine Leserkommentare. Auf den Urteil-Portalen schreibt sie nur Ratgeber, Marktübersichten, Ranking-Texte und als KI gekennzeichnete Zusammenfassungen echter Bewertungen.
+- **Die KI schreibt niemals Bewertungen**, keine Antworten im Namen von Unternehmen und keine Leserkommentare. Auf den Erfahrungen-Portalen schreibt sie nur Ratgeber, Marktübersichten, Ranking-Texte und als KI gekennzeichnete Zusammenfassungen echter Bewertungen.
 
 ### 7.3 Tagesplan: was die Regeln automatisch erzeugen
 
-Ausgelegt auf **eine Person**, die freigibt: ca. **35–50 Freigaben pro Tag**, bei 30–90 Sekunden pro Karte also **45–60 Minuten**, verteilt auf drei Blöcke.
+Ausgelegt auf **eine Person**, die freigibt: ca. **40–60 Freigaben pro Tag**, bei 30–90 Sekunden pro Karte also **50–70 Minuten**, verteilt auf drei Blöcke.
 
 | Zeit | Regel | Portal | Anzahl | Risiko |
 |---|---|---|---|---|
-| 05:30 | Registerereignisse Vortag → Personalien & Gründungen | KONTORKURIER | 10–15 | 🟢/🟡 |
-| 05:45 | Morgen-Briefing (aus gestern freigegebenen Artikeln) | KONTORKURIER | 1 | 🟢 |
+| 05:30 | Registerereignisse Vortag → Personalien & Gründungen | FIRMENNACHRICHTEN | 10–15 | 🟢/🟡 |
+| 05:45 | Morgen-Briefing (aus gestern freigegebenen Artikeln) | FIRMENNACHRICHTEN | 1 | 🟢 |
 | **06:15–06:45** | **Freigabeblock 1** (Telegram) | | | |
-| 07:00 | Briefing → Newsletter + Telegram-Kanal | KONTORKURIER | auto | – |
-| 09:00 | Pressemitteilungen → Firmennachrichten | KONTORKURIER | 5–8 | 🟢/🟡 |
-| 10:00 | Finanzierungsrunden/Deals | KONTORKURIER | 2–4 | 🟢 |
-| 11:00 | Insolvenzbekanntmachungen | KONTORKURIER | 2–6 | 🔴 |
-| 11:30 | Unternehmer des Tages (Porträt-Entwurf aus Daten + PR, mit Rückfrage-Hinweis) | KONTORKURIER | 1 | 🟡 |
+| 07:00 | Briefing → Newsletter + Telegram-Kanal | FIRMENNACHRICHTEN | auto | – |
+| 08:00 | IT-Firmen: Registerereignisse + Pressemitteilungen | ITSZENE | 4–8 | 🟢/🟡 |
+| 08:30 | Sicherheitswarnungen (BSI/CERT-Bund) für KMU erklärt | ITSZENE | 1–3 | 🟡 |
+| 09:00 | Pressemitteilungen → Firmenmeldungen | FIRMENNACHRICHTEN | 5–8 | 🟢/🟡 |
+| 10:00 | Finanzierungsrunden/Deals | FIRMENNACHRICHTEN | 2–4 | 🟢 |
+| 11:00 | Insolvenzbekanntmachungen | FIRMENNACHRICHTEN | 2–6 | 🔴 |
+| 11:30 | Unternehmer des Tages (Porträt-Entwurf aus Daten + PR, mit Rückfrage-Hinweis) | FIRMENNACHRICHTEN | 1 | 🟡 |
 | **12:00–12:20** | **Freigabeblock 2** | | | |
-| 14:00 | Ratgeber (aus Themenliste, rotierend) | je 1 Urteil-Portal | 1–2 | 🟢 |
-| 15:00 | Neue Bewertungen: KI-Zusammenfassung von Profilen mit ≥ 5 neuen Bewertungen | Urteil-Portale | 2–5 | 🟢 |
-| 15:30 | Moderations-Queue: gemeldete Bewertungen (Entscheidung durch dich) | Urteil-Portale | variabel | 🔴 |
+| 14:00 | Ratgeber (aus Themenliste, rotierend) | je 1 Erfahrungen-Portal | 1–2 | 🟢 |
+| 15:00 | Neue Bewertungen: KI-Zusammenfassung von Profilen mit ≥ 5 neuen Bewertungen | Erfahrungen-Portale | 2–5 | 🟢 |
+| 15:30 | Moderations-Queue: gemeldete Bewertungen (Entscheidung durch dich) | Erfahrungen-Portale | variabel | 🔴 |
 | 16:00 | Social-Posts (LinkedIn/Telegram-Kanal) aus freigegebenen Artikeln | alle | 3–5 | 🟢 |
 | **17:00–17:20** | **Freigabeblock 3** | | | |
 
@@ -374,14 +399,14 @@ Wöchentliche und monatliche Regeln (Köpfe der Woche, Insolvenz-Report, Deal-Mo
 
 ### 7.4 Wochen-, Monats-, Jahresplan
 
-| Rhythmus | KONTORKURIER | Urteil-Portale |
+| Rhythmus | FIRMENNACHRICHTEN | Erfahrungen-Portale |
 |---|---|---|
 | Montag | Köpfe der Woche | – |
 | Mittwoch | Deal-Monitor | 1 Ratgeber je Portal |
 | Freitag | Insolvenz-Report | Wochen-Highlights (Social) |
 | Monatlich | Gründungsatlas, Branchen-Daten-Story | Ranking „Top 10 in [Kategorie]“ (aus Score, transparent) |
 | Quartal | Interview-Serie / Themenschwerpunkt | Consumer-Alerts, Moderationszahlen |
-| Jährlich | Award „Wachstumschampions“ + Event | Urteil-Award „Kundenliebling 2027“, Transparenzbericht |
+| Jährlich | Award „Wachstumschampions“ + Event | Erfahrungen-Award „Kundenliebling 2027“, Transparenzbericht |
 
 ### 7.5 Social Media
 - **LinkedIn** (Hauptkanal): Personalien mit Verlinkung der Personen, Deals, Rankings. Personen teilen ihre eigenen Meldungen weiter, das bringt kostenlose Reichweite.
@@ -435,7 +460,7 @@ Wöchentliche und monatliche Regeln (Köpfe der Woche, Insolvenz-Report, Deal-Mo
 └────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-Alle Portale (KONTORKURIER + alle Urteil-Portale) laufen **in derselben Installation**. Der Builder schreibt pro Domain einen eigenen Ordner. Caddy und Cloudflare ordnen die Domains zu.
+Alle Portale (FIRMENNACHRICHTEN + alle Erfahrungen-Portale) laufen **in derselben Installation**. Der Builder schreibt pro Domain einen eigenen Ordner. Caddy und Cloudflare ordnen die Domains zu.
 
 **Warum selbstgebauter Static-Site-Builder statt Next.js/Payload?** Auf dem Pi ist ein schlanker Python-Builder (Jinja2) robuster und ressourcenschonender. Es gibt keinen dauerhaft laufenden Node-Server, und Rebuilds betreffen nur geänderte Seiten (inkrementell).
 
@@ -448,13 +473,13 @@ Alle Portale (KONTORKURIER + alle Urteil-Portale) laufen **in derselben Installa
 
 **Freigabekarte (Beispiel):**
 ```
-🟡 KONTORKURIER · Köpfe · NRW                     Regel: personalien_nrw
+🟡 FIRMENNACHRICHTEN · Köpfe · NRW                     Regel: personalien_nrw
 ────────────────────────────────────────────────
 Neuer Geschäftsführer bei Mustermann Logistik GmbH
 
 Die Mustermann Logistik GmbH aus Köln hat einen neuen Geschäftsführer:
 Laut Handelsregister-Eintrag vom 30.10.2026 ist Max Beispiel …
-(Vorschau gekürzt, 📄 Volltext-Vorschau: preview.kontorkurier.de/…)
+(Vorschau gekürzt, 📄 Volltext-Vorschau: preview.firmennachrichten.de/…)
 
 📎 Quellen: HRB 12345, AG Köln, Bekanntmachung 30.10.2026
 🔍 Faktencheck: 6/6 Aussagen belegt
@@ -491,7 +516,7 @@ Jede Regel ist eine Datei in `rules/`. Neue Formate entstehen ohne Programmierun
 ```yaml
 # rules/kuk_personalien_nrw.yaml
 id: personalien_nrw
-portal: kontorkurier
+portal: firmennachrichten
 ressort: koepfe
 schedule: "30 5 * * 1-6"          # Mo–Sa 05:30
 source: handelsregister
@@ -512,9 +537,9 @@ expire_after_hours: 24
 ```
 
 ```yaml
-# rules/urteil_ratgeber_rotation.yaml
-id: urteil_ratgeber
-portal: [agentururteil, softwareurteil, kursurteil]   # rotierend
+# rules/erfahrungen_ratgeber_rotation.yaml
+id: erfahrungen_ratgeber
+portal: [iterfahrungen, systemhauserfahrungen, agenturerfahrungen]   # rotierend
 schedule: "0 14 * * 1-5"
 source: topic_list                                   # topics/<portal>.yaml, von dir gepflegt
 limit_per_day: 1
@@ -529,7 +554,7 @@ expire_after_hours: never
 ```yaml
 # rules/kuk_insolvenzen.yaml
 id: insolvenzen
-portal: kontorkurier
+portal: firmennachrichten
 ressort: insolvenzen
 schedule: "0 11 * * 1-5"
 source: insolvenzbekanntmachungen
@@ -605,7 +630,7 @@ Kerntabellen (Kurzform): `portal`, `company`, `company_alias`, `company_financia
 | **LinkedIn** | B2B-Kern | Personen markieren, Teilen durch Betroffene |
 | **Newsletter** | Eigener, unabhängiger Kanal | Morgen-Briefing, regionale Ausgaben |
 | **Kooperationen** | IHKs, Wirtschaftsförderungen, Gründerzentren, Verbände | Datenpartnerschaften, Award-Partner |
-| **Widgets/Siegel** | Backlinks & Markenbekanntheit | Urteil-Siegel auf Kunden-Websites |
+| **Widgets/Siegel** | Backlinks & Markenbekanntheit | Erfahrungen-Siegel auf Kunden-Websites |
 
 ---
 
@@ -616,33 +641,33 @@ Kerntabellen (Kurzform): `portal`, `company`, `company_alias`, `company_financia
 | Quelle | Portal | Ab Phase |
 |---|---|---|
 | Display & Programmatic Ads | alle | 1 |
-| Native-Ad-Widgets (Taboola/Outbrain als *Publisher*) | KONTORKURIER | 2 |
-| Newsletter-Sponsoring | KONTORKURIER | 2 |
-| Urteil-Pakete (Einladungen, Widgets, Analytics) | Urteil-Portale | 2 |
+| Native-Ad-Widgets (Taboola/Outbrain als *Publisher*) | FIRMENNACHRICHTEN | 2 |
+| Newsletter-Sponsoring | FIRMENNACHRICHTEN | 2 |
+| Erfahrungen-Pakete (Einladungen, Widgets, Analytics) | Erfahrungen-Portale | 2 |
 | Netzwerk-Premiumprofil | alle | 2 |
-| Gekennzeichnete Partnerinhalte („Anzeige“) | KONTORKURIER | 2 |
-| Stellenmarkt | KONTORKURIER | 3 |
-| Leads (Anfrageformular „3 Angebote erhalten“) | Solarurteil, Umzugsurteil, Agentururteil | 3 |
+| Gekennzeichnete Partnerinhalte („Anzeige“) | FIRMENNACHRICHTEN | 2 |
+| Stellenmarkt | FIRMENNACHRICHTEN | 3 |
+| Leads (Anfrageformular „3 Angebote erhalten“) | IT-ERFAHRUNGEN, SYSTEMHAUSERFAHRUNGEN, AGENTURERFAHRUNGEN | 2 |
 | Awards & Events | alle | 3 |
-| Daten-Abo (Alerts zu Insolvenzen und Personalwechseln, API) | KONTORKURIER | 3 |
+| Daten-Abo (Alerts zu Insolvenzen und Personalwechseln, API) | FIRMENNACHRICHTEN | 3 |
 
-### 10.2 Preis-Entwurf Urteil-Portale (monatlich, netto)
+### 10.2 Preis-Entwurf Erfahrungen-Portale (monatlich, netto)
 
 | Paket | Preis | Leistungen |
 |---|---|---|
 | **Basis** | 0 € | Profil beanspruchen, Daten pflegen, auf Bewertungen antworten |
 | **Starter** | 49 € | Einladungen (100/Monat), Widget, Siegel, Basis-Statistik |
 | **Pro** | 149 € | Einladungen unbegrenzt, API/Integrationen, Wettbewerbsvergleich, Logo & Bilder |
-| **Netzwerk** | 299 € | Pro + Premium-Firmenprofil auf KONTORKURIER + Stellenanzeigen + Newsroom |
+| **Netzwerk** | 299 € | Pro + Premium-Firmenprofil auf FIRMENNACHRICHTEN + Stellenanzeigen + Newsroom |
 
-Gekennzeichnete Partnerinhalte KONTORKURIER: 490–1.490 € je Beitrag (Unternehmensporträt, Fachbeitrag), immer mit „Anzeige“ markiert.
+Gekennzeichnete Partnerinhalte FIRMENNACHRICHTEN: 490–1.490 € je Beitrag (Unternehmensporträt, Fachbeitrag), immer mit „Anzeige“ markiert.
 
 ### 10.3 Beispielrechnung (Ende Jahr 2, konservativ)
 
 | Posten | Annahme | Monat |
 |---|---|---|
 | Ads (alle Portale) | 1,2 Mio. Seitenaufrufe × 8 € RPM | ~9.600 € |
-| Urteil-Pakete | 150 zahlende Firmen × Ø 110 € | ~16.500 € |
+| Erfahrungen-Pakete | 150 zahlende Firmen × Ø 110 € | ~16.500 € |
 | Partnerinhalte | 8 Beiträge × 800 € | ~6.400 € |
 | Newsletter-Sponsoring | 4 Wochen × 600 € | ~2.400 € |
 | **Summe** | | **~35.000 €/Monat** |
@@ -706,7 +731,7 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 |---|---|---|
 | **1 (Monat 0–6)** | **Du:** Herausgeber, Verantwortlicher nach MStV, Freigabe per Telegram (ca. 1 h/Tag), Regeln & Themenlisten pflegen · Entwicklung des Systems (Eigenleistung mit KI-Unterstützung oder Freelancer) · Anwalt (Projekt) | ~1–1,5 h/Tag + Aufbau |
 | **2 (Monat 7–18)** | + freier Redakteur für Porträts, Interviews und Recherchen (das kann die KI nicht) · + Vertretung für Freigaben (Urlaub/Krankheit) · + Vertrieb in Teilzeit | ~2–3 Personen |
-| **3 (ab Monat 19)** | + Regionalredakteure · + Moderation Urteil-Portale · Umzug auf Cloud-Server prüfen | 4+ Personen |
+| **3 (ab Monat 19)** | + Regionalredakteure · + Moderation Erfahrungen-Portale · Umzug auf Cloud-Server prüfen | 4+ Personen |
 
 **Grenzen der Automatisierung (bewusst menschlich):** Interviews, Anhörung Betroffener bei kritischen Berichten, Gegendarstellungen, Moderationsentscheidungen, Kundengespräche, Korrekturen.
 
@@ -721,7 +746,7 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 | Raspberry Pi 5 + NVMe + Kühlung + Netzteil + USV | 230–350 € | – |
 | Strom Pi (~5–8 W Dauerbetrieb) | – | ~2–3 € |
 | Cloudflare (Tunnel, CDN, DNS, Turnstile, Access) | – | 0 € (Free-Plan reicht anfangs) |
-| Domains (ca. 8–12 Stück .de/.com) | – | ~10–15 € (≈ 1–1,5 €/Domain) |
+| Domains (22 Stück laut Kaufliste 2.2) | – | ~15–20 € (≈ 150–250 €/Jahr) |
 | Offsite-Backup | – | 0–5 € |
 | LLM-API (Entwurf + Faktencheck, ~50 Texte/Tag) | – | ca. 30–200 € je nach Modell und Textlänge |
 | Datenquellen (Register-/Firmendaten-API) | – | 0–1.500 € (Start mit öffentlichen Bekanntmachungen möglich, Komfort-APIs kosten) |
@@ -742,7 +767,7 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 - [ ] Namen final prüfen (DPMA, Domains, Handles), Domains sichern
 - [ ] Gesellschaft gründen bzw. Betreiber festlegen, Verantwortlicher MStV benennen
 - [x] Domainprüfung aller Namen (02.11.2026, siehe Abschnitt 2)
-- [ ] **Domains sofort registrieren** (Liste 2.1) + DPMA-Markenrecherche, ggf. Markenanmeldung für KONTORKURIER, MERKANT Medien und die „-urteil“-Portale
+- [ ] **Domains sofort registrieren** (Kaufliste 2.2) + DPMA-Markenrecherche, Markenanmeldung MERKANT Medien (Wortmarke) und Portal-Logos (Wort-Bild-Marken)
 - [ ] Raspberry Pi 5 + NVMe + USV beschaffen, Raspberry Pi OS 64-bit, Docker, Cloudflare Tunnel
 - [ ] Eigenes Repository anlegen: Docker Compose, Backend, Regel-Engine, Telegram-Bot, Static-Site-Builder
 - [ ] Telegram-Bot anlegen (BotFather), Whitelist mit deiner User-ID
@@ -750,19 +775,20 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 - [ ] Anwalt: Redaktionsstatut, Bewertungsrichtlinien, AGB, Datenschutz
 
 ### Phase 1: MVP (Monat 2–6)
-- [ ] **KONTORKURIER** live für **1 Region** (z. B. NRW): Unternehmen, Köpfe, Insolvenzen, Gründungen
+- [ ] **FIRMENNACHRICHTEN** live für **1 Region** (z. B. NRW): Unternehmen, Köpfe, Insolvenzen, Gründungen. firmenkoepfe.de leitet auf /koepfe weiter
+- [ ] **ITSZENE** live: IT-Unternehmen, Sicherheit, Software & Cloud, Digitalisierung
 - [ ] Regeln: Personalien, Gründungen, Pressemitteilungen, Insolvenzen (NRW) → KI-Entwurf → Telegram-Freigabe
 - [ ] Faktencheck-Durchlauf und Risikoklassen aktiv, Audit-Log
 - [ ] Backups (lokal + offsite) mit Wiederherstellungstest, Alarme per Telegram
 - [ ] Firmen- & Personenseiten (mit Indexierungsschwelle)
 - [ ] Morgen-Briefing (Newsletter)
-- [ ] **Agentururteil** live: 1.000 Profile, Einladungs-Tool, Verifizierung, Transparenzseiten
+- [ ] **IT-ERFAHRUNGEN** live: 1.000 Profile von IT-Dienstleistern, Einladungs-Tool, Verifizierung, Transparenzseiten
 - [ ] Google Publisher Center, Search Console, LinkedIn-Präsenz
 - **Ziel:** 15–25 Beiträge/Tag, 50.000 Seitenaufrufe/Monat, 1.000 Newsletter-Abonnenten, 50 beanspruchte Profile
 
 ### Phase 2: Wachstum (Monat 7–18)
-- [ ] KONTORKURIER bundesweit, Regionalfilter für alle Bundesländer
-- [ ] **Softwareurteil** + **Kursurteil** live
+- [ ] FIRMENNACHRICHTEN bundesweit, Regionalfilter für alle Bundesländer
+- [ ] **SYSTEMHAUSERFAHRUNGEN** + **AGENTURERFAHRUNGEN** live, **FIRMENKÖPFE** als eigenes Portal
 - [ ] Bezahlpakete, Premiumprofile, Partnerinhalte, Ads
 - [ ] Bewerbung MSN Partner Hub
 - [ ] Erster Transparenzbericht, erstes Ranking
@@ -770,11 +796,11 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 - **Ziel:** 300.000–1 Mio. Seitenaufrufe/Monat, 100+ zahlende Kunden, Break-even der laufenden Kosten
 
 ### Phase 3: Skalierung (ab Monat 19)
-- [ ] **Solarurteil** + **Umzugsurteil** (mit Lead-Modell)
+- [ ] **UNTERNEHMENSERFAHRUNGEN** (breite Firmenbewertungen) + Vergleichs-Nischen mit Lead-Modell (z. B. cloudanbieter-vergleich.de, it-sicherheit-anbieter.de)
 - [ ] Awards „Wachstumschampions“ & „Kundenliebling“ + Event
 - [ ] Daten-Abo/API, Stellenmarkt, Podcast
 - [ ] Content-Partnerschaften mit Startseiten-Portalen
-- [ ] Prüfen: Coachurteil / Betreuungsurteil (mit Presserechtsbegleitung)
+- [ ] Prüfen: weitere Nischen aus Reserve-Liste 2.4
 
 ---
 
@@ -814,10 +840,10 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 
 ## 17. Nächste Schritte
 
-1. **Domains registrieren:** Die Namen sind festgelegt und die Domains frei (Abschnitt 2.1). Zuerst die Hauptdomains (`merkant-medien.de`, `kontorkurier.de`, `agentururteil.de`) und die zugehörigen .com-Domains sichern, danach die restlichen. Parallel die Markenrecherche beim DPMA.
-2. **Startregion für KONTORKURIER** wählen (Vorschlag: NRW, größter Wirtschaftsraum mit vielen Registerereignissen).
+1. **Domains registrieren:** Kaufliste aus Abschnitt 2.2 (22 Domains) sofort sichern, zuerst `merkant-medien.de`, `firmennachrichten.de`, `itszene.de`, `it-erfahrungen.de`. Parallel DPMA-Markenrecherche für MERKANT Medien.
+2. **Startregion für FIRMENNACHRICHTEN** wählen (Vorschlag: NRW, größter Wirtschaftsraum mit vielen Registerereignissen).
 3. **Eigenes Repository** anlegen und mit Claude verbinden. Dann folgt das technische Grundgerüst für den Pi:
-   Docker Compose (Caddy, cloudflared, Backend, PostgreSQL), Regel-Engine mit den drei Beispielregeln aus 8.5, Telegram-Freigabe-Bot, Static-Site-Builder für KONTORKURIER und Agentururteil.
+   Docker Compose (Caddy, cloudflared, Backend, PostgreSQL), Regel-Engine mit den drei Beispielregeln aus 8.5, Telegram-Freigabe-Bot, Static-Site-Builder für FIRMENNACHRICHTEN, ITSZENE und IT-ERFAHRUNGEN.
 4. **Rechtliches Paket** beim Anwalt beauftragen (Abschnitt 11).
 5. **Datenanbieter** vergleichen und Testzugang einrichten.
 
