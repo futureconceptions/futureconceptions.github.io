@@ -718,7 +718,8 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 ### Phase 0: Fundament (Monat 0–1)
 - [ ] Namen final prüfen (DPMA, Domains, Handles), Domains sichern
 - [ ] Gesellschaft gründen bzw. Betreiber festlegen, Verantwortlicher MStV benennen
-- [ ] **Domainprüfung** aller Namen (DENIC/Verisign) und Namen final festlegen
+- [x] Domainprüfung aller Namen (02.11.2026, siehe Abschnitt 2)
+- [ ] **Domains sofort registrieren** (Liste 2.1) + DPMA-Markenrecherche, ggf. Markenanmeldung für KONTORKURIER, MERKANT Medien und die „-urteil“-Portale
 - [ ] Raspberry Pi 5 + NVMe + USV beschaffen, Raspberry Pi OS 64-bit, Docker, Cloudflare Tunnel
 - [ ] Eigenes Repository anlegen: Docker Compose, Backend, Regel-Engine, Telegram-Bot, Static-Site-Builder
 - [ ] Telegram-Bot anlegen (BotFather), Whitelist mit deiner User-ID
@@ -790,7 +791,7 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 
 ## 17. Nächste Schritte
 
-1. **Domainprüfung freischalten** (Hosts `rdap.denic.de`, `rdap.verisign.com`, `rdap.org` in den Netzwerkeinstellungen der Umgebung erlauben), dann **Namen festlegen:** Favoriten MERKANT Medien · KONTORKURIER · Agentururteil bestätigen oder Alternativen wählen. Danach Marken- und Domainprüfung.
+1. **Domains registrieren:** Die Namen sind festgelegt und die Domains frei (Abschnitt 2.1). Zuerst die Hauptdomains (`merkant-medien.de`, `kontorkurier.de`, `agentururteil.de`) und die zugehörigen .com-Domains sichern, danach die restlichen. Parallel die Markenrecherche beim DPMA.
 2. **Startregion für KONTORKURIER** wählen (Vorschlag: NRW, größter Wirtschaftsraum mit vielen Registerereignissen).
 3. **Eigenes Repository** anlegen und mit Claude verbinden. Dann folgt das technische Grundgerüst für den Pi:
    Docker Compose (Caddy, cloudflared, Backend, PostgreSQL), Regel-Engine mit den drei Beispielregeln aus 8.5, Telegram-Freigabe-Bot, Static-Site-Builder für KONTORKURIER und Agentururteil.
