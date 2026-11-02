@@ -98,6 +98,29 @@ Bewusst vermieden: „Test“ oder „Check“ im Namen. Das suggeriert eigene W
 
 ---
 
+### 2.4 Beschreibende Domains „Unternehmen“ & „IT“ (Prüfung 02.11.2026, .de und .com frei)
+
+Ziel: Domains, die sofort zeigen, worum es geht, für bessere Positionierung und höhere Klickrate in Google.
+
+| Säule | Rolle | Empfehlung | Weitere freie Optionen |
+|---|---|---|---|
+| **Unternehmen** | Nachrichtenportal | **firmennachrichten.de** | unternehmens-nachrichten.de, unternehmens-news.de, unternehmen-aktuell.de, unternehmensmonitor.de, firmen-heute.de |
+| Unternehmen | Köpfe/Personalien | **firmenkoepfe.de** | unternehmenskoepfe.de, firmen-koepfe.de |
+| Unternehmen | Bewertungen (breit, später) | **unternehmenserfahrungen.de** | firmen-erfahrungen.de, unternehmen-bewertungen.de, anbieterbewertungen.de, dienstleisterbewertungen.de |
+| **IT** | IT-Nachrichten Mittelstand | **itszene.de** | it-news-mittelstand.de, itnews-mittelstand.de, itbranche-news.de, tech-unternehmen.de |
+| IT | IT-Dienstleister-Bewertungen (Hub) | **it-erfahrungen.de** | iterfahrungen.de, it-bewertungen.de, itdienstleistererfahrungen.de, it-firmen-bewertungen.de |
+| IT | Systemhäuser (Nische) | **systemhauserfahrungen.de** | systemhausbewertungen.de, systemhaus-finden.de, systemhaeuser-vergleich.de |
+| IT | Vergleichs-Nischen | – | it-anbieter-vergleich.de, cloudanbieter-vergleich.de, managed-services-vergleich.de, it-sicherheit-anbieter.de, cybersecurity-anbieter.de, software-firmen.de, softwareagenturen.de |
+| Agenturen | Agentur-Bewertungen | **agenturerfahrungen.de** | agentur-erfahrungen.de, agentur-bewertungen.de, webagenturerfahrungen.de, webagenturbewertungen.de |
+
+**Vergeben (Auswahl):** unternehmensnachrichten.de, unternehmensnews.de, firmennews.de, firmenbewertungen.de, unternehmensbewertungen.de, it-nachrichten.de, it-aktuell.de, it-dienstleister.de, itdienstleister.de, it-firmen.de, softwareunternehmen.de, systemhausvergleich.de, mittelstandsnews.de, agenturvergleich.de. Einige sind geparkt (Sedo, ParkingCrew, Domainparking) und eventuell käuflich, z. B. itkurier.de, itaktuell.de, firmenaktuell.de, firmenmonitor.de, itunternehmen.de, it-firmen.de, firmen-nachrichten.de. Preise erst auf Anfrage beim Marktplatz.
+
+**Hinweise:**
+- Beschreibende Domains bringen keinen direkten Ranking-Bonus mehr, verbessern aber Klickrate, Verständlichkeit und Linktexte.
+- Rein beschreibende Begriffe („Firmennachrichten“) sind als **Wortmarke kaum schützbar**. Schutz entsteht über eine Wort-Bild-Marke (Logo) und eine eigenständige Gestaltung.
+
+---
+
 ## 3. Netzwerk-Architektur
 
 ```
