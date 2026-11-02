@@ -128,7 +128,7 @@ Bewusst vermieden: „Test“ oder „Check“ im Namen. Das suggeriert eigene W
 ## 3. Netzwerk-Architektur
 
 ```
-                         MERKANT Medien GmbH (Betreiber, offen genannt)
+              futureconceptions UG (haftungsbeschränkt) · Marke: MERKANT Medien
                                         │
               ┌─────────────────────────┴─────────────────────────┐
               │                                                   │
