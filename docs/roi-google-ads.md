@@ -25,31 +25,70 @@ Ad revenue / month = Page views / 1,000 × Page RPM
 
 ---
 
-## 2. Cost basis (from the concept, base case)
+## 2. Cost basis: lean budget, max. €100/month
 
-| One-off (Phase 0–1) | € |
-|---|---|
-| Raspberry Pi 5 + NVMe + UPS | 300 |
-| 22 domains (first year) | 200 |
-| Legal setup (imprint, privacy, terms, editorial statute, review rules) | 7,500 |
-| Trademark search & filing (MERKANT Medien + logo) | 1,000 |
-| Freelance development support (you build most yourself) | 3,000 |
-| **Total one-off** | **12,000** |
+**Target:** running costs of **at most €100 per month**. Everything that can run on the Raspberry Pi or a free tier does. Legal and insurance are moved from fixed monthly fees to one-off or pay-per-case.
 
-| Monthly running | € |
-|---|---|
-| LLM API (drafts + fact check, 40–60 texts/day) | 100 |
-| Company data / register API | 300 |
-| Lawyer retainer | 300 |
-| Media liability insurance | 150 |
-| Cloudflare, backup, newsletter, consent tool, misc. | 50 |
-| **Total monthly** | **900** |
+### 2.1 Monthly running costs
+
+| Item | Lean choice | €/month |
+|---|---|---|
+| **LLM API** (drafts + fact check, ~50 texts/day ≈ 1,500/month) | Message Batches API (50 % discount) + prompt caching; model see 2.2 | 1–40 |
+| **Domains** | Only the 8 main `.de` domains (no `.com`/hyphen variants at first) | ~5 |
+| **Media liability insurance** | Small online-publisher policy (get quotes; budget value) | ~30 |
+| **Offsite backup** | Small storage box (e.g. Hetzner) for restic backups | ~4 |
+| **Electricity** Raspberry Pi 5 (~6 W) | – | ~3 |
+| Hosting, CDN, TLS, tunnel, WAF | Cloudflare Free | 0 |
+| Consent management (TCF 2.2) | Google "Privacy & messaging" in AdSense | 0 |
+| Analytics | Umami or Plausible self-hosted on the Pi | 0 |
+| Newsletter | Listmonk on the Pi + free sending tier (e.g. Brevo, 300 mails/day) | 0 |
+| Telegram approval bot | Telegram Bot API | 0 |
+| Company/news data | Free sources only: press-release RSS feeds (e.g. presseportal), company newsrooms, BSI/CERT-Bund feeds, official announcements | 0 |
+| Lawyer | **No retainer.** One-off setup check, then pay per case | 0 |
+| **Total** | | **≈ €45–85** |
+
+**Buffer:** €15–55 per month for growth (more domains, a paid data source, a larger sending tier).
+
+**Not included:** the UG's own fixed costs (tax advisor/annual accounts, bank account, IHK fee). They arise with or without the portals. If those must also fit in €100, the budget is not enough.
+
+### 2.2 LLM cost by model (≈1,500 texts/month, ~6,000 input + ~1,500 output tokens per text incl. fact check)
+
+| Model | Price per 1M tokens (input/output) | Standard | **With Batch API (−50 %)** |
+|---|---|---|---|
+| Claude Haiku 5.5 | $0.10 / $0.50 | ~$2 | **~$1** |
+| Claude Sonnet 5.5 | $2 / $10 | ~$41 | **~$20** |
+| Claude Opus 5.5 | $4 / $20 | ~$81 | **~$41** |
+
+*Prices: Anthropic API list prices (as of Oct 2026). Token counts are estimates; measure real usage in the first week.*
+
+- **Batch API:** scheduled rules aren't time-critical, so drafts can run as batch jobs at half price (results usually within minutes to hours, max. 24 h). Only urgent breaking news goes through the normal API.
+- **Prompt caching:** system prompt, style rules and templates are identical for every text. Cached input costs a fraction of normal input.
+- **Model choice is yours:** Opus 5.5 gives the best text quality and fact-check reliability, Sonnet 5.5 is the middle ground, Haiku 5.5 is the cheapest. All three fit the €100 budget with the Batch API. Test 20 real drafts per model and compare the share of drafts you approve without changes.
+
+### 2.3 What changes in the concept to keep costs this low
+
+1. **Phase 1 content = low legal risk only:** press releases, personnel news from press releases, IT security warnings, guides, rankings. **No insolvency reporting, no allegations** until revenue covers a lawyer retainer. That is what makes "no retainer" acceptable.
+2. **Free data sources first:** the register-based rules (start-ups, managing-director changes from the commercial register) start only when a paid data source fits the budget, or as manual research.
+3. **Domains in stages:** buy the 8 main `.de` domains now. Add `.com` and variants only when a portal earns money.
+4. **Legal texts:** generator for imprint/privacy, plus a **one-off** lawyer check of terms, review rules and editorial statute.
+
+### 2.4 One-off costs
+
+| Item | Lean | Original plan |
+|---|---|---|
+| Raspberry Pi 5 + NVMe + UPS | 300 | 300 |
+| 8 domains (first year) | 60 | 200 |
+| Legal: one-off lawyer check (instead of full setup) | 1,500 | 7,500 |
+| Trademark (MERKANT Medien, DPMA, 1 class + fees) | 300 | 1,000 |
+| Development | self-built: 0 | 3,000 |
+| Buffer | 840 | – |
+| **Total one-off** | **≈ €3,000** | €12,000 |
 
 Your own time (about 1–1.5 h/day for approvals plus setup) is **not** priced in.
 
 ---
 
-## 3. Scenarios (24 months)
+## 3. Scenarios (24 months, running costs €100/month)
 
 Traffic = page views per month across all portals. Growth follows a typical ramp for a new news site: slow Google trust in months 1–6, then Google News/Discover takes over.
 
@@ -59,47 +98,39 @@ Traffic = page views per month across all portals. Growth follows a typical ramp
 | **Base** | 10,000 | 400,000 | 1,200,000 | **€5** |
 | Optimistic | 20,000 | 1,000,000 | 3,000,000 | €8 |
 
-### 3.1 Results
+### 3.1 Results with lean one-off costs (€3,000) + €100/month
 
 | | Conservative | **Base** | Optimistic |
 |---|---|---|---|
-| Ad revenue month 12 | €450 | **€2,000** | €8,000 |
-| Ad revenue month 24 | €1,200 | **€6,000** | €24,000 |
-| Monthly costs covered from | month 21 | **month 10** | month 6 |
-| Full payback incl. one-off | after month 24 | **month 20** | month 12 |
-| Revenue in 24 months | €11,200 | **€52,600** | €209,200 |
-| Total cost in 24 months | €33,600 | **€33,600** | €33,600 |
-| Net result after 24 months | −€22,400 | **+€19,000** | +€175,600 |
-| **ROI after 12 months** | −93 % | **−70 %** | +16 % |
-| **ROI after 24 months** | −67 % | **+57 %** | +523 % |
+| Monthly costs covered from | month 8 | **month 4** | month 1 |
+| Full payback incl. one-off | month 18 | **month 11** | month 7 |
+| Total cost in 24 months | €5,400 | **€5,400** | €5,400 |
+| Net result after 12 months | −€2,550 | **+€2,690** | +€22,160 |
+| Net result after 24 months | +€5,810 | **+€47,220** | +€203,850 |
+| **ROI after 12 months** | −61 % | **+64 %** | +528 % |
+| **ROI after 24 months** | +108 % | **+874 %** | +3,775 % |
 
-*ROI = (cumulative revenue − cumulative cost) / cumulative cost.*
+### 3.2 For comparison: original one-off costs (€12,000) + €100/month
 
-### 3.2 Month by month (base case)
+| | Conservative | **Base** | Optimistic |
+|---|---|---|---|
+| Full payback | after month 24 | **month 15** | month 11 |
+| ROI after 12 / 24 months | −87 % / −22 % | **−48 % / +265 %** | +100 % / +1,353 % |
 
-| Month | Page views | Ad revenue | Profit/month | Cumulative |
-|---|---|---|---|---|
-| 1 | 10,000 | €50 | −€850 | −€12,850 |
-| 3 | 19,600 | €98 | −€802 | −€14,482 |
-| 6 | 53,500 | €267 | −€633 | −€16,587 |
-| 9 | 146,300 | €731 | −€169 | −€17,659 |
-| 12 | 400,000 | €2,000 | +€1,100 | −€15,906 |
-| 18 | 692,800 | €3,464 | +€2,564 | −€4,570 |
-| 24 | 1,200,000 | €6,000 | +€5,100 | **+€19,016** |
+### 3.3 Before: €900/month (old cost basis)
 
-### 3.3 The one number to watch: break-even traffic
+Base case payback month 20, ROI after 24 months +57 %. **Cutting running costs to €100 moves payback in the base case from month 20 to month 11** (with lean one-off costs).
 
-Page views per month needed to cover the €900 running costs:
+### 3.4 Break-even traffic at €100/month
 
 | Page RPM | Page views needed / month |
 |---|---|
-| €2 | 450,000 |
-| €3 | 300,000 |
-| €5 | 180,000 |
-| €8 | 112,500 |
-| €12 | 75,000 |
+| €2 | 50,000 |
+| €3 | 33,000 |
+| €5 | 20,000 |
+| €8 | 12,500 |
 
-**Takeaway:** Once real RPM is known (after ~60 days), this table tells you exactly how much traffic you need.
+**Takeaway:** With €100/month, about 20,000–35,000 page views per month already cover the running costs. That is reachable within the first months.
 
 ---
 
@@ -170,7 +201,8 @@ A banned AdSense account usually cannot be restored and affects all your domains
 |---|---|---|
 | Month 3 | AdSense approved for ≥ 2 sites? RPM known? | If not approved: improve content before investing more |
 | Month 6 | Page views ≥ 50,000/month? | Below: focus on Google News/Discover and the best-performing portal |
-| Month 12 | Ad revenue ≥ €900/month (running costs covered)? | Below: add paid review packages/sponsoring before adding new portals |
+| Month 6 | Ad revenue ≥ €100/month (running costs covered)? | Below: check AdSense approval, RPM and traffic sources before adding content types |
+| Month 12 | Ad revenue ≥ €1,000/month? | Above: start lawyer retainer + insolvency/register reporting. Below: add paid review packages/sponsoring first |
 | Month 18 | Page views ≥ 700,000/month? | Above: evaluate Ad Manager + header bidding and a move from Pi to cloud server |
 
 ---

@@ -741,6 +741,8 @@ Durch den Workflow aus KI-Entwurf und Telegram-Freigabe kann der Start **als Ein
 
 ## 13. Kosten (grobe Schätzung, Phase 1)
 
+> **Festgelegt: Schlankes Budget mit max. 100 €/Monat laufenden Kosten und ca. 3.000 € einmalig.** Details, Modellwahl für die KI und ROI in `docs/roi-google-ads.md`, Abschnitte 2–3. Die Tabelle unten zeigt zum Vergleich die ursprüngliche Planung.
+
 | Posten | Einmalig | Monatlich |
 |---|---|---|
 | Raspberry Pi 5 + NVMe + Kühlung + Netzteil + USV | 230–350 € | – |
