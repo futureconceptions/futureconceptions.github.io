@@ -704,7 +704,7 @@ Gekennzeichnete Partnerinhalte FIRMENNACHRICHTEN: 490–1.490 € je Beitrag (Un
 - Consent-Management für Ads/Tracking.
 
 ### 11.4 Netzwerk-Transparenz
-- Alle Portale nennen **Merkant Medien GmbH** als Betreiber.
+- Alle Portale nennen **futureconceptions UG (haftungsbeschränkt)** als Betreiber, mit dem Zusatz „MERKANT Medien – eine Marke der futureconceptions UG“.
 - Seite „Unser Netzwerk“ auf jedem Portal.
 - Querverweise zwischen den Portalen als „Schwesterportal“ kennzeichnen.
 
