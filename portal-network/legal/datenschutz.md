@@ -14,7 +14,7 @@ E-Mail: ${operator_email}
 
 ${site_name} ist ein Angebot der Marke ${brand}. Die Portale des Netzwerks werden gemeinsam technisch betrieben; Verantwortlicher ist jeweils die oben genannte Gesellschaft.
 
-Eine Pflicht zur Benennung eines Datenschutzbeauftragten besteht nach derzeitigem Stand nicht. [PLATZHALTER: bei Bedarf Datenschutzbeauftragte/n mit Kontaktdaten ergänzen]
+Eine Pflicht zur Benennung eines Datenschutzbeauftragten besteht nach derzeitigem Stand nicht.
 
 ## Überblick
 
@@ -26,7 +26,7 @@ Die Website wird als statische Seite von einem eigenen Server in ${hosting_locat
 
 - **Zweck:** Auslieferung der Seiten, Sicherheit und Stabilität, Abwehr von Angriffen.
 - **Rechtsgrundlage:** Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und funktionsfähigen Angebot).
-- **Speicherdauer:** Logdateien werden nach spätestens [PLATZHALTER: Anzahl] Tagen gelöscht, soweit sie nicht zur Aufklärung eines Sicherheitsvorfalls benötigt werden.
+- **Speicherdauer:** Logdateien werden nach spätestens 14 Tagen gelöscht, soweit sie nicht zur Aufklärung eines Sicherheitsvorfalls benötigt werden.
 
 ## Cloudflare (Content Delivery Network, Tunnel, Sicherheit)
 
@@ -63,12 +63,12 @@ Wir messen die Nutzung unserer Seiten mit ${analytics_tool}, betrieben auf unser
 Das Mess-Skript wird erst geladen, nachdem Sie in der Einwilligungsverwaltung in die Messung eingewilligt haben.
 
 - **Rechtsgrundlage:** Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG.
-- **Speicherdauer:** Aggregierte Statistiken werden höchstens [PLATZHALTER: Anzahl] Monate aufbewahrt.
+- **Speicherdauer:** Aggregierte Statistiken werden höchstens 24 Monate aufbewahrt.
 
 <!--if:editorial-->
 ## Newsletter („${newsletter_name}“) {#newsletter}
 
-Wenn Sie unseren Newsletter abonnieren, verarbeiten wir Ihre E-Mail-Adresse, den Zeitpunkt der Anmeldung und der Bestätigung sowie die IP-Adresse zum Nachweis. Die Anmeldung erfolgt im Double-Opt-in-Verfahren: Erst nach Klick auf den Bestätigungslink erhalten Sie den Newsletter. Der Versand erfolgt über eine selbst gehostete Newsletter-Software und einen Versanddienstleister: [PLATZHALTER: Name und Sitz des E-Mail-Versanddienstleisters, Auftragsverarbeitungsvertrag].
+Wenn Sie unseren Newsletter abonnieren, verarbeiten wir Ihre E-Mail-Adresse, den Zeitpunkt der Anmeldung und der Bestätigung sowie die IP-Adresse zum Nachweis. Die Anmeldung erfolgt im Double-Opt-in-Verfahren: Erst nach Klick auf den Bestätigungslink erhalten Sie den Newsletter. Der Versand erfolgt über eine selbst gehostete Newsletter-Software auf unserem Server in Deutschland. Setzen wir künftig einen externen Versanddienstleister ein, schließen wir mit ihm einen Auftragsverarbeitungsvertrag nach Art. 28 DSGVO und nennen ihn an dieser Stelle.
 
 - **Rechtsgrundlage:** Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).
 - **Abmeldung:** jederzeit über den Link in jeder Ausgabe oder per E-Mail an ${email}.
@@ -92,7 +92,7 @@ Wenn Sie uns per E-Mail oder Kontaktformular schreiben, verarbeiten wir Ihre Ang
 - **Einladungen:** Lädt ein Unternehmen Sie zur Bewertung ein, verarbeiten wir die vom Unternehmen übermittelten Kontaktdaten im Auftrag dieses Unternehmens (Auftragsverarbeitung). Empfängerdaten werden nach dem Versand gelöscht bzw. nur gehasht zum Abgleich gespeichert.
 - **Prüfverfahren bei Beanstandungen:** Beanstandet ein Unternehmen eine Bewertung, können wir Sie um Nachweise bitten und Ihre Stellungnahme – ohne Ihre Kontaktdaten – an das Unternehmen weitergeben.
 - **Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO (Nutzungsverhältnis) und Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an echten, überprüfbaren Bewertungen und an der Meinungsfreiheit).
-- **Speicherdauer:** solange die Bewertung veröffentlicht ist; Prüf- und Moderationsprotokolle bis zu [PLATZHALTER: Anzahl] Jahre.
+- **Speicherdauer:** solange die Bewertung veröffentlicht ist; Prüf- und Moderationsprotokolle bis zu 3 Jahre.
 
 **Profil beanspruchen:** Für Unternehmen verarbeiten wir Name, Funktion und geschäftliche Kontaktdaten der handelnden Person zur Prüfung der Berechtigung und zur Vertragsdurchführung (Art. 6 Abs. 1 lit. b DSGVO).
 

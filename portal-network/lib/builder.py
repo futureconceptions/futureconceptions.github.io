@@ -1005,9 +1005,8 @@ class SiteBuilder:
                        f"<lastBuildDate>{rfc822(self.now)}</lastBuildDate>{items}</channel></rss>\n")
         # ads.txt
         client = self.cfg.get("adsense_client_id", "")
-        pub = client.replace("ca-", "") if client else "pub-XXXXXXXXXXXXXXXX"
-        note = "" if client else "# PLATZHALTER: Publisher-ID nach AdSense-Freigabe in site.json (adsense_client_id) eintragen.\n"
-        self.write("/ads.txt", f"{note}google.com, {pub}, DIRECT, f08c47fec0942fa0\n")
+        # Ohne AdSense-Freigabe leere ads.txt (keine Platzhalter-ID öffentlich ausliefern)
+        self.write("/ads.txt", f"google.com, {client.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n" if client else "")
         # Suchindex
         if self.type != "operator":
             self.write("/search-index.json", json.dumps(self.search, ensure_ascii=False, separators=(",", ":")))

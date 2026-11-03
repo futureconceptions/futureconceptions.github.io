@@ -1,5 +1,5 @@
 {
-  "_hinweis": "Netzwerkweite Angaben. Offene [PLATZHALTER …] (E-Mail, ggf. Telefon) vor dem Livegang ersetzen. Nach HRB-Eintragung: legal_name ohne i.G., register_number eintragen.",
+  "_hinweis": "Netzwerkweite Angaben. Nach HRB-Eintragung: legal_name ohne i.G., register_number eintragen.",
   "brand": "MERKANT Medien",
   "operator": {
     "legal_name": "futureconceptions UG (haftungsbeschränkt) i.G.",
@@ -11,8 +11,8 @@
     "register_court": "Amtsgericht Charlottenburg (Berlin)",
     "register_number": "folgt (Gesellschaft in Gründung)",
     "vat_id": "wird nach Erteilung ergänzt",
-    "email": "[PLATZHALTER: Kontakt-E-Mail, z. B. kontakt@merkant-medien.de]",
-    "phone": "[PLATZHALTER: Telefonnummer für schnelle Kontaktaufnahme]",
+    "email": "info@futureconceptions.de",
+    "phone": "",
     "mstv_responsible": "Giuseppe Badalati, Katharinenstraße 10, 10711 Berlin",
     "dpa_authority": "Berliner Beauftragte für Datenschutz und Informationsfreiheit, Alt-Moabit 59–61, 10555 Berlin",
     "dsa_contact": "",

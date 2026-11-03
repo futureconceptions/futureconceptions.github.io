@@ -16,7 +16,6 @@ ${site_name} (${domain}) ist ein Angebot von **${brand}**. ${brand_line}.
 
 ## Kontakt
 
-Telefon: ${phone}\
 E-Mail: ${email}
 
 ## Registereintrag
