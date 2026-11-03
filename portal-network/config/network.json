@@ -1,29 +1,45 @@
 {
-  "_hinweis": "Netzwerkweite Angaben. Alle Werte mit [PLATZHALTER …] vor dem Livegang ersetzen. Live-Gang erst nach Eintragung der UG ins Handelsregister (docs/roi-google-ads.md, Abschnitt 7).",
+  "_hinweis": "Netzwerkweite Angaben. Offene [PLATZHALTER …] (E-Mail, ggf. Telefon) vor dem Livegang ersetzen. Nach HRB-Eintragung: legal_name ohne i.G., register_number eintragen.",
   "brand": "MERKANT Medien",
   "operator": {
     "legal_name": "futureconceptions UG (haftungsbeschränkt) i.G.",
     "brand_line": "MERKANT Medien – eine Marke der futureconceptions UG (haftungsbeschränkt)",
-    "street": "[PLATZHALTER: Straße und Hausnummer – ladungsfähige Geschäftsanschrift, kein Postfach]",
-    "postal_city": "[PLATZHALTER: PLZ und Ort]",
+    "street": "Katharinenstraße 10",
+    "postal_city": "10711 Berlin",
     "country": "Deutschland",
-    "managing_director": "[PLATZHALTER: Vor- und Nachname der Geschäftsführerin / des Geschäftsführers]",
-    "register_court": "[PLATZHALTER: Registergericht, z. B. Amtsgericht …]",
-    "register_number": "[PLATZHALTER: HRB-Nummer – nach Eintragung]",
-    "vat_id": "[PLATZHALTER: USt-IdNr. gemäß § 27a UStG – sobald erteilt]",
+    "managing_director": "Giuseppe Badalati",
+    "register_court": "Amtsgericht Charlottenburg (Berlin)",
+    "register_number": "folgt (Gesellschaft in Gründung)",
+    "vat_id": "wird nach Erteilung ergänzt",
     "email": "[PLATZHALTER: Kontakt-E-Mail, z. B. kontakt@merkant-medien.de]",
     "phone": "[PLATZHALTER: Telefonnummer für schnelle Kontaktaufnahme]",
-    "mstv_responsible": "[PLATZHALTER: Name und Anschrift der verantwortlichen Person nach § 18 Abs. 2 MStV]",
-    "dpa_authority": "[PLATZHALTER: zuständige Datenschutz-Aufsichtsbehörde des Bundeslands mit Anschrift]",
+    "mstv_responsible": "Giuseppe Badalati, Katharinenstraße 10, 10711 Berlin",
+    "dpa_authority": "Berliner Beauftragte für Datenschutz und Informationsfreiheit, Alt-Moabit 59–61, 10555 Berlin",
     "dsa_contact": "",
     "hosting_location": "Deutschland"
   },
   "ai_note": "Hinweis: Dieser Beitrag wurde mit Unterstützung eines KI-Systems auf Grundlage der genannten Quellen erstellt, von einem zweiten KI-Durchlauf gegen die Quellen geprüft und vor der Veröffentlichung von einem verantwortlichen Redakteur geprüft und freigegeben.",
   "analytics_tool": "Umami (selbst gehostet)",
   "packages": [
-    {"name": "Basis", "price": "0 €", "features": "Profil beanspruchen, Daten pflegen, auf Bewertungen antworten"},
-    {"name": "Starter", "price": "49 €", "features": "Einladungen (100/Monat), Widget, Siegel, Basis-Statistik"},
-    {"name": "Pro", "price": "149 €", "features": "Einladungen unbegrenzt, API/Integrationen, Wettbewerbsvergleich, Logo & Bilder"},
-    {"name": "Netzwerk", "price": "299 €", "features": "Pro + Premium-Firmenprofil auf FIRMENNACHRICHTEN + Stellenanzeigen + Newsroom"}
+    {
+      "name": "Basis",
+      "price": "0 €",
+      "features": "Profil beanspruchen, Daten pflegen, auf Bewertungen antworten"
+    },
+    {
+      "name": "Starter",
+      "price": "49 €",
+      "features": "Einladungen (100/Monat), Widget, Siegel, Basis-Statistik"
+    },
+    {
+      "name": "Pro",
+      "price": "149 €",
+      "features": "Einladungen unbegrenzt, API/Integrationen, Wettbewerbsvergleich, Logo & Bilder"
+    },
+    {
+      "name": "Netzwerk",
+      "price": "299 €",
+      "features": "Pro + Premium-Firmenprofil auf FIRMENNACHRICHTEN + Stellenanzeigen + Newsroom"
+    }
   ]
 }

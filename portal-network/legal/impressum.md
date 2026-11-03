@@ -24,7 +24,7 @@ E-Mail: ${email}
 Registergericht: ${register_court}\
 Registernummer: ${register_number}
 
-Hinweis: Die Gesellschaft befindet sich in Gründung („i.G.“). Die Registerangaben werden nach der Eintragung ins Handelsregister ergänzt; erst danach wird dieses Angebot öffentlich freigeschaltet.
+Hinweis: Die Gesellschaft befindet sich in Gründung („i.G.“). Die Registernummer wird nach der Eintragung ins Handelsregister ergänzt.
 
 ## Umsatzsteuer-Identifikationsnummer
 
