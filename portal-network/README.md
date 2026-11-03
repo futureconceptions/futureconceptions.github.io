@@ -34,7 +34,7 @@ portal-network/
 ├── templates/base.html      # Seitenrahmen
 ├── static/                  # gemeinsames CSS (hell/dunkel) und kleines JS (Suche, Consent-Gate)
 ├── lib/                     # Builder-Code (Markdown, Front Matter, SVG-Logos, SEO, Deploy-Configs)
-├── deploy/                  # docker-compose.yml, Caddyfile, cloudflared-Vorlage, .env.example
+├── deploy/                  # docker-compose.yml, Caddyfile, install-on-pi.sh, cloudflared-Vorlage, .env.example
 ├── tests/fixtures/          # FIKTIVE Testdaten, nur für build.py --test
 ├── IMAGE_PROMPTS.md         # alle benötigten Bilder mit fertigen letz.ai-Prompts
 └── dist/                    # Build-Ausgabe (nicht im Git)
@@ -167,16 +167,22 @@ Außerdem:
 
 ## Betrieb auf dem Raspberry Pi
 
+Die Portale laufen **wie die bestehenden Seiten auf dem Pi** (futureconceptions.de, sicilydeals.com, nethrax.xyz): über den vorhandenen, in Cloudflare verwalteten Tunnel **„nethrax“**. Jede Seite ist ein eigener Docker-Container im Netz des cloudflared-Containers.
+
+- **Cloudflare (erledigt am 03.11.2026):** Im Tunnel „nethrax“ zeigen `firmennachrichten.de`, `itszene.de`, `it-erfahrungen.de`, `merkant-medien.de`, `firmenkoepfe.de` (jeweils + `www`) auf `http://merkant-caddy:80`. Die bestehenden Regeln sind unverändert. Die DNS-Einträge der 5 Domains zeigen auf den nethrax-Tunnel.
+- **Pi:** nur ein neuer Container `merkant-caddy`, ohne Host-Ports und ohne eigenen Tunnel:
+
 ```bash
-git clone … && cd …/portal-network
-python3 build.py
-cd deploy && cp .env.example .env    # CLOUDFLARE_TUNNEL_TOKEN eintragen
-docker compose up -d
+git clone https://github.com/futureconceptions/futureconceptions.github.io.git merkant
+cd merkant && git checkout claude/reputationsportale-analyse-jdmmse
+bash portal-network/deploy/install-on-pi.sh
 ```
 
-- **Caddy** liefert `dist/<domain>` je nach Host aus (HTTP intern; TLS macht Cloudflare). Dazu kommen www → Apex (301), firmenkoepfe.de → firmennachrichten.de/koepfe/ (301), Sicherheits- und Cache-Header, `404.html` und ein Healthcheck auf `127.0.0.1:8080/healthz`.
-- **cloudflared**, Variante A: Token aus dem Dashboard, Hostnamen dort auf `http://caddy:80` routen. Variante B: lokal verwaltet mit `deploy/cloudflared/config.yml.example`.
-- Nach jeder Freigabe genügt `python3 build.py`. Caddy liest die Dateien direkt; danach den Cloudflare-Cache leeren (oder kurze Cache-Zeiten nutzen, siehe Caddyfile).
+Das Skript findet den laufenden cloudflared-Container und dessen Docker-Netz, baut die Seiten, startet `merkant-caddy` in diesem Netz und testet alle 5 Hostnamen. Bestehende Container werden nicht verändert.
+
+- **Caddy** liefert `dist/<domain>` je nach Host aus (HTTP intern; TLS macht Cloudflare). Dazu kommen www → Apex (301), firmenkoepfe.de → firmennachrichten.de/koepfe/ (301), Sicherheits- und Cache-Header, `404.html` und ein Healthcheck im Container auf `:8080/healthz`.
+- **Aktualisieren:** Nach jeder Freigabe genügt `python3 portal-network/build.py`. Caddy liest die Dateien direkt; Cache-Zeiten für HTML sind kurz (siehe Caddyfile).
+- `deploy/cloudflared/config.yml.example` ist nur noch eine Vorlage für einen eigenen Tunnel, falls die Portale später auf einen anderen Server umziehen.
 
 ## Launch-Checkliste je Domain
 
@@ -184,7 +190,7 @@ Für **jede** Domain (merkant-medien.de, firmennachrichten.de, itszene.de, it-er
 
 1. ☐ **Domain kaufen** (.de bei deutschem Registrar). Bis zur Eintragung als „futureconceptions UG (haftungsbeschränkt) i.G.“ bzw. mit dokumentierter späterer Übertragung.
 2. ☐ **Zu Cloudflare hinzufügen** (Free-Plan), Nameserver beim Registrar umstellen, SSL/TLS-Modus „Full“, „Always Use HTTPS“ an.
-3. ☐ **Tunnel-Route** anlegen: `<domain>` und `www.<domain>` → `http://caddy:80` (Dashboard) bzw. `cloudflared tunnel route dns merkant-pi <hostname>`.
+3. ☐ **Tunnel-Route** im Tunnel „nethrax“: `<domain>` und `www.<domain>` → `http://merkant-caddy:80`, DNS-CNAME auf den nethrax-Tunnel (für die 5 Phase-1-Domains erledigt).
 4. ☐ **Impressum-Platzhalter ausfüllen** (`config/network.json`), `i.G.` nach Eintragung entfernen, Rechtstexte anwaltlich prüfen lassen, `draft_note` entfernen, neu bauen. `build.py` darf keine offenen Platzhalter mehr melden.
 5. ☐ **Inhalte**: Ratgeber-Entwürfe prüfen (`needs_fact_check`) und freigeben. Für die AdSense-Prüfung substanzielle Inhalte aufbauen (Richtwert 30–50 freigegebene Beiträge je Nachrichtenportal).
 6. ☐ **Google Search Console**: Domain-Property per DNS-TXT bei Cloudflare bestätigen (oder `google_site_verification` in `site.json`).

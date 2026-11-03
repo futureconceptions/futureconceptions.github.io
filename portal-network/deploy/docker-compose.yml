@@ -1,12 +1,19 @@
 # MERKANT Medien – Auslieferung der statischen Portale auf dem Raspberry Pi 5
 #
-#   cd portal-network/deploy
-#   cp .env.example .env            # Werte eintragen (nicht committen!)
-#   docker compose up -d
+# Betrieb wie die bestehenden Seiten auf dem Pi: Der vorhandene Cloudflare-Tunnel
+# "nethrax" (cloudflared-Container, remote verwaltet) leitet die Hostnamen
+#   firmennachrichten.de, itszene.de, it-erfahrungen.de, merkant-medien.de, firmenkoepfe.de (+ www)
+# an http://merkant-caddy:80 weiter. Diese Datei startet NUR den Caddy-Container und hängt ihn
+# an das Docker-Netz des bestehenden cloudflared-Containers. Kein eigener Tunnel, keine
+# Änderung an bestehenden Containern.
 #
-# Caddy liefert ../dist/<domain>/ aus (vorher: python3 ../build.py).
-# cloudflared verbindet den Pi per Tunnel mit Cloudflare – keine Portfreigabe am Router nötig.
-# Images sind multi-arch (arm64). Versionen bei Bedarf fest pinnen.
+# Einrichtung: ./install-on-pi.sh  (ermittelt das Netz automatisch, baut die Seiten, startet Caddy)
+# Manuell:
+#   cd portal-network && python3 build.py
+#   cd deploy && cp .env.example .env   # TUNNEL_NETWORK eintragen
+#   docker compose up -d
+
+name: merkant
 
 services:
   caddy:
@@ -18,35 +25,21 @@ services:
       - ../dist:/srv/sites:ro
       - caddy_data:/data
       - caddy_config:/config
-    # Nur lokal erreichbar (Healthcheck/Vorschau im Heimnetz). Öffentlich nur über den Tunnel.
-    ports:
-      - "127.0.0.1:8080:8080"
-    networks: [web]
+    # Kein Port auf dem Host: erreichbar nur über das Docker-Netz des Tunnels.
+    # Für eine lokale Kontrolle im Heimnetz optional (Port vorher auf Konflikte prüfen):
+    # ports:
+    #   - "127.0.0.1:18080:80"
+    networks: [tunnel]
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
       interval: 60s
       timeout: 5s
       retries: 3
 
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    container_name: merkant-cloudflared
-    restart: unless-stopped
-    depends_on: [caddy]
-    networks: [web]
-    # Variante A (empfohlen für den Start): Tunnel im Cloudflare-Dashboard anlegen,
-    # Hostnamen dort auf http://caddy:80 routen und nur das Token in .env eintragen.
-    command: tunnel --no-autoupdate run
-    environment:
-      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
-    # Variante B (lokal verwaltete Konfiguration, siehe cloudflared/config.yml.example):
-    #   command: tunnel --no-autoupdate --config /etc/cloudflared/config.yml run
-    #   volumes:
-    #     - ./cloudflared:/etc/cloudflared:ro
-    # und die environment-Zeile oben entfernen.
-
 networks:
-  web: {}
+  tunnel:
+    external: true
+    name: ${TUNNEL_NETWORK:?TUNNEL_NETWORK in .env setzen (Docker-Netz des cloudflared-Containers)}
 
 volumes:
   caddy_data: {}
