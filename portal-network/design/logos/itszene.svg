@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64" role="img" aria-label="itszene">
+  <title>itszene</title>
+  <!-- Zeichen: Klammer mit Block-Cursor -->
+  <rect x="0" y="4" width="56" height="56" rx="10" fill="#0C1015"/>
+  <path d="M19 16h-6v32h6" fill="none" stroke="#22D3EE" stroke-width="4" stroke-linecap="square"/>
+  <path d="M37 16h6v32h-6" fill="none" stroke="#22D3EE" stroke-width="4" stroke-linecap="square"/>
+  <rect x="24" y="26" width="8" height="14" fill="#FFFFFF"/>
+  <text x="70" y="44" font-family="'IBM Plex Sans','Inter',system-ui,sans-serif" font-size="36" font-weight="700" letter-spacing="-1" fill="#0C1015"><tspan fill="#0891B2">it</tspan>szene</text>
+</svg>

@@ -1,0 +1,4 @@
+{"status": "approved", "name": "Musterfirma Beispiel GmbH", "slug": "musterfirma-beispiel-gmbh",
+ "legal_form": "GmbH", "city": "Musterstadt", "register": "HRB 00000, AG Musterstadt (fiktiv)",
+ "industry": "Testbranche", "description": "Fiktives Testunternehmen zur Prüfung des Firmenprofil-Templates.",
+ "data_source": "Testdaten", "review_profile": "https://it-erfahrungen.de/firma/muster-it-service-gmbh/"}

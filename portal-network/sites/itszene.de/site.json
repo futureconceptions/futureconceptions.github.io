@@ -1,0 +1,38 @@
+{
+  "domain": "itszene.de",
+  "enabled": true,
+  "type": "news",
+  "phase": 1,
+  "name": "ITSZENE",
+  "wordmark": [["IT", "bold"], ["SZENE", "regular"]],
+  "glyph": "prompt",
+  "claim": "IT-Nachrichten für den Mittelstand.",
+  "description": "IT-Nachrichten für Entscheider im Mittelstand: IT-Unternehmen, IT-Sicherheit, Software, Cloud und Digitalisierung aus Sicht kleiner und mittlerer Unternehmen.",
+  "accent": "#0B6A8A",
+  "accent_2": "#082F45",
+  "accent_dark": "#5CC8EA",
+  "accent_2_dark": "#0B4A63",
+  "default_author": "Redaktion ITSZENE",
+  "author_focus": "über IT-Unternehmen, IT-Sicherheit, Software, Cloud und Digitalisierung aus Sicht kleiner und mittlerer Unternehmen",
+  "company_ressort": "it-unternehmen",
+  "ressorts": [
+    {"slug": "it-unternehmen", "name": "IT-Unternehmen", "description": "Gründungen, Übernahmen und Wechsel in der Geschäftsführung bei IT-Firmen."},
+    {"slug": "sicherheit", "name": "Sicherheit", "description": "Sicherheitswarnungen, die kleine und mittlere Unternehmen betreffen – verständlich erklärt."},
+    {"slug": "software-cloud", "name": "Software & Cloud", "description": "Produkt- und Preisänderungen, Abkündigungen und neue Lizenzmodelle."},
+    {"slug": "digitalisierung", "name": "Digitalisierung", "description": "Förderprogramme, Gesetze und Fristen – von NIS2 über E-Rechnung bis zur KI-Verordnung."},
+    {"slug": "ratgeber", "name": "Ratgeber", "description": "Praxiswissen für die IT im Mittelstand: von Backup bis Managed Services."}
+  ],
+  "newsletter": {
+    "name": "Der ITSZENE-Newsletter",
+    "description": "Einmal pro Woche: Sicherheitswarnungen, Fristen und IT-Nachrichten, die für den Mittelstand zählen.",
+    "action": ""
+  },
+  "adsense_client_id": "",
+  "adsense_slots": {"home_top": "", "list_top": "", "article_top": "", "article_mid": "", "article_bottom": ""},
+  "analytics": {"script_url": "", "website_id": "", "require_consent": true},
+  "forms": {"contact_action": ""},
+  "contact_email": "",
+  "google_site_verification": "",
+  "redirect_aliases": [],
+  "_schutzdomains_spaeter": ["itszene.com", "itszene-news.de"]
+}

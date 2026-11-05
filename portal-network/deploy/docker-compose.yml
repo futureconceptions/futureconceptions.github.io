@@ -1,0 +1,46 @@
+# MERKANT Medien – Auslieferung der statischen Portale auf dem Raspberry Pi 5
+#
+# Betrieb wie die bestehenden Seiten auf dem Pi: Der vorhandene Cloudflare-Tunnel
+# "nethrax" (cloudflared-Container, remote verwaltet) leitet die Hostnamen
+#   firmennachrichten.de, itszene.de, it-erfahrungen.de, merkant-medien.de, firmenkoepfe.de (+ www)
+# an http://merkant-caddy:80 weiter. Diese Datei startet NUR den Caddy-Container und hängt ihn
+# an das Docker-Netz des bestehenden cloudflared-Containers. Kein eigener Tunnel, keine
+# Änderung an bestehenden Containern.
+#
+# Einrichtung: ./install-on-pi.sh  (ermittelt das Netz automatisch, baut die Seiten, startet Caddy)
+# Manuell:
+#   cd portal-network && python3 build.py
+#   cd deploy && cp .env.example .env   # TUNNEL_NETWORK eintragen
+#   docker compose up -d
+
+name: merkant
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: merkant-caddy
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ../dist:/srv/sites:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    # Kein Port auf dem Host: erreichbar nur über das Docker-Netz des Tunnels.
+    # Für eine lokale Kontrolle im Heimnetz optional (Port vorher auf Konflikte prüfen):
+    # ports:
+    #   - "127.0.0.1:18080:80"
+    networks: [tunnel]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+
+networks:
+  tunnel:
+    external: true
+    name: ${TUNNEL_NETWORK:?TUNNEL_NETWORK in .env setzen (Docker-Netz des cloudflared-Containers)}
+
+volumes:
+  caddy_data: {}
+  caddy_config: {}

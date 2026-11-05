@@ -1,0 +1,22 @@
+{
+  "domain": "merkant-medien.de",
+  "enabled": true,
+  "type": "operator",
+  "phase": 0,
+  "name": "MERKANT Medien",
+  "wordmark": [["MERKANT", "bold"], ["MEDIEN", "regular"]],
+  "glyph": "nodes",
+  "claim": "Unabhängige Portale für Wirtschaftsnachrichten und Kundenerfahrungen.",
+  "description": "MERKANT Medien betreibt ein Netzwerk unabhängiger Portale: Nachrichten über Unternehmen und IT im Mittelstand sowie Bewertungsportale für IT-Dienstleister, Systemhäuser und Agenturen.",
+  "accent": "#1F3A8A",
+  "accent_2": "#0F1F4D",
+  "accent_dark": "#9DB4FF",
+  "accent_2_dark": "#1F3A8A",
+  "newsletter": {"name": "", "description": "", "action": ""},
+  "adsense_client_id": "",
+  "forms": {"contact_action": ""},
+  "contact_email": "",
+  "google_site_verification": "",
+  "redirect_aliases": [],
+  "_schutzdomains_spaeter": ["merkantmedien.de", "merkant-medien.com"]
+}

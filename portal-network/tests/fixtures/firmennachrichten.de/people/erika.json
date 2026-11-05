@@ -1,0 +1,4 @@
+{"status": "approved", "name": "Erika Testperson", "slug": "erika-testperson",
+ "summary": "Fiktive Person zur Prüfung des Personen-Templates.",
+ "roles": [{"title": "Geschäftsführerin", "company": "Musterfirma Beispiel GmbH", "company_slug": "musterfirma-beispiel-gmbh", "from": "2026"},
+           {"title": "Prokuristin", "company": "Andere Testfirma AG", "from": "2020", "to": "2025"}]}

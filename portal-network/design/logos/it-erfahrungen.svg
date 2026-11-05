@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 64" role="img" aria-label="IT-Erfahrungen">
+  <title>IT-Erfahrungen</title>
+  <!-- Zeichen: Sprechblase mit Häkchen – geprüfte Erfahrung -->
+  <path d="M10 6h40a8 8 0 0 1 8 8v26a8 8 0 0 1-8 8H30l-12 10v-10h-8a8 8 0 0 1-8-8V14a8 8 0 0 1 8-8z" fill="#14532D"/>
+  <path d="M19 27l7 7 14-14" fill="none" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="72" y="42" font-family="'Figtree','Inter',system-ui,sans-serif" font-size="34" font-weight="700" letter-spacing="-.5" fill="#14532D">IT-<tspan font-weight="500" fill="#1F2937">Erfahrungen</tspan></text>
+  <!-- Bewertungspunkte statt Sterne -->
+  <g fill="#D97706"><circle cx="76" cy="54" r="3.2"/><circle cx="86" cy="54" r="3.2"/><circle cx="96" cy="54" r="3.2"/><circle cx="106" cy="54" r="3.2"/></g>
+  <circle cx="116" cy="54" r="3.2" fill="none" stroke="#D97706" stroke-width="1.6"/>
+</svg>

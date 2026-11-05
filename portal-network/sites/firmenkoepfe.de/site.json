@@ -1,0 +1,12 @@
+{
+  "domain": "firmenkoepfe.de",
+  "enabled": true,
+  "type": "redirect",
+  "phase": 1,
+  "name": "FIRMENKÖPFE",
+  "claim": "Wer führt, wer wechselt, wer gründet.",
+  "redirect_to": "https://firmennachrichten.de/koepfe/",
+  "redirect_aliases": [],
+  "_hinweis": "Phase 1: nur 301-Weiterleitung (Caddy). Phase 2: eigenes Portal – dann type auf 'news' umstellen und Ressorts ergänzen.",
+  "_schutzdomains_spaeter": ["firmen-koepfe.de", "firmenkoepfe.com"]
+}
