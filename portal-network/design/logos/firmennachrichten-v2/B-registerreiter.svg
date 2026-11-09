@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 64" role="img" aria-label="Firmennachrichten"><title>Firmennachrichten</title>
+<path d="M2 14 H30 L36 4 H60 a2 2 0 0 1 2 2 V60 a2 2 0 0 1-2 2 H4 a2 2 0 0 1-2-2 Z" fill="#121A2B"/>
+<path d="M36 4 H60 a2 2 0 0 1 2 2 V14 H30 Z" fill="#B8325A"/>
+<path d="M16 24 H46 V31 H24 V38 H42 V45 H24 V54 H16 Z" fill="#FFFFFF"/>
+<text x="78" y="40" font-family="'Source Serif 4','Charter','Bitstream Charter',Georgia,serif" font-size="34" fill="#121A2B" letter-spacing="-.4"><tspan font-weight="700">Firmen</tspan><tspan font-weight="400">nachrichten</tspan></text>
+<path d="M79 50 H140 L144 46 H178 V50 H460" fill="none" stroke="#8E1B3A" stroke-width="2"/></svg>
