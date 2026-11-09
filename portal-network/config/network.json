@@ -1,0 +1,45 @@
+{
+  "_hinweis": "Netzwerkweite Angaben. Nach HRB-Eintragung: legal_name ohne i.G., register_number eintragen.",
+  "brand": "MERKANT Medien",
+  "operator": {
+    "legal_name": "futureconceptions UG (haftungsbeschränkt) i.G.",
+    "brand_line": "MERKANT Medien – eine Marke der futureconceptions UG (haftungsbeschränkt)",
+    "street": "Katharinenstraße 10",
+    "postal_city": "10711 Berlin",
+    "country": "Deutschland",
+    "managing_director": "Giuseppe Badalati",
+    "register_court": "Amtsgericht Charlottenburg (Berlin)",
+    "register_number": "folgt (Gesellschaft in Gründung)",
+    "vat_id": "wird nach Erteilung ergänzt",
+    "email": "info@futureconceptions.de",
+    "phone": "",
+    "mstv_responsible": "Giuseppe Badalati, Katharinenstraße 10, 10711 Berlin",
+    "dpa_authority": "Berliner Beauftragte für Datenschutz und Informationsfreiheit, Alt-Moabit 59–61, 10555 Berlin",
+    "dsa_contact": "",
+    "hosting_location": "Deutschland"
+  },
+  "ai_note": "Hinweis: Dieser Beitrag wurde mit Unterstützung eines KI-Systems auf Grundlage der genannten Quellen erstellt, von einem zweiten KI-Durchlauf gegen die Quellen geprüft und vor der Veröffentlichung von einem verantwortlichen Redakteur geprüft und freigegeben.",
+  "analytics_tool": "Umami (selbst gehostet)",
+  "packages": [
+    {
+      "name": "Basis",
+      "price": "0 €",
+      "features": "Profil beanspruchen, Daten pflegen, auf Bewertungen antworten"
+    },
+    {
+      "name": "Starter",
+      "price": "49 €",
+      "features": "Einladungen (100/Monat), Widget, Siegel, Basis-Statistik"
+    },
+    {
+      "name": "Pro",
+      "price": "149 €",
+      "features": "Einladungen unbegrenzt, API/Integrationen, Wettbewerbsvergleich, Logo & Bilder"
+    },
+    {
+      "name": "Netzwerk",
+      "price": "299 €",
+      "features": "Pro + Premium-Firmenprofil auf FIRMENNACHRICHTEN + Stellenanzeigen + Newsroom"
+    }
+  ]
+}

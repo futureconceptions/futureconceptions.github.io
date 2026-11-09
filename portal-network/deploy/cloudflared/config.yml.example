@@ -1,0 +1,33 @@
+# cloudflared – lokal verwaltete Tunnel-Konfiguration (Vorlage)
+# 1) cloudflared tunnel login
+# 2) cloudflared tunnel create merkant-pi   → erzeugt <TUNNEL-ID>.json
+# 3) Datei nach deploy/cloudflared/<TUNNEL-ID>.json kopieren, diese Vorlage als config.yml speichern
+# 4) DNS je Hostname: cloudflared tunnel route dns merkant-pi <hostname>
+# AUTOMATISCH ERZEUGT von build.py --deploy-configs (Quelle: sites/*/site.json)
+
+tunnel: PLATZHALTER_TUNNEL_ID
+credentials-file: /etc/cloudflared/PLATZHALTER_TUNNEL_ID.json
+
+ingress:
+  - hostname: firmenkoepfe.de
+    service: http://caddy:80
+  - hostname: www.firmenkoepfe.de
+    service: http://caddy:80
+  - hostname: firmennachrichten.de
+    service: http://caddy:80
+  - hostname: www.firmennachrichten.de
+    service: http://caddy:80
+  - hostname: it-erfahrungen.de
+    service: http://caddy:80
+  - hostname: www.it-erfahrungen.de
+    service: http://caddy:80
+  - hostname: itszene.de
+    service: http://caddy:80
+  - hostname: www.itszene.de
+    service: http://caddy:80
+  - hostname: merkant-medien.de
+    service: http://caddy:80
+  - hostname: www.merkant-medien.de
+    service: http://caddy:80
+  # alles andere ablehnen
+  - service: http_status:404

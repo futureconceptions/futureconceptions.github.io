@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 64" role="img" aria-label="MERKANT Medien">
+  <title>MERKANT Medien</title>
+  <!-- Monogramm: drei Pfeiler (Nachrichten, IT, Erfahrungen) formen ein M -->
+  <rect x="0" y="4" width="56" height="56" rx="4" fill="#1B2A4E"/>
+  <path d="M12 48V16l16 18 16-18v32" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="miter"/>
+  <rect x="12" y="51" width="32" height="3" fill="#C9A24A"/>
+  <text x="72" y="38" font-family="'Fraunces','Source Serif 4','Charter',Georgia,serif" font-size="30" font-weight="700" letter-spacing="3" fill="#1B2A4E">MERKANT</text>
+  <text x="73" y="56" font-family="'IBM Plex Sans','Inter',system-ui,sans-serif" font-size="13" font-weight="600" letter-spacing="5.5" fill="#6B7280">MEDIEN</text>
+</svg>

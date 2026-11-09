@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 64" role="img" aria-label="Firmennachrichten">
+  <title>Firmennachrichten</title>
+  <!-- Zeichen: Spaltensatz – Dachzeile (Bordeaux), Schlagzeile, Text -->
+  <rect x="0" y="4" width="56" height="56" rx="4" fill="#121A2B"/>
+  <rect x="12" y="15" width="32" height="6" fill="#B8325A"/>
+  <rect x="12" y="27" width="32" height="5" fill="#FFFFFF"/>
+  <rect x="12" y="37" width="24" height="3" fill="#FFFFFF" opacity=".7"/>
+  <rect x="12" y="44" width="28" height="3" fill="#FFFFFF" opacity=".7"/>
+  <text x="72" y="44" font-family="'Source Serif 4','Charter','Bitstream Charter',Georgia,serif" font-size="36" fill="#121A2B" letter-spacing="-.5"><tspan font-weight="700">Firmen</tspan><tspan font-weight="400">nachrichten</tspan></text>
+  <rect x="72" y="52" width="40" height="3" fill="#8E1B3A"/>
+</svg>

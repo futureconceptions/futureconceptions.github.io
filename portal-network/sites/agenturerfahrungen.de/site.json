@@ -1,0 +1,125 @@
+{
+  "domain": "agenturerfahrungen.de",
+  "enabled": false,
+  "type": "review",
+  "phase": 2,
+  "name": "AGENTURERFAHRUNGEN",
+  "wordmark": [
+    [
+      "AGENTUR",
+      "bold"
+    ],
+    [
+      "ERFAHRUNGEN",
+      "regular"
+    ]
+  ],
+  "glyph": "shapes",
+  "claim": "Die richtige Agentur. Echte Erfahrungen.",
+  "description": "Kundenerfahrungen mit Marketing-, Web- und Content-Agenturen – mit sichtbarer Herkunft jeder Bewertung.",
+  "accent": "#B4410C",
+  "accent_2": "#5A1F05",
+  "accent_dark": "#FFA270",
+  "accent_2_dark": "#8A3209",
+  "default_author": "Redaktion AGENTURERFAHRUNGEN",
+  "review": {
+    "criteria": [
+      {
+        "key": "ergebnisse",
+        "name": "Ergebnisse"
+      },
+      {
+        "key": "kommunikation",
+        "name": "Kommunikation"
+      },
+      {
+        "key": "kreativitaet",
+        "name": "Kreativität"
+      },
+      {
+        "key": "termintreue",
+        "name": "Termintreue"
+      },
+      {
+        "key": "preis_leistung",
+        "name": "Preis-Leistung"
+      }
+    ],
+    "extra_fields": [
+      "Leistung",
+      "Projektbudget-Spanne",
+      "Laufzeit"
+    ],
+    "services": [
+      {
+        "slug": "social-media",
+        "name": "Social Media",
+        "description": "Strategie, Content und Betreuung von Social-Media-Kanälen."
+      },
+      {
+        "slug": "video",
+        "name": "Video",
+        "description": "Konzeption und Produktion von Bewegtbild."
+      },
+      {
+        "slug": "seo",
+        "name": "SEO",
+        "description": "Suchmaschinenoptimierung und Content-Strategie."
+      },
+      {
+        "slug": "ads",
+        "name": "Online-Werbung",
+        "description": "Planung und Steuerung bezahlter Kampagnen."
+      },
+      {
+        "slug": "web",
+        "name": "Webdesign & Entwicklung",
+        "description": "Websites, Shops und Web-Anwendungen."
+      }
+    ],
+    "score": {
+      "prior_mean": 3.5,
+      "prior_weight": 3,
+      "half_life_months": 12,
+      "verification_weights": {
+        "verifiziert": 1.2,
+        "eingeladen": 1.0,
+        "organisch": 1.0
+      }
+    },
+    "subject_plural": "Agenturen"
+  },
+  "newsletter": {
+    "name": "",
+    "description": "",
+    "action": ""
+  },
+  "adsense_client_id": "",
+  "adsense_slots": {
+    "home_top": "",
+    "list_top": "",
+    "article_top": "",
+    "article_mid": "",
+    "article_bottom": "",
+    "profile": ""
+  },
+  "analytics": {
+    "script_url": "",
+    "website_id": "",
+    "require_consent": true
+  },
+  "forms": {
+    "contact_action": "",
+    "review_action": "",
+    "report_action": "",
+    "claim_action": ""
+  },
+  "contact_email": "",
+  "google_site_verification": "",
+  "redirect_aliases": [],
+  "_schutzdomains_spaeter": [
+    "agentur-erfahrungen.de",
+    "agenturerfahrungen.com",
+    "webagenturerfahrungen.de"
+  ]
+}

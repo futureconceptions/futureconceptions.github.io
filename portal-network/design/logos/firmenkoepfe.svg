@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 64" role="img" aria-label="Firmenköpfe">
+  <title>Firmenköpfe</title>
+  <!-- Ableitung von Firmennachrichten: Spalte wird zur Person -->
+  <rect x="0" y="4" width="56" height="56" rx="4" fill="#121A2B"/>
+  <circle cx="28" cy="24" r="8" fill="#B8325A"/>
+  <path d="M12 50c2-9 8-14 16-14s14 5 16 14z" fill="#FFFFFF"/>
+  <text x="72" y="44" font-family="'Source Serif 4','Charter','Bitstream Charter',Georgia,serif" font-size="36" fill="#121A2B" letter-spacing="-.5"><tspan font-weight="700">Firmen</tspan><tspan font-weight="400">köpfe</tspan></text>
+  <rect x="72" y="52" width="40" height="3" fill="#8E1B3A"/>
+</svg>
