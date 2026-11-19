@@ -54,6 +54,10 @@ class ProjectCreate(BaseModel):
     subtitles: bool = True
     end_card: bool = True
     music: bool = False
+    research_agents: int = Field(default=3, ge=1, le=12, description="Search swarm size")
+    research_effort: Literal["low", "medium", "high"] = "medium"
+    research_metric: Literal["ndcg", "f1", "recall_at_k"] = "ndcg"
+    research_max_pages: int = Field(default=6, ge=1, le=15)
     budget_credits: int | None = Field(default=None, ge=0, le=10_000_000)
     confirm_budget: bool = False
     assets_licensed: bool = Field(default=False, description="User confirms rights to uploaded images")

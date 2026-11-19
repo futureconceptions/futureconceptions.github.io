@@ -19,6 +19,7 @@ const DEFAULTS = {
   video_model: "", audio_mode: "auto", resolution: "720p", video_candidates: 1, keyframes: "per_scene",
   subtitles: true, end_card: true, music: false, budget_credits: "",
   cp_concepts: false, cp_creator: false, cp_storyboard: false,
+  research_agents: 3, research_effort: "medium", research_metric: "ndcg", research_max_pages: 6,
 };
 
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
@@ -66,6 +67,8 @@ export default function NewAdPage() {
         video_model: f.video_model || undefined, audio_mode: f.audio_mode, resolution: f.resolution,
         video_candidates: Number(f.video_candidates), keyframes: f.keyframes, subtitles: f.subtitles, end_card: f.end_card,
         music: f.music, approval_checkpoints: checkpoints,
+        research_agents: Number(f.research_agents), research_effort: f.research_effort,
+        research_metric: f.research_metric, research_max_pages: Number(f.research_max_pages),
         budget_credits: f.budget_credits ? Number(f.budget_credits) : undefined,
       });
     }
@@ -172,6 +175,32 @@ export default function NewAdPage() {
                 <CardContent className="space-y-4">
                   <Field label="Target audience"><Input value={f.target_audience} onChange={(e) => set("target_audience", e.target.value)} placeholder="e.g. busy parents in cities" /></Field>
                   <Field label="Brand guidelines"><Textarea rows={3} value={f.brand_guidelines} onChange={(e) => set("brand_guidelines", e.target.value)} placeholder="Tone, words to avoid, mandatory disclaimers…" /></Field>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader><CardTitle>Research</CardTitle>
+                  <CardDescription>A search swarm (modelled on the SID-2 report) searches the product page, related pages on the same site and your text. Every claim must quote a verified source.</CardDescription></CardHeader>
+                <CardContent className="grid gap-4 sm:grid-cols-4">
+                  <Field label="Search agents">
+                    <Select value={f.research_agents} onChange={(e) => set("research_agents", Number(e.target.value))}>
+                      {[1, 3, 6, 12].map((n) => <option key={n} value={n}>{n}</option>)}
+                    </Select>
+                  </Field>
+                  <Field label="Effort">
+                    <Select value={f.research_effort} onChange={(e) => set("research_effort", e.target.value)}>
+                      <option value="low">Low (3 turns)</option><option value="medium">Medium (6 turns)</option><option value="high">High (10 turns)</option>
+                    </Select>
+                  </Field>
+                  <Field label="Objective">
+                    <Select value={f.research_metric} onChange={(e) => set("research_metric", e.target.value)}>
+                      <option value="ndcg">Comprehensive (NDCG)</option><option value="f1">Precise (F1)</option><option value="recall_at_k">Top-k (Recall@k)</option>
+                    </Select>
+                  </Field>
+                  <Field label="Site pages">
+                    <Select value={f.research_max_pages} onChange={(e) => set("research_max_pages", Number(e.target.value))}>
+                      {[1, 3, 6, 10, 15].map((n) => <option key={n} value={n}>{n}</option>)}
+                    </Select>
+                  </Field>
                 </CardContent>
               </Card>
               <Card>

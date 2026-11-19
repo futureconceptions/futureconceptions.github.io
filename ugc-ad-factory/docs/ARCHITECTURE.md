@@ -23,6 +23,7 @@ Browser ──► Nginx :8080 ─┬─► Next.js (dashboard, wizard, monitor, 
 | `agents/` | The nine agents (researcher, strategist, creator director, scene director, video producer, audio director, lip-sync specialist, editor, QA), plus `schemas.py` (structured outputs) and `prompts.py` (rules and compliance) |
 | `pipeline/` | `stages.py` (state machine), `runner.py` (leases, stage loop, recovery), `jobs.py` (generation-job lifecycle), `costs.py` (estimates, budgets, usage), `dispatch.py` (Celery or inline) |
 | `media/ffmpeg.py` | Probe, normalise, trim, fit audio, mux, concat, captions, overlays, end card, loudness, black/freeze detection |
+| `research/` | Search harness and swarm modelled on the SID-2 report (BM25 snippets, seen-range markers, fork/message/wait/report, RRF fusion) and citation verification; see RESEARCH.md |
 | `services/` | Storage (S3/local) and SSRF-safe fetcher with robots.txt |
 | `api/` | REST routers, request schemas, serializers |
 | `worker/` | Celery app, tasks and beat schedule |

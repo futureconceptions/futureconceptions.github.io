@@ -65,6 +65,10 @@ All endpoints require `Authorization: Bearer <token>` unless noted.
   "subtitles": true,
   "end_card": true,
   "music": false,
+  "research_agents": 3,
+  "research_effort": "medium",
+  "research_metric": "ndcg",
+  "research_max_pages": 6,
   "budget_credits": 20000,
   "confirm_budget": false,
   "assets_licensed": true

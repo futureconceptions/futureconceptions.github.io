@@ -12,8 +12,10 @@ Severity = Literal["low", "medium", "high", "critical"]
 
 class SupportedClaim(BaseModel):
     claim: str
-    evidence: str = Field(description="Verbatim or near-verbatim source text supporting the claim")
+    evidence: str = Field(description="Exact sentence copied verbatim from an evidence passage (it is checked)")
     source: str = Field(description="'product_page', 'user_description' or 'product_images'")
+    source_ref: str | None = Field(default=None, description="Evidence passage reference, e.g. d2#120:480")
+    source_url: str | None = None
 
 
 class ProductResearch(BaseModel):
@@ -33,6 +35,12 @@ class ProductResearch(BaseModel):
     before_after_supported: bool = Field(
         description="True only if the source material explicitly documents a visible before/after result")
     language: str = "en"
+
+
+class ResearchRecord(ProductResearch):
+    """Stored research: the LLM output plus system-filled provenance."""
+    sources: list[dict] = Field(default_factory=list)
+    search: dict = Field(default_factory=dict)
 
 
 class Beat(BaseModel):

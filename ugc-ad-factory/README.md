@@ -8,7 +8,7 @@ Research → Script → Character → Scenes → Video → Voice → Lip Sync �
 
 Nine agents run as a persistent, resumable workflow on Celery:
 
-1. **Product researcher.** Fetches the page (SSRF-safe, robots.txt-aware) and extracts only claims it can back with evidence.
+1. **Product researcher.** Runs a search swarm modelled on the [SID-2 report](https://www.sid.ai/research/sid-2-technical-report) over the product page, related same-site pages and your text (SSRF-safe, robots.txt-aware). Every claim must quote a source passage, and quotes are verified against the source text ([docs/RESEARCH.md](docs/RESEARCH.md)).
 2. **Advertising strategist.** Writes several angles with hook, script, emotion, visual and CTA. Fabricated testimonials are rejected.
 3. **Creator director.** Casts a fictional creator and creates a reusable anchor image with LetzAI.
 4. **Scene director.** Builds a storyboard fitted to the selected model's duration limits.
@@ -55,7 +55,7 @@ cd frontend && npm ci && BACKEND_URL=http://localhost:8000 npm run dev   # http:
 ## Tests
 
 ```bash
-cd backend && pytest            # 82 tests (1 opt-in live test skipped), mocked providers, real FFmpeg, no paid calls
+cd backend && pytest            # 96 tests (1 opt-in live test skipped), mocked providers, real FFmpeg, no paid calls
 cd frontend && npm run typecheck && npm run build
 ```
 
@@ -82,6 +82,7 @@ docker-compose.yml, .env.example
 ## Documentation
 
 * [Compatibility matrix: reference repo vs. LetzAI](docs/COMPATIBILITY.md)
+* [Evidence-backed research (SID-2-style search swarm)](docs/RESEARCH.md)
 * [Architecture, state machine, data model, security](docs/ARCHITECTURE.md)
 * [REST API](docs/API.md)
 * [Operations, costs, going live, limitations](docs/OPERATIONS.md)

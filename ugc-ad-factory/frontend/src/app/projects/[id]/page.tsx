@@ -199,8 +199,7 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
               {p.product.description && <p className="whitespace-pre-wrap">{p.product.description}</p>}
               <div className="flex flex-wrap gap-2">{p.product.assets.map((a) => <img key={a.id} src={a.url} alt="" className="h-20 w-20 rounded border object-cover" />)}</div>
             </CardContent></Card>
-          <Card><CardHeader><CardTitle className="text-base">Structured research</CardTitle><CardDescription>Only claims with source evidence may be used in scripts.</CardDescription></CardHeader>
-            <CardContent><pre className="max-h-[480px] overflow-auto rounded bg-muted p-3 text-xs">{JSON.stringify(p.product.research, null, 2)}</pre></CardContent></Card>
+          <ResearchPanel research={p.product.research as Research | null} />
         </div>
       )}
 
@@ -257,6 +256,68 @@ function ConceptCard({ c, selectable, checked, onToggle }: { c: Concept; selecta
         )}
         {c.claims_used.length > 0 && <div className="text-xs text-muted-foreground"><b>Claims used:</b> {c.claims_used.join(" · ")}</div>}
         {problems.length > 0 && <Alert variant="warning">{problems.join("; ")}</Alert>}
+      </CardContent>
+    </Card>
+  );
+}
+
+interface Research {
+  product_name: string; summary: string; claims_to_avoid: string[];
+  supported_claims: { claim: string; evidence: string; source_ref?: string | null; source_url?: string | null; source: string }[];
+  sources?: { id: string; title: string; url: string | null; source: string; chars: number }[];
+  search?: { method: string; metric: string; effort: string; agents: number; messages: number;
+    turns: Record<string, number>; fused_ranking: [string, number][]; rejected_claims: number };
+}
+
+function ResearchPanel({ research }: { research: Research | null }) {
+  if (!research) return <div className="text-sm text-muted-foreground">Research runs in the first stage.</div>;
+  const src = Object.fromEntries((research.sources ?? []).map((s) => [s.id, s]));
+  const unverified = research.claims_to_avoid.filter((c) => c.startsWith("UNVERIFIED"));
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-base">Evidence-backed claims</CardTitle>
+        <CardDescription>Every claim quotes a passage found by the search agents and is checked against the source text. Only these may be used in scripts.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4 text-sm">
+        {research.search && (
+          <div className="flex flex-wrap gap-1.5 text-xs">
+            <Badge variant="secondary">{research.search.agents} search agent(s)</Badge>
+            <Badge variant="secondary">objective {research.search.metric}</Badge>
+            <Badge variant="secondary">effort {research.search.effort}</Badge>
+            <Badge variant="secondary">{research.search.messages} message(s)</Badge>
+            {research.search.rejected_claims > 0 && <Badge variant="warning">{research.search.rejected_claims} unverified claim(s) removed</Badge>}
+          </div>
+        )}
+        <ol className="space-y-2">
+          {research.supported_claims.map((c, i) => {
+            const doc = c.source_ref ? src[c.source_ref.split("#")[0]] : undefined;
+            return (
+              <li key={i} className="rounded-md border p-2">
+                <div className="font-medium">{c.claim}</div>
+                <blockquote className="mt-1 border-l-2 pl-2 text-xs text-muted-foreground">“{c.evidence}”</blockquote>
+                <div className="mt-1 text-[11px] text-muted-foreground">
+                  <span className="font-mono">{c.source_ref}</span>
+                  {doc && <> · {doc.url ? <a className="text-primary underline" href={doc.url} target="_blank" rel="noreferrer">{doc.title || doc.url}</a> : doc.title}</>}
+                </div>
+              </li>
+            );
+          })}
+          {research.supported_claims.length === 0 && <li className="text-muted-foreground">No verifiable claims were found.</li>}
+        </ol>
+        {unverified.length > 0 && <Alert variant="warning" title="Removed (no source text)">{unverified.map((u) => u.replace("UNVERIFIED (no source text): ", "")).join(" · ")}</Alert>}
+        {research.sources && (
+          <div>
+            <div className="mb-1 text-xs font-medium uppercase text-muted-foreground">Searched corpus</div>
+            <ul className="space-y-0.5 text-xs">
+              {research.sources.map((s) => (
+                <li key={s.id}><span className="font-mono">{s.id}</span> · {s.source.replace("_", " ")} · {s.url ? <a className="text-primary underline" href={s.url} target="_blank" rel="noreferrer">{s.title || s.url}</a> : s.title} <span className="text-muted-foreground">({s.chars} chars)</span></li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <details className="text-xs"><summary className="cursor-pointer text-muted-foreground">Raw research & search trace</summary>
+          <pre className="mt-2 max-h-[420px] overflow-auto rounded bg-muted p-3">{JSON.stringify(research, null, 2)}</pre></details>
       </CardContent>
     </Card>
   );

@@ -138,7 +138,10 @@ def stage_research(ctx: Ctx) -> str:
     researcher = ProductResearcher(registry.llm_provider())
     research, page, usage = researcher.run(
         url=prod.url, name=prod.name, brand=prod.brand_name, description=prod.description,
-        audience=ctx.st.get("target_audience"), language=ctx.language, image_count=len(prod.assets))
+        audience=ctx.st.get("target_audience"), language=ctx.language, image_count=len(prod.assets),
+        brand_guidelines=prod.brand_guidelines, agents=int(ctx.st.get("research_agents", 3)),
+        effort=ctx.st.get("research_effort", "medium"), metric=ctx.st.get("research_metric", "ndcg"),
+        max_pages=int(ctx.st.get("research_max_pages", 6)))
     if page:
         prod.fetch_status = page.status
         prod.page_text = page.text[:20000] if page.text else None
