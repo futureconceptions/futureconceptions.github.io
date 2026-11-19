@@ -21,13 +21,13 @@ _T = {
         "problem": "this everyday hassle",
     },
     "de": {
-        "problem_solution": ("Kennst du das Problem mit {problem}?", "Schau dir {product} an: {claim}.", "Probier's selbst aus."),
+        "problem_solution": ("Kennst du {problem}?", "Schau dir {product} an: {claim}.", "Probier's selbst aus."),
         "product_demo": ("Ich zeig dir kurz, was {product} wirklich kann.", "{claim}.", "Überzeug dich selbst."),
-        "everyday_situation": ("Du kennst diesen Moment, wenn {problem}?", "Genau dafür gibt's {product}. {claim}.", "Schau's dir an."),
+        "everyday_situation": ("Du kennst das: {problem}?", "Genau dafür gibt's {product}. {claim}.", "Schau's dir an."),
         "objection_handling": ("Lohnt sich {product}? Gute Frage.", "{claim}. {claim2}.", "Entscheide selbst."),
         "educational": ("Kurz was, das kaum jemand über {category} weiß.", "{claim}. Genau darauf setzt {product}.", "Mehr erfahren."),
         "product_discovery": ("Okay, schau mal, was ich gefunden hab.", "{product}. {claim}.", "Schau's dir an."),
-        "problem": "diesem Alltagsproblem",
+        "problem": "dieses Alltagsproblem",
     },
 }
 

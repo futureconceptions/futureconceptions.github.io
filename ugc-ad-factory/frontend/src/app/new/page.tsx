@@ -13,7 +13,7 @@ import { fmtCredits } from "@/lib/utils";
 type Mode = "simple" | "advanced";
 
 const DEFAULTS = {
-  name: "", product_url: "", product_description: "", brand_name: "", brand_guidelines: "", target_audience: "",
+  name: "", product_name: "", product_url: "", product_description: "", brand_name: "", brand_guidelines: "", target_audience: "",
   language: "en" as "en" | "de", duration: 20, variants: 2, cta: "",
   creator_id: "", gender: "", age_range: "", appearance: "", clothing: "", environment: "",
   video_model: "", audio_mode: "auto", resolution: "720p", video_candidates: 1, keyframes: "per_scene",
@@ -55,7 +55,7 @@ export default function NewAdPage() {
       clothing: f.clothing, environment: f.environment }).filter(([, v]) => v));
     const checkpoints = [f.cp_concepts && "concepts", f.cp_creator && "creator", f.cp_storyboard && "storyboard"].filter(Boolean);
     const p: Record<string, unknown> = {
-      name: f.name || undefined, product_url: f.product_url || undefined, product_description: f.product_description || undefined,
+      name: f.name || undefined, product_name: f.product_name || undefined, product_url: f.product_url || undefined, product_description: f.product_description || undefined,
       brand_name: f.brand_name || undefined, language: f.language, duration: Number(f.duration), variants: Number(f.variants),
       cta: f.cta || undefined, assets_licensed: licensed,
     };
@@ -113,7 +113,8 @@ export default function NewAdPage() {
                 <Textarea rows={4} value={f.product_description} onChange={(e) => set("product_description", e.target.value)}
                   placeholder="What it is, what it does, who it is for, price…" />
               </Field>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-3">
+                <Field label="Product name"><Input value={f.product_name} onChange={(e) => set("product_name", e.target.value)} placeholder="as spoken in the ad" /></Field>
                 <Field label="Brand name"><Input value={f.brand_name} onChange={(e) => set("brand_name", e.target.value)} /></Field>
                 <Field label="Project name"><Input value={f.name} onChange={(e) => set("name", e.target.value)} placeholder="optional" /></Field>
               </div>

@@ -30,7 +30,8 @@ Checkpoint = Literal["concepts", "creator", "storyboard"]
 
 
 class ProjectCreate(BaseModel):
-    name: str | None = Field(default=None, max_length=200)
+    name: str | None = Field(default=None, max_length=200, description="Project label (not used in ads)")
+    product_name: str | None = Field(default=None, max_length=200)
     product_url: HttpUrl | None = None
     product_description: str | None = Field(default=None, max_length=8000)
     brand_name: str | None = Field(default=None, max_length=200)
@@ -58,7 +59,7 @@ class ProjectCreate(BaseModel):
     assets_licensed: bool = Field(default=False, description="User confirms rights to uploaded images")
 
     def pipeline_settings(self) -> dict:
-        d = self.model_dump(exclude={"name", "product_url", "product_description", "brand_name",
+        d = self.model_dump(exclude={"name", "product_name", "product_url", "product_description", "brand_name",
                                      "brand_guidelines", "creator_id", "budget_credits", "confirm_budget",
                                      "assets_licensed"})
         d["creator_prefs"] = (self.creator_prefs.model_dump(exclude_none=True) if self.creator_prefs else {})

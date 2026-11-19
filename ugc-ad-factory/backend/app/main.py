@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import time
+import traceback
 import uuid
 from contextlib import asynccontextmanager
 
@@ -61,7 +62,7 @@ async def request_context(request: Request, call_next):
     try:
         response = await call_next(request)
     except Exception as e:  # noqa: BLE001
-        log.error("unhandled_error", path=request.url.path, error=str(e))
+        log.error("unhandled_error", path=request.url.path, error=str(e), tb=traceback.format_exc()[-3000:])
         response = JSONResponse({"detail": "Internal server error", "request_id": rid}, status_code=500)
     response.headers["x-request-id"] = rid
     if not request.url.path.startswith("/api/files"):

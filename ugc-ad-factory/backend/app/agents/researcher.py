@@ -91,7 +91,8 @@ def heuristic_research(name: str | None, brand: str | None, description: str | N
     is a verbatim sentence from the sources."""
     src_desc = _sentences(description or "")
     src_page = _sentences(page.text if page and page.status == "ok" else "")
-    product_name = name or (page.title.split("|")[0].split(" - ")[0].strip() if page and page.title else None) or "the product"
+    product_name = (name or (page.title.split("|")[0].split(" - ")[0].strip() if page and page.title else None)
+                    or brand or ("das Produkt" if language == "de" else "the product"))
     claims = [SupportedClaim(claim=s, evidence=s, source="user_description") for s in src_desc[:6]]
     claims += [SupportedClaim(claim=s, evidence=s, source="product_page") for s in src_page[:6]]
     features = [c.claim for c in claims][:6] or [f"{product_name}"]

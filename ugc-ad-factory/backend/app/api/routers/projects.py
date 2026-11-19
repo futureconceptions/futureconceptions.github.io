@@ -67,7 +67,7 @@ async def create_project(payload: str = Form(..., description="ProjectCreate JSO
         raise HTTPException(422, str(e))
     budget = body.budget_credits or s.default_project_budget_credits
     over = est["total_credits"] > budget
-    project = Project(owner_id=user.id, name=body.name or body.brand_name or "Untitled product",
+    project = Project(owner_id=user.id, name=body.name or body.product_name or body.brand_name or "Untitled product",
                       status="awaiting_budget" if (over and not body.confirm_budget) else "queued",
                       stage="research", settings=settings, creator_id=body.creator_id, budget_credits=budget,
                       estimated_credits=est["total_credits"], budget_confirmed=body.confirm_budget,
@@ -78,7 +78,7 @@ async def create_project(payload: str = Form(..., description="ProjectCreate JSO
     db.add(project)
     db.flush()
     product = Product(project_id=project.id, url=str(body.product_url) if body.product_url else None,
-                      name=body.name, brand_name=body.brand_name, description=body.product_description,
+                      name=body.product_name, brand_name=body.brand_name, description=body.product_description,
                       brand_guidelines=body.brand_guidelines)
     db.add(product)
     db.flush()

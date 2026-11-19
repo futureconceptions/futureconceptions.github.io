@@ -12,7 +12,7 @@ from app.providers.llm import HeuristicLLM
 
 
 def create(client, auth, product_image=None, **overrides):
-    payload = {"name": "AquaBottle", "brand_name": "Aqua", "language": "en", "duration": 10, "variants": 1,
+    payload = {"name": "Test project", "product_name": "AquaBottle", "brand_name": "Aqua", "language": "en", "duration": 10, "variants": 1,
                "product_description": "AquaBottle keeps drinks cold for 24 hours. It is made of stainless steel. "
                                       "The lid is leak-proof.",
                "cta": "Get yours today", "video_model": "video-seedance25", "resolution": "480p",
@@ -37,6 +37,8 @@ def test_product_to_finished_ads(client, auth, product_image):
     assert d["status"] == "completed", (d["error"], d["stage_detail"])
     assert all(s["state"] == "done" for s in d["pipeline"])
     assert len([c for c in d["concepts"] if c["selected"]]) == 2
+    scripts = " ".join(c["script"]["full_text"] for c in d["concepts"])
+    assert "AquaBottle" in scripts and "Test project" not in scripts  # project label never spoken
     assert d["creator"]["anchor_url"] and d["creator"]["is_fictional"]
     exports = [e for e in d["exports"] if e["status"] == "approved"]
     assert len(exports) == 2
